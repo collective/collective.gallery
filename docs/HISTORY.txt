@@ -1,0 +1,65 @@
+Changelog
+=========
+
+1.0b5 (unreleased)
+----------------
+
+- add gallery.html view based on collective.js.pikachoose
+  [toutpt]
+
+1.0b4 (2010-10-25)
+------------------
+
+- Remove Large Plone Folder from default profile. Now install well on plone4
+  [toutpt]
+- Move galleriffic integration into skin directory.
+  [toutpt]
+- BrowserView are now used has controller: template is replaced by allowed_interface
+  [toutpt]
+- Switch back galleriffic plone integration to example1
+  [toutpt]
+
+1.0b3 (2010-05-31)
+------------------
+
+- Fix a KeyError on exif data with folder implementation (topic and folder)
+  [toutpt]
+
+1.0b2 (2010-05-26)
+------------------
+
+- Add uninstall profile + Extensions/Install script to be used by quickinstaller
+  [toutpt]
+- Move templates in browser/templates folder
+  [toutpt]
+- Move javascript resources in browser/resources folder
+  [toutpt]
+- Add 'en' locale
+  [toutpt]
+- Add z3c.autoinclude target plone in entry points
+  [toutpt]
+
+1.0b1 - (2010/05/21)
+--------------------
+
+- remove harlequin and z3cform integration (too soon) [toutpt]
+- rename IImage to IPhoto and imgs() to photos() [toutpt]
+- Add rebuild i18n script as usual [toutpt]
+- Use collective.testcaselayer for tests [toutpt]
+- Add interfaces IImage and IExif on results returned by every services [toutpt]
+- Use jquery.galleriffic jquery plugin (example 1) [toutpt]
+- Add flickr support [toupt]
+- Add cache support with plone.memoize.ram [toutpt]
+- Add picasa private album support on both slideshow and link browserview [toutpt]
+- Add tests on picasa components [toutpt]
+
+0.1.1 - 2009/12/29
+------------------
+
+- Add picasa slideshow flash gallery view on link content type [toutpt]
+- Add integration tests [toutpt]
+
+0.1 - 2009/12/28
+----------------
+
+- Initial release

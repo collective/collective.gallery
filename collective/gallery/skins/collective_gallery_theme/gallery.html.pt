@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en" metal:use-macro="context/main_template/macros/master" i18n:domain="collective.gallery">
+    <body>
+        <div metal:fill-slot="main">
+        <tal:main-macro metal:define-macro="main"
+        tal:define="getToolByName python:modules['Products.CMFCore.utils'].getToolByName;
+                    plone_utils python:getToolByName(view.context,  'plone_utils');
+                    galleryview here/@@gallery">
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+        <p class="document_date" tal:content="python:plone_utils.toLocalizedTime(context.CreationDate())">
+        </p>
+        <h1 class="documentFirstHeading">
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+                Title
+            </metal:field>
+        </h1>
+        <div class="pikachoose">
+            <ul id="pikame" class="jcarousel-skin-pika">
+                <li tal:repeat="img galleryview/photos"><a tal:attributes="href img/url"><img tal:attributes="src img/url"/></a><span tal:content="img/description"></span></li>
+            </ul>
+        </div>
+
+        </tal:main-macro>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<metal:page define-macro="master">
+<metal:block define-slot="top_slot" />
+ 
+<html>
+  <head>
+        <div tal:replace="structure provider:plone.htmlhead" />
+        	<tal:replace tal:replace="structure view/displayer/css" />
+        	<tal:replace tal:replace="structure view/displayer/javascript" />
+  </head>
+
+<body>
+
+<div class="navigation-container">
+    <div id="thumbs" class="navigation">
+        <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
+
+        <ul class="thumbs noscript">
+            <li tal:repeat="img view/photos" style="display:none;">
+                <a class="thumb" name="leaf" tal:attributes="href img/url;title img/title">
+                    <img tal:attributes="src img/thumb_url; alt img/title" />
+                </a>
+                <div class="caption">
+                    <div class="image-title" tal:content="img/title">Title #0</div>
+                    <div class="image-desc" tal:content="img/description">Description</div>
+                </div>
+            </li>
+        </ul>
+        <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+
+    </div>
+</div>
+<div class="content">
+    <div class="slideshow-container">
+        <div id="controls" class="controls"></div>
+        <div id="loading" class="loader"></div>
+        <div id="slideshow" class="slideshow"></div>
+    </div>
+    <div id="caption" class="caption-container">
+
+        <div class="photo-index"></div>
+    </div>
+</div>
+<script type="text/javascript" tal:attributes="src string:$portal_url/galleriffic.js"></script>
+
+
+</body>
+</html>
+ 
+</metal:page>

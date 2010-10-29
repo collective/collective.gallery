@@ -1,0 +1,59 @@
+<tal:comment replace="nothing">
+from this link
+
+http://picasaweb.google.com/toutpt/20091116ConcertDeRammstein?authkey=Gv1sRgCN2i5uS0y5_lLQ#
+
+if I ask picasaweb to have a slideshow I get that code to paste:
+
+<embed type="application/x-shockwave-flash"
+  src="http://picasaweb.google.com/s/c/bin/slideshow.swf"
+  width="288" height="192"
+
+  flashvars="host=picasaweb.google.com&captions=1&hl=fr&feat=flashalbum&RGB=0x000000&feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2Ftoutpt%2Falbumid%2F5405029163657738241%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCN2i5uS0y5_lLQ%26hl%3Dfr" 
+
+  pluginspage="http://www.macromedia.com/go/getflashplayer">
+</embed>
+
+The hard part is to transform the url from
+
+http://picasaweb.google.com/toutpt/20091116ConcertDeRammstein?authkey=Gv1sRgCN2i5uS0y5_lLQ#
+
+to 
+
+http://picasaweb.google.com/data/feed/api/user/toutpt/album/20091116ConcertDeRammstein?kind=photo&alt=rss&authkey=Gv1sRgCN2i5uS0y5_lLQ
+
+and then to encode it
+
+http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2Ftoutpt%2Falbum%2F20091116ConcertDeRammstein%3Falt%3Drss%26kind%3Dphoto%26authkey%3DGv1sRgCN2i5uS0y5_lLQ
+
+Note Picasa let me to use album instead of albumid
+</tal:comment>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.gallery">
+<metal:main fill-slot="main">
+   <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+   <h1 tal:content="context/Title"></h1>
+
+   <div tal:replace="structure provider:plone.belowcontenttitle" />
+     <p tal:content="context/Description"></p>
+     <div id="diaporama" tal:define="std    modules/Products.PythonScripts.standard;
+      urlencode nocall: std/urlencode;
+	  broken_url view/break_url;
+	  albumName python:broken_url[1].split('/')[-1];
+	  authkey python:broken_url[2].get('authkey',None);
+      feedurl string:http://picasaweb.google.com/data/feed/api/user/${view/creator}/album/${albumName}?kind=photo&alt=rss;
+      feedurl python:authkey and feedurl+'&authkey='+authkey or feedurl">
+     <embed type="application/x-shockwave-flash" src="http://picasaweb.google.com/s/c/bin/slideshow.swf"
+       pluginspage="http://www.macromedia.com/go/getflashplayer"
+       tal:attributes="width view/width; height view/height;flashvars python:'host=picasaweb.google.com&feat=flashalbum&RGB=0x000000&'+ urlencode({'feed':feedurl});"> 
+     </embed>
+     </div>
+   <div tal:replace="structure provider:plone.abovecontentbody" />
+</metal:main>
+</html>

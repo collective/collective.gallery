@@ -1,0 +1,82 @@
+=========================
+Folder functional doctest
+=========================
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+    >>> portal_url = self.portal.absolute_url()
+    >>> self.portal.error_log._ignored_exceptions = ()
+    >>> from Products.PloneTestCase.setup import portal_owner, default_password
+    >>> browser.open(portal_url)
+
+Just login
+
+    >>> browser.getLink('Log in').click()
+    >>> browser.getControl(name='__ac_name').value = portal_owner
+    >>> browser.getControl(name='__ac_password').value = default_password
+    >>> browser.getControl(name='submit').click()
+    >>> "You are now logged in" in browser.contents
+    True
+
+First we add a folder
+
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Folder').click()
+    >>> browser.getControl('Add').click()
+    >>> browser.getControl('Title').value = 'My Gallery'
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-gallery/'
+
+Next we add some images inside the folder
+
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Image').click()
+    >>> browser.getControl('Add').click()
+    >>> from plone.app.blob.tests.utils import getFile
+    >>> control = browser.getControl(name='image_file')
+    >>> control.filename = 'bar.gif'
+    >>> control.value = getFile('image.gif')
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-gallery/bar.gif/view'
+
+    >>> browser.getLink("My Gallery").click()
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Image').click()
+    >>> browser.getControl('Add').click()
+    >>> from plone.app.blob.tests.utils import getFile
+    >>> control = browser.getControl(name='image_file')
+    >>> control.filename = 'bar.png'
+    >>> control.value = getFile('image.png')
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-gallery/bar.png/view'
+
+    >>> browser.getLink("My Gallery").click()
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Image').click()
+    >>> browser.getControl('Add').click()
+    >>> from plone.app.blob.tests.utils import getFile
+    >>> control = browser.getControl(name='image_file')
+    >>> control.filename = 'bar.jpg'
+    >>> control.value = getFile('image.jpg')
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-gallery/bar.jpg/view'
+
+Now we return to the folder and set the default view
+
+    >>> browser.getLink("My Gallery").click()
+    >>> browser.getLink("Display").click()
+    >>> browser.getControl('gallery.html').click()
+    >>> browser.getControl('Save').click()
+
+    >>> import tempfile as tmp
+    >>> def contents():
+    ...    fd, fn = tmp.mkstemp(suffix=".html", prefix="testbrowser-")
+    ...    file = open(fn, 'w')
+    ...    file.write(browser.contents)
+    ...    file.close()
+    ...    print fn

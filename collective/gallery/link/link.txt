@@ -1,0 +1,38 @@
+=========================
+Link functional doctest
+=========================
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.handleErrors = False
+    >>> portal_url = self.portal.absolute_url()
+    >>> self.portal.error_log._ignored_exceptions = ()
+    >>> from Products.PloneTestCase.setup import portal_owner, default_password
+    >>> browser.open(portal_url)
+
+Just login
+
+    >>> browser.getLink('Log in').click()
+    >>> browser.getControl(name='__ac_name').value = portal_owner
+    >>> browser.getControl(name='__ac_password').value = default_password
+    >>> browser.getControl(name='submit').click()
+    >>> "You are now logged in" in browser.contents
+    True
+
+We add a link
+
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Link').click()
+    >>> browser.getControl('Add').click()
+    >>> browser.getControl('Title').value = 'My Gallery'
+    >>> browser.getControl('URL').value = 'http://picasaweb.google.fr/ceronjeanpierre/PhotosTriEsDuMariage'
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-gallery'
+
+Now we return to the folder and set the default view
+
+    >>> browser.getLink("Display").click()
+    >>> browser.getControl('gallery.html').click()
+    >>> browser.getControl('Save').click()
+

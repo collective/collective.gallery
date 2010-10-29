@@ -1,0 +1,6 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="collective.gallery">
+
+    <include package="collective.gallery" />
+
+</configure>

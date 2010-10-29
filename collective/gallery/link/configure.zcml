@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="collective.gallery">
+
+  <adapter
+    factory=".picasaweb.Link"
+    name="picasaweb"
+    />
+  <adapter
+    factory=".flickr.Link"
+    name="flickr"
+    />
+  <adapter
+    factory=".facebook.Link"
+    name="facebook"
+    />
+</configure>

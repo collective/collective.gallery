@@ -1,0 +1,54 @@
+<tal:comment replace="nothing">
+from this link
+
+http://www.flickr.com/photos/telkine/sets/72157623621093538/show
+
+if I ask flickr to have a slideshow I get that code to paste:
+
+	<embed type="application/x-shockwave-flash"
+	src="http://www.flickr.com/apps/slideshow/show.swf?v=71649"
+	allowFullScreen="true"
+	flashvars="offsite=true&lang=fr-fr&page_show_url=%2Fphotos%2Ftelkine%2Fsets%2F72157623621093538%2Fshow%2Fwith%2F4441974704%2F&page_show_back_url=%2Fphotos%2Ftelkine%2Fsets%2F72157623621093538%2Fwith%2F4441974704%2F&set_id=72157623621093538&jump_to=4441974704"
+	width="400" height="300">
+	</embed>
+
+The hard part is to transform the url from
+
+http://www.flickr.com/photos/telkine/sets/72157623621093538
+
+to 
+
+/photos/telkine/sets/72157623621093538/show
+
+and then to encode it
+
+</tal:comment>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.gallery">
+<metal:main fill-slot="main">
+   <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+   <h1 tal:content="context/Title"></h1>
+
+   <div tal:replace="structure provider:plone.belowcontenttitle" />
+     <p tal:content="context/Description"></p>
+     <div id="diaporama" tal:define="std    modules/Products.PythonScripts.standard;
+      urlencode nocall: std/urlencode;
+      broken_url view/break_url;
+      yahoo_account python:broken_url[1].split('/')[2];
+      sets_id python:broken_url[1].split('/')[4];
+      yurl string:offsite=true&page_show_url=%2Fphotos%2F${yahoo_account}%2Fsets%2F${sets_id}%2Fshow%2F&set_id=${sets_id};">
+        <embed type="application/x-shockwave-flash"
+        src="http://www.flickr.com/apps/slideshow/show.swf?v=71649"
+        allowFullScreen="true"
+        tal:attributes="flashvars python:yurl; width view/width; height view/height">
+        </embed>
+     </div>
+   <div tal:replace="structure provider:plone.abovecontentbody" />
+</metal:main>
+</html>

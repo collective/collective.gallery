@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+ <object name="collective_gallery_theme"
+    meta_type="Filesystem Directory View"
+    directory="collective.gallery:skins/collective_gallery_theme"/>
+ <skin-path name="*">
+  <layer name="collective_gallery_theme"
+     insert-after="custom"/>
+ </skin-path>
+</object>

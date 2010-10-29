@@ -1,0 +1,107 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-05-27 09:04+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.messaging\n"
+
+#: ./interfaces.py:45
+msgid "Author"
+msgstr ""
+
+#: ./interfaces.py:49
+msgid "Date"
+msgstr ""
+
+#: ./interfaces.py:26
+msgid "Description"
+msgstr ""
+
+#: ./interfaces.py:9
+msgid "Exif distance"
+msgstr ""
+
+#: ./interfaces.py:10
+msgid "Exposure time"
+msgstr ""
+
+#: ./interfaces.py:11
+msgid "Flash"
+msgstr ""
+
+#: ./interfaces.py:12
+msgid "Focal length"
+msgstr ""
+
+#: ./interfaces.py:13
+msgid "ISO Speed"
+msgstr ""
+
+#: ./interfaces.py:14
+msgid "Make"
+msgstr ""
+
+#: ./interfaces.py:15
+msgid "Manifacturer of image input equipement"
+msgstr ""
+
+#: ./interfaces.py:16
+msgid "Model"
+msgstr ""
+
+#: ./interfaces.py:17
+msgid "Model of image input equipement"
+msgstr ""
+
+#: ./interfaces.py:75
+msgid "Name"
+msgstr ""
+
+#: ./interfaces.py:28
+msgid "Source URL"
+msgstr ""
+
+#: ./interfaces.py:19
+msgid "The date/time the photo was taken, represented as the number of milliseconds since January 1st, 1970."
+msgstr ""
+
+#: ./interfaces.py:34
+msgid "The file object"
+msgstr ""
+
+#: ./interfaces.py:76
+msgid "The friendly name of the template"
+msgstr ""
+
+#: ./interfaces.py:30
+msgid "Thumb source URL"
+msgstr ""
+
+#: ./interfaces.py:18
+msgid "Time"
+msgstr ""
+
+#: ./interfaces.py:24
+msgid "Title"
+msgstr ""
+
+#: ./interfaces.py:51
+msgid "Width"
+msgstr ""
+
+#: ./interfaces.py:55
+msgid "height"
+msgstr ""
+

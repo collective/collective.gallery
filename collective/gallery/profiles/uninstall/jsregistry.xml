@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts">
+
+ <javascript 
+    id="++resource++jquery.galleriffic.js"
+    remove="true" />
+
+ <javascript 
+    id="++resource++jquery.opacityrollover.js"
+    remove="true" />
+
+ <javascript 
+    id="++resource++jquery.history.js"
+    remove="true" />
+
+</object>

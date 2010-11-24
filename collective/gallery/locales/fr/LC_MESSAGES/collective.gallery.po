@@ -9,99 +9,98 @@ msgstr ""
 "Last-Translator: JeanMichel FRANCOIS <toutpt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: fr\n"
 "Language-Name: French\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.messaging\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
-#: ./interfaces.py:45
+#: interfaces.py:45
 msgid "Author"
 msgstr "Auteur"
 
-#: ./interfaces.py:49
+#: interfaces.py:49
 msgid "Date"
 msgstr "Date"
 
-#: ./interfaces.py:26
+#: interfaces.py:26
 msgid "Description"
 msgstr "Description"
 
-#: ./interfaces.py:9
+#: interfaces.py:9
 msgid "Exif distance"
 msgstr ""
 
-#: ./interfaces.py:10
+#: interfaces.py:10
 msgid "Exposure time"
 msgstr ""
 
-#: ./interfaces.py:11
+#: interfaces.py:11
 msgid "Flash"
 msgstr ""
 
-#: ./interfaces.py:12
+#: interfaces.py:12
 msgid "Focal length"
 msgstr ""
 
-#: ./interfaces.py:13
+#: interfaces.py:13
 msgid "ISO Speed"
 msgstr ""
 
-#: ./interfaces.py:14
+#: interfaces.py:14
 msgid "Make"
 msgstr ""
 
-#: ./interfaces.py:15
+#: interfaces.py:15
 msgid "Manifacturer of image input equipement"
 msgstr ""
 
-#: ./interfaces.py:16
+#: interfaces.py:16
 msgid "Model"
-msgstr ""
+msgstr "Modèle"
 
-#: ./interfaces.py:17
+#: interfaces.py:17
 msgid "Model of image input equipement"
-msgstr ""
+msgstr "Modèle de l'appareil de capture d'image"
 
-#: ./interfaces.py:75
+#: interfaces.py:75
 msgid "Name"
 msgstr "Nom"
 
-#: ./interfaces.py:28
+#: interfaces.py:28
 msgid "Source URL"
-msgstr ""
+msgstr "URL de la photo"
 
-#: ./interfaces.py:19
+#: interfaces.py:19
 msgid "The date/time the photo was taken, represented as the number of milliseconds since January 1st, 1970."
 msgstr ""
 
-#: ./interfaces.py:34
+#: interfaces.py:34
 msgid "The file object"
 msgstr ""
 
-#: ./interfaces.py:76
+#: interfaces.py:76
 msgid "The friendly name of the template"
 msgstr "Le nom lisible du template d'affichage"
 
-#: ./interfaces.py:30
+#: interfaces.py:30
 msgid "Thumb source URL"
-msgstr ""
+msgstr "URL de la vignette"
 
-#: ./interfaces.py:18
+#: interfaces.py:18
 msgid "Time"
 msgstr ""
 
-#: ./interfaces.py:24
+#: interfaces.py:24
 msgid "Title"
 msgstr "Titre"
 
-#: ./interfaces.py:51
+#: interfaces.py:51
 msgid "Width"
 msgstr "Largeur"
 
-#: ./interfaces.py:55
+#: interfaces.py:55
 msgid "height"
 msgstr "hauteur"
-

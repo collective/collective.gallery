@@ -1,4 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en" metal:use-macro="context/main_template/macros/master" i18n:domain="collective.gallery">
+
 <metal:styleslot fill-slot="javascript_head_slot">
 <script type="text/javascript" src="galleriffic.js"></script>
 </metal:styleslot>
@@ -23,12 +24,16 @@
                 </div>
                 <div class="slideshow" id="slideshow">
                 </div>
+                <div id="caption"></div>
             </div>
         </div>
         <div class="navigation" id="thumbs">
             <ul class="thumbs noscript">
                 <li tal:repeat="img galleryview/photos">
-                    <a tal:attributes="title img/title;href img/url" tal:content="img/title" class="thumb">Title #0</a>
+                    <a tal:attributes="title img/title;href img/url" class="thumb">
+                           <img tal:attributes="src img/thumb_url;alt img/title" />
+                    </a>
+  <div class="caption" tal:content="img/description" />
                 </li>
             </ul>
         </div>

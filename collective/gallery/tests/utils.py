@@ -4,12 +4,11 @@ from zope.annotation.interfaces import IAttributeAnnotatable
 def verifyImage(image):
     """Return True if image respect the interface, return false otherwise"""
     tests = []
-    attrs = ('title', 'description', 'url', 'thumb_url', 'exif')
+    attrs = ('title', 'description', 'url', 'thumb_url')
     for attr in attrs:
         if not hasattr(image, attr):
             return False, "has no %s attribute"%attr
     for attr in attrs:
-        if attr == "exif":continue
         if not type(getattr(image, attr)) == str:
             return False, "%s is not a string"%attr
     return True, ""

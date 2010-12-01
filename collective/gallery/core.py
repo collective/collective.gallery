@@ -18,14 +18,6 @@ class BaseBrowserView(BrowserView):
         self.request = request
 
     @property
-    def width(self):
-        return self.pp.site_properties.gallery_width
-
-    @property
-    def height(self):
-        return self.pp.site_properties.gallery_height
-
-    @property
     def title(self):
         return self.context.Title()
 
@@ -46,29 +38,5 @@ class BaseBrowserView(BrowserView):
     def pp(self):
         return getToolByName(self.context, 'portal_properties')
 
-    def search(self, query):
-        return []
-    
-    def add(self, photos):
-        pass
-
     def photos(self):
         return []
-
-def sizes(available_sizes, asked_size):
-    """Returns size (width,height) to ask to services to best fit with the UI.
-    
-    * available sizes must be an ordered list of sizes (width,height)
-    * asked_size is the size ask by the template or the site properties
-    """
-    asked_width, asked_height = asked_size
-    minus_size = None
-    while asked_width != 0 or asked_height != 0:
-        for w,h in available_sizes:
-            if w>asked_width or h>asked_height:
-                continue
-            else:
-                minus_size = w,h
-                break
-        asked_width = asked_width - 1
-        asked_height = asked_height -1

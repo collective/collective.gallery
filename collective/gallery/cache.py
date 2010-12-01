@@ -9,9 +9,7 @@ def cache_key(fun, self):
     """
     mod_date = str(self.context.modified())
     one_hour = str(time() // (60*60))
-    width = str(self.width)
-    height = str(self.height)
     objectIds = ""
     if hasattr(self.context.aq_inner.aq_explicit, 'objectIds'):
         objectIds = str(len(self.context.aq_inner.aq_explicit.objectIds()))
-    return  mod_date + one_hour + width + height + objectIds
+    return  mod_date + one_hour + objectIds

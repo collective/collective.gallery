@@ -26,7 +26,8 @@ setup(name='collective.gallery',
           'setuptools',
           'gdata',
           'flickrapi',
-          'collective.js.pikachoose'
+          'collective.js.pikachoose',
+          'collective.js.galleriffic'
           # -*- Extra requirements: -*-
       ],
       entry_points="""

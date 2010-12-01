@@ -160,16 +160,4 @@ class Photo(object):
         self.thumb_url = photo.media.thumbnail[0].url
         self.title = photo.title.text
         self.description = photo.summary.text or ''
-        self.exif = Exif(photo)
 
-class Exif(object):
-    """Exif implementation for picasa"""
-    interface.implements(interfaces.IExif)
-
-    def __init__(self, photo):
-        exif = photo.exif
-        attrs = ('distance','exposure', 'flash', 'focallength', 'fstop',
-                 'imageUniqueID', 'iso', 'make', 'model', 'time')
-        for attr in attrs:
-            if getattr(exif, attr, None):
-                setattr(self, attr, getattr(exif,attr).text)

@@ -1,13 +1,20 @@
 // We only want these styles applied when javascript is enabled
-$(document).ready(function(){
-    $('div.navigation').css({
-        'width': '300px',
+jQuery(document).ready(function($){
+    jq('div.navigation').css({
+        'width': '550px',
         'float': 'left'
     });
-    $('div.gallerycontent').css('display', 'block');
+    jq('div.gallerycontent').css('display', 'block');
+    jq('a.thumb').css({
+        'float': 'left',
+        'margin-right':'5px',
+        'height':'60px',
+        'border-bottom':'none'
+    });
     // Initialize Minimal Galleriffic Gallery
-    $('#thumbs').galleriffic({
+    jq('#thumbs').galleriffic({
         imageContainerSel: '#slideshow',
-        controlsContainerSel: '#controls'
+        controlsContainerSel: '#controls',
+        captionContainerSel: '#caption'
     });
 });

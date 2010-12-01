@@ -1,8 +1,13 @@
+url:http://www.recuperateurdepluie.fr/portal_skins/custom/galleriffic.css
+meta_type:File
+title:
+content_type:text/css
+cookie:__utma=93733406.401573507.1278273443.1290587283.1290592496.32; __utmz=93733406.1290517949.26.4.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=aqualogic; __utmb=93733406.88.10.1290592496; I18N_LANGUAGE="fr-fr"; __utmc=93733406; __ac="NjE2NDZkNjk2ZTo0ZTY5NjM2ODY1MzczNDIx"
+
 div.gallerycontent {
     /* The display of content is enabled using jQuery so that the slideshow content won't display unless javascript is enabled. */
     display: none;
-    float: right;
-    width: 550px;
+    width: 100%;
 }
 
 div.gallerycontent a, div.navigation a {
@@ -34,18 +39,18 @@ div.nav-controls {
 div.slideshow-container {
     position: relative;
     clear: both;
-    height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
+    height: 310px; /* This should be set to be at least the height of the largest image in the slideshow */
 }
 
 div.loader {
     position: absolute;
     top: 0;
     left: 0;
+    height:310px;
     background-image: url('loader.gif');
     background-repeat: no-repeat;
     background-position: center;
     width: 550px;
-    height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
 }
 
 div.slideshow {
@@ -61,9 +66,6 @@ div.slideshow span.image-wrapper {
 div.slideshow a.advance-link {
     display: block;
     width: 550px;
-    height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
-    line-height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
-    text-align: center;
 }
 
 div.slideshow a.advance-link:hover, div.slideshow a.advance-link:active, div.slideshow a.advance-link:visited {
@@ -84,7 +86,8 @@ div.caption-container {
 
 span.image-caption {
     display: block;
-    position: absolute;
+    float:right;
+    width:180px;
 }
 
 div.caption {

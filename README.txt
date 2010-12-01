@@ -102,6 +102,14 @@ Views are already available to use those services:
 
 But they are not integrated in the Plone UI.
 
+References
+==========
+
+This add-on is use in production here and there:
+
+* http://www.nantes-developpement.com/search?portal_type=Diaporama
+* http://www.recuperateurdepluie.fr/photos-aqualogic
+
 Roadmap
 =======
 

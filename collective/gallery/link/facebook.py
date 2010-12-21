@@ -35,7 +35,7 @@ class Link(object):
     """Facebook implements of IGallery over Link content type
     """
     interface.implements(interfaces.IGallery)
-    component.adapts(interfaces.IATLink)
+    component.adapts(interfaces.ILink)
 
     def __init__(self, context):
         self.context = context

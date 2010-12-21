@@ -1,0 +1,14 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:gs="http://namespaces.zope.org/genericsetup"
+  i18n_domain="collective.gallery">
+        
+  <gs:upgradeStep
+    title="Upgrade collective.gallery to 1.0"
+    description="collective.gallery upgrade step"
+    source="*"
+    destination="1.0"
+    handler=".upgrades.upgrade_to_10"
+    profile="collective.gallery:default"/>
+
+</configure>

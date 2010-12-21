@@ -39,7 +39,7 @@ class Link(object):
     for a complete reference of kwargs
     """
     interface.implements(interfaces.IGallery)
-    component.adapts(interfaces.IATLink)
+    component.adapts(interfaces.ILink)
 
     def __init__(self, context):
         self.context = context

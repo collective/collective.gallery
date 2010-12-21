@@ -20,7 +20,7 @@ class BaseFolderView(core.BaseBrowserView):
         results = []
         for ob in self.context.objectValues():
             try:
-                photo = IPhoto(ob)
+                photo = interfaces.IPhoto(ob)
             except component.ComponentLookupError:
                 pass
             results.append(photo)
@@ -28,12 +28,12 @@ class BaseFolderView(core.BaseBrowserView):
 
 class Photo(object):
     """Photo implementation from brain"""
-
     interface.implements(interfaces.IPhoto)
+    component.adapts(interfaces.IImage)
 
-    def __init__(self, brain):
-        self.id = brain.getId
-        self.url = brain.getURL()
-        self.thumb_url = brain.getURL() + '/image_thumb' #need to use image_thumb
-        self.title = brain.Title
-        self.description = brain.Description
+    def __init__(self, image):
+        self.id = image.getId()
+        self.url = image.absolute_url()
+        self.thumb_url = self.url + '/image_thumb' #need to use image_thumb
+        self.title = image.Title()
+        self.description = image.Description()

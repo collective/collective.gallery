@@ -1,7 +1,9 @@
 from zope import interface
 from zope import schema
 from collective.gallery import _
+from collective.gallery import logger
 from plone.app.layout.globals.interfaces import IViewView
+
 
 class IPhoto(interface.Interface):
     """Metadatas schema of a photo"""
@@ -68,7 +70,14 @@ class IGalleryTemplateTerm(interface.Interface):
 #dependencies
 try:
     #plone4
-    from Products.ATContentTypes.interfaces.link import IATLink
-except:
+    from plone.app.folder.folder import IATUnifiedFolder          as IFolder
+    from Products.ATContentTypes.interfaces.link import IATLink   as ILink
+    from Products.ATContentTypes.interfaces.topic import IATTopic as ITopic
+    from Products.ATContentTypes.interfaces.image import IATImage as IImage
+except ImportError, e:
+    logger.info('BBB: switch to plone3 %s'%e)
     #plone3
-    from Products.ATContentTypes.interface.link import IATLink
+    from Products.ATContentTypes.interface.folder import IATFolder as IFolder
+    from Products.ATContentTypes.interface.link import IATLink     as ILink
+    from Products.ATContentTypes.interface.topic import IATTopic   as ITopic
+    from Products.ATContentTypes.interface.image import IATImage   as IImage

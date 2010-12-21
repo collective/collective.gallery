@@ -6,7 +6,10 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.gallery">
+
   <include package="collective.js.galleriffic"/>
+  <include file="upgrades.zcml"/>
+
   <five:registerPackage package="." initialize=".initialize" />
 
   <i18n:registerTranslations directory="locales" />
@@ -30,38 +33,38 @@
   />
   <browser:page
     name="gallery"
-    for="Products.ATContentTypes.interface.IATLink"
+    for=".interfaces.ILink"
     allowed_interface="collective.gallery.interfaces.IGallery"
     class="collective.gallery.link.BaseLinkView"
     permission="zope2.View"
   />
   <browser:page
     name="gallery"
-    for="Products.ATContentTypes.interface.IATFolder"
+    for=".interfaces.IFolder"
     class="collective.gallery.folder.BaseFolderView"
     permission="zope2.View"
     allowed_interface="collective.gallery.interfaces.IGallery"
   />
   <browser:page
     name="gallery"
-    for="Products.ATContentTypes.interface.IATTopic"
+    for=".interfaces.ITopic"
     allowed_interface="collective.gallery.interfaces.IGallery"
     class="collective.gallery.topic.BaseTopicView"
     permission="zope2.View"
   />
   <browser:page
     name="gallery-flickr-slideshow"
-    for="Products.ATContentTypes.interface.IATLink"
+    for=".interfaces.ILink"
     template="browser/templates/flickr_slideshow.pt"
     class="collective.gallery.link.BaseLinkView"
     permission="zope2.View"
   />
   <browser:page
     name="gallery-picasaweb-slideshow"
-    for="Products.ATContentTypes.interface.IATLink"
+    for=".interfaces.ILink"
     template="browser/templates/picasa_slideshow.pt"
     class="collective.gallery.link.BaseLinkView"
     permission="zope2.View"
   />
-
+  <adapter factory=".folder.Photo" />
 </configure>

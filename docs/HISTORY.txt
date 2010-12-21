@@ -4,10 +4,13 @@ Changelog
 1.0b5 (unreleased)
 ----------------
 
-- fix galleriffic integration
-  [jchambard]
+- add id on photo api
+  [toutpt]
 
-- add gallery.html view based on collective.js.pikachoose
+- improve galleriffic integration
+  [toutpt jchambard]
+
+- add gallery.html view based on collective.js.galleriffic
   [toutpt]
 
 1.0b4 (2010-10-25)

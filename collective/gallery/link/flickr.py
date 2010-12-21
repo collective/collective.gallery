@@ -141,18 +141,7 @@ class Photo(object):
             photo.get('secret'))
 
         self.url = url
+        self.id = photo.get('id')
         self.thumb_url = thumb_url
         self.title = photo.get('title')
         self.description = ''
-        self.exif = None
-
-class Exif(object):
-    """Exif implementation for picasa"""
-    interface.implements(interfaces.IExif)
-
-    def __init__(self, photo):
-        #TODO: get exif need a collf from service with each photo id
-        attrs = ('distance','exposure', 'flash', 'focallength', 'fstop',
-                 'imageUniqueID', 'iso', 'make', 'model', 'time')
-        for attr in attrs:
-            setattr(self, attr, "")

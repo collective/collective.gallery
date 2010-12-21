@@ -24,14 +24,19 @@ class TestSetup(GalleryTestCase):
     def test_view_methods(self):
         for t in ('Link', 'Folder', 'Topic'):
             views = self.portal_types.getTypeInfo(t).view_methods
-            self.failUnless("galleriffic" in views, 'gallery not in views of %s'%t)
+            self.failUnless("gallery.html" in views, 'gallery not in views of %s'%t)
 
     def test_properties(self):
-        site_pp = self.portal.portal_properties.site_properties
-        self.failUnless(hasattr(site_pp, 'gallery_width'))
-        self.failUnless(hasattr(site_pp, 'gallery_height'))
-        self.failUnless(site_pp.gallery_width == 400)
-        self.failUnless(site_pp.gallery_height == 400)
+        pp = self.portal.portal_properties.gallery_properties
+        self.failUnless(hasattr(pp, 'photo_max_size'))
+        self.failUnless(pp.photo_max_size == 400)
+        self.failUnless(type(pp.photo_max_size) == int)
+        self.failUnless(hasattr(pp, 'thumb_max_size'))
+        self.failUnless(type(pp.thumb_max_size) == int)
+        self.failUnless(hasattr(pp, 'numthumbs'))
+        self.failUnless(type(pp.numthumbs) == int)
+        self.failUnless(hasattr(pp, 'enablehistory'))
+        self.failUnless(type(pp.enablehistory) == bool)
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class

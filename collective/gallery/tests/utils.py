@@ -4,12 +4,11 @@ from zope.annotation.interfaces import IAttributeAnnotatable
 def verifyImage(image):
     """Return True if image respect the interface, return false otherwise"""
     tests = []
-    attrs = ('title', 'description', 'url', 'thumb_url', 'exif')
+    attrs = ('id', 'title', 'description', 'url', 'thumb_url')
     for attr in attrs:
         if not hasattr(image, attr):
             return False, "has no %s attribute"%attr
     for attr in attrs:
-        if attr == "exif":continue
         if not type(getattr(image, attr)) == str:
             return False, "%s is not a string"%attr
     return True, ""
@@ -67,6 +66,7 @@ class FakeBrain(object):
     def __init__(self):
         self.Title = ""
         self.Description = ""
+        self.getId = ""
 
     def getURL(self):
         return "http://fakebrain.com"
@@ -96,9 +96,11 @@ class FakeProperty(object):
     def __init__(self):
         class Gallery:
             def __init__(self):
-                self.gallery_width = 400
-                self.gallery_height = 400
-        self.site_properties = Gallery()
+                self.photo_max_size = 400
+                self.numthumbs = 8
+                self.thumb_max_size = 80
+                self.enablehistory = True
+        self.gallery_properties = Gallery()
 
 def fake_get_property(self):
     return FakeProperty()

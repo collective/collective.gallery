@@ -3,42 +3,28 @@ from zope import schema
 from collective.gallery import _
 from plone.app.layout.globals.interfaces import IViewView
 
-class IExif(interface.Interface):
-    """Exchangeable Image File Format standard metadatas."""
-
-    distance = schema.TextLine(title=_(u"Exif distance"))
-    exposure = schema.TextLine(title=_(u"Exposure time"))
-    flash = schema.TextLine(title=_(u"Flash"))
-    focallength = schema.TextLine(title=_(u"Focal length"))
-    iso = schema.TextLine(title=_(u"ISO Speed"))
-    make = schema.TextLine(title=_(u"Make"),
-                           description=_(u"Manifacturer of image input equipement"))
-    model = schema.TextLine(title=_(u"Model"),
-                           description=_(u"Model of image input equipement"))
-    time = schema.TextLine(title=_(u"Time"),
-                           description=_(u"The date/time the photo was taken, represented as the number of milliseconds since January 1st, 1970."))
-
 class IPhoto(interface.Interface):
     """Metadatas schema of a photo"""
 
-    title = schema.TextLine(title=_(u"Title"))
+    id = schema.ASCIILine(title=_(u"label_photo_id", default=u"Id"))
 
-    description = schema.TextLine(title=_(u"Description"))
+    title = schema.TextLine(title=_(u"label_photo_title", default=u"Title"))
 
-    url = schema.TextLine(title=_(u"Source URL"))
+    description = schema.TextLine(title=_(u"label_photo_description",
+                                          default=u"Description"))
 
-    thumb_url = schema.TextLine(title=_(u"Thumb source URL"))
+    url = schema.TextLine(title=_(u"label_photo_url", default=u"Source URL"))
 
-    exif = schema.Object(IExif)
-    
-    file = schema.Bytes(title=_(u"The file object"))
-
+    thumb_url = schema.TextLine(title=_(u"label_photo_thumb",
+                                        default=u"Thumb source URL"))
 
 class IGallery(interface.Interface):
     """A gallery is the business component of collective.gallery. A gallery
     manage a set of photos. The schema contains classic dublin core
     
     """
+
+    id = schema.ASCIILine(title=_(u"Id"))
 
     title = schema.TextLine(title=_(u"Title"))
 
@@ -62,7 +48,7 @@ class IGallery(interface.Interface):
     def search(query):
         """Return a lisf of IPhoto based on the query parameter. query format
         is the same as catalog query"""
-    
+
     def add(photos):
         """Add a list of IPhoto to add to the service
         """

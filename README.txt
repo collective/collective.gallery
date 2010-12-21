@@ -8,8 +8,6 @@ Gallery is an add-on full of features with a design that make it easy to customi
 
 It is tested with: Plone 3.3.X and Plone 4
 
-It use Pikachoose_ plugin with jcarousel_ packaged in collective.js.pikachoose
-
 It support Galleriffic_ plugin with jquery.history embed in the package.
 
 Plone integration of galleriffic use example1_. An other example can be find

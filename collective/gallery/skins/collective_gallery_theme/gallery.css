@@ -1,16 +1,27 @@
-ul.thumbs{
+#gallerythumbs,
+#galleryphoto{
+/*    background-color:#000000;*/
+}
+#gallerythumbs ul.thumbs{
   display:block;
   height:80px; /* thumb_max_size + 8 */
   margin:0px;
+  margin-right:1em;
+  margin-left:1em;
 }
-ul.thumbs li {
+#gallerythumbs ul.thumbs li {
   float: left;
   list-style: none outside none;
   margin: 5px 0 5px 0;
   padding: 0;
 }
+#gallerythumbs a,
+#gallerythumbs a:visited
+{font-weight:bold;text-decoration:none;border:0;line-height:80px;}
+#gallerypageprev{float:left;}
+#gallerypagenext{float:right;}
+
 #galleryphoto {
-  background-color:#000000;
   height:420px; /* photo_max_size + 20 */
   display:table-cell;
   vertical-align:middle;

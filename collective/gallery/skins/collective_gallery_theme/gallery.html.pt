@@ -15,16 +15,17 @@
         </h1>
         <div id="gallery">
           <div id="gallerycontrol">
-              <a href="" id="galleryprev" i18n:translate="">PREV</a>
+              <a href="" id="galleryprev" i18n:translate="">Previous</a>
               <a href="" id="galleryplay" i18n:translate="">Play</a>
               <a href="" id="gallerypause" i18n:translate="">Pause</a>
-              <a href="" id="gallerynext" i18n:translate="">NEXT</a>
+              <a href="" id="gallerynext" i18n:translate="">Next</a>
           </div>
           <div id="galleryloading" style="display:none"><img tal:attributes="src string:${galleryview/context/portal_url}/spinner.gif" /></div>
           <div id="galleryphoto"></div>
           <div id="gallerycaption"></div>
           <div id="gallerythumbs" style="display:none">
-              <a href="" id="gallerypageprev" i18n:translate="">PREV</a>
+              <a href="" id="gallerypageprev">&lt;</a>
+              <a href="" id="gallerypagenext">&gt;</a>
               <ul class="thumbs noscript">
                 <li tal:repeat="img galleryview/photos">
                   <a class="thumb" tal:attributes="title img/title;href img/url; name img/id" title="Title #0">
@@ -39,7 +40,6 @@
                   </div>
                 </li>
               </ul>
-              <a href="" id="gallerypagenext" i18n:translate="">NEXT</a>
           </div>
         </div>
         </tal:main-macro>

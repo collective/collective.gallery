@@ -3,6 +3,9 @@ Changelog
 
 1.0b5 (unreleased)
 ----------------
+- remove dependency on paste.
+  [thet]
+
 - add dependency on galleriffic. remove dependency on pikachoose
   [toutpt]
 

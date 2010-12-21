@@ -14,11 +14,12 @@
             </metal:field>
         </h1>
         <div id="gallery">
-
-          <a href="" id="galleryplay" i18n:translate="">Play</a>
-          <a href="" id="gallerypause" i18n:translate="">Pause</a>
-          <a href="" id="galleryprev" i18n:translate="">PREV</a>
-          <a href="" id="gallerynext" i18n:translate="">NEXT</a>
+          <div id="gallerycontrol">
+              <a href="" id="galleryprev" i18n:translate="">PREV</a>
+              <a href="" id="galleryplay" i18n:translate="">Play</a>
+              <a href="" id="gallerypause" i18n:translate="">Pause</a>
+              <a href="" id="gallerynext" i18n:translate="">NEXT</a>
+          </div>
           <div id="galleryloading" style="display:none"><img tal:attributes="src string:${galleryview/context/portal_url}/spinner.gif" /></div>
           <div id="galleryphoto"></div>
           <div id="gallerycaption"></div>

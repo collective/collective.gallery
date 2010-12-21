@@ -16,7 +16,18 @@ ul.thumbs li {
   vertical-align:middle;
   text-align:center;
 }
+#gallerycontrol,
 #galleryphoto,
 #gallerythumbs{
   width: 420px; /* photo_max_size + 20 */
+}
+#gallerycontrol #galleryprev{
+    float:left;
+}
+#gallerycontrol
+{
+    text-align:center;
+}
+#gallerycontrol #gallerynext{
+    float:right;
 }

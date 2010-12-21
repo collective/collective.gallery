@@ -7,7 +7,14 @@ jQuery(document).ready(function($){
         'height':'80px', //use ul.thumbs heigth from css
         'border-bottom':'none'
     });
-    // Initialize Minimal Galleriffic Gallery
+
+    var onMouseOutOpacity = 0.67;
+    $('.thumbs li').opacityrollover({
+     mouseOutOpacity: onMouseOutOpacity,
+     mouseOverOpacity: 1.0,
+     fadeSpeed: 'fast',
+     exemptionSelector: '.selected'
+     }); 
 
     var gallery = $('#gallerythumbs').galleriffic({
 

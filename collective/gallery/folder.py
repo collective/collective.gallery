@@ -1,4 +1,4 @@
-from collective.gallery.interfaces import IGallery, IPhoto
+from collective.gallery import interfaces
 from collective.gallery import cache
 from collective.gallery import core
 from plone.memoize import ram
@@ -11,7 +11,7 @@ from Products.ATContentTypes.interfaces.image import IATImage
 
 class BaseFolderView(core.BaseBrowserView):
     """A base gallery view"""
-    interface.implements(IGallery)
+    interface.implements(interfaces.IGallery)
 
     def __init__(self, context, request):
         super(BaseFolderView, self).__init__(context, request)
@@ -29,17 +29,11 @@ class BaseFolderView(core.BaseBrowserView):
 class Photo(object):
     """Photo implementation from brain"""
 
-    interface.implements(IPhoto)
-    component.adapts(IATImage)
+    interface.implements(interfaces.IPhoto)
 
-    def __init__(self, context):
-        self.context = context
-        self.title = context.Title()
-        self.description = context.Description()
-        self.id = context.getId()
-        self.url = context.absolute_url()
-
-    @property
-    def thumb_url(self):
-        image = self.context.restrictedTraverse('@@image')
-        scales
+    def __init__(self, brain):
+        self.id = brain.getId
+        self.url = brain.getURL()
+        self.thumb_url = brain.getURL() + '/image_thumb' #need to use image_thumb
+        self.title = brain.Title
+        self.description = brain.Description

@@ -3,11 +3,19 @@ Changelog
 
 1.0b5 (unreleased)
 ----------------
+- remove dependency on paste.
+  [thet]
 
-- fix galleriffic integration
-  [jchambard]
+- add dependency on galleriffic. remove dependency on pikachoose
+  [toutpt]
 
-- add gallery.html view based on collective.js.pikachoose
+- add id on photo api
+  [toutpt]
+
+- improve galleriffic integration
+  [toutpt jchambard]
+
+- add gallery.html view based on collective.js.galleriffic
   [toutpt]
 
 1.0b4 (2010-10-25)

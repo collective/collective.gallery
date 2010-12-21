@@ -30,8 +30,8 @@ class Test(unittest.TestCase):
         available_sizes = [('400','400'),('300','300'),('200','200')]
         asked_size = ('350','350')
         w,h = core.sizes(available_sizes, asked_size)
-        self.failUnless(w=='300')
-        self.failUnless(h=='300')
+        self.failUnless(w=='300', w)
+        self.failUnless(h=='300', h)
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class

@@ -1,15 +1,17 @@
 Notes: gdata 2.0.10 doesn't work properly: http://code.google.com/p/gdata-python-client/issues/detail?id=367#c1
-please pin the version to 2.0.12
+please pin the version to 2.0.9
 
 Introduction
 ============
 
-Gallery is an add-on full of features but not attached to a UI design.
+Gallery is an add-on full of features with a design that make it easy to customize.
 
 It is tested with: Plone 3.3.X and Plone 4
 
-It use Pikachoose_ plugin with jcarousel_ packaged in collective.js.pikachoose
-as default UI.
+It support Galleriffic_ plugin with jquery.history embed in the package.
+
+Plone integration of galleriffic use example1_. An other example can be find
+on http://goo.gl/yqNi
 
 Goals
 =====
@@ -17,7 +19,6 @@ Goals
 * Have a simple to customize gallery product for plone.
 * Use very ligth weight resources
 * Don't embed display configuration inside data
-* One page template displayed them all
 
 Features
 ========
@@ -74,14 +75,12 @@ Pickachoose_
 ============
 
 * easy to setup
-* jCarousel integrates smoothly with PikaChoose to give your gallery simple and
-effective carousel.
+* jCarousel integrates smoothly with PikaChoose to give your gallery simple and effective carousel.
 
 Components
 ==========
 
-collective.gallery use zope.components to provide as much reusable as possible
-components.
+collective.gallery use zope.components to provide as much reusable as possible components.
 
 First we have photo resources. Plone already manage this for you:
 
@@ -113,7 +112,7 @@ This add-on is use in production here and there:
 Roadmap
 =======
 
-* [1.0] support scales, Plone4
+* [1.0] finish the css
 * [1.1] exif integration
 * [2.0] add photos
 * [2.0] search photos

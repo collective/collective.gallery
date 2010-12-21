@@ -141,7 +141,7 @@ class Photo(object):
             photo.get('secret'))
 
         self.url = url
+        self.id = photo.get('id')
         self.thumb_url = thumb_url
         self.title = photo.get('title')
         self.description = ''
-

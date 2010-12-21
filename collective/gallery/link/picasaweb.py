@@ -79,6 +79,7 @@ class Link(object):
         kwargs = {}
         kwargs['kind'] = 'photo'
         kwargs['imgmax'] = self.imgmax(self.width, self.height)
+        kwargs['thumbsize'] = '72c'
 
         authkey = self.authkey
         if authkey:
@@ -152,10 +153,11 @@ class Link(object):
 
 
 class Photo(object):
-    """Photo implementation"""
+    """Photo implementation specific to picasaweb service"""
     interface.implements(interfaces.IPhoto)
 
     def __init__(self, photo):
+        self.id = photo.gphoto_id.text
         self.url = photo.content.src
         self.thumb_url = photo.media.thumbnail[0].url
         self.title = photo.title.text

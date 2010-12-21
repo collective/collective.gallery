@@ -3,24 +3,28 @@ from zope import schema
 from collective.gallery import _
 from plone.app.layout.globals.interfaces import IViewView
 
-from plone.app.imaging.interfaces import IImageScale
-
-class IPhoto(IImageScale):
+class IPhoto(interface.Interface):
     """Metadatas schema of a photo"""
 
-    title = schema.TextLine(title=_(u"Title"))
+    id = schema.ASCIILine(title=_(u"label_photo_id", default=u"Id"))
 
-    description = schema.TextLine(title=_(u"Description"))
+    title = schema.TextLine(title=_(u"label_photo_title", default=u"Title"))
 
-    url = schema.TextLine(title=_(u"Source URL"))
+    description = schema.TextLine(title=_(u"label_photo_description",
+                                          default=u"Description"))
 
-    thumb_url = schema.TextLine(title=_(u"Thumb source URL"))
+    url = schema.TextLine(title=_(u"label_photo_url", default=u"Source URL"))
+
+    thumb_url = schema.TextLine(title=_(u"label_photo_thumb",
+                                        default=u"Thumb source URL"))
 
 class IGallery(interface.Interface):
     """A gallery is the business component of collective.gallery. A gallery
     manage a set of photos. The schema contains classic dublin core
     
     """
+
+    id = schema.ASCIILine(title=_(u"Id"))
 
     title = schema.TextLine(title=_(u"Title"))
 
@@ -32,6 +36,34 @@ class IGallery(interface.Interface):
 
     def photos(scale="default"):
         """Return the list of all IPhoto contained in the gallery"""
+
+    def search(query):
+        """Return a lisf of IPhoto based on the query parameter. query format
+        is the same as catalog query"""
+
+    def add(photos):
+        """Add a list of IPhoto to add to the service
+        """
+
+class IGalleryTemplateTerm(interface.Interface):
+    """Make a utility registred with this interface.
+    It will be used to build the vocabularies and to make the
+    rendering"""
+
+    name = schema.TextLine(title=_(u"Name"),
+                           description=_(u"The friendly name of the template")
+                           )
+
+    def template():
+        """return the template (PageTemplate instance)"""
+
+    def validate():
+        """Return true/false by checking if the template can be applied to
+        the context.
+
+        Best example is picasa_slideshow with Link content type must check if
+        the url is a picasa one.
+        """
 
 #dependencies
 try:

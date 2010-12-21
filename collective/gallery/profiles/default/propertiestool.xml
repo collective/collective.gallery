@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <object name="portal_properties" meta_type="Plone Properties Tool">
- <object name="site_properties" meta_type="Plone Property Sheet">
-  <property name="gallery_width" type="int">400</property>
-  <property name="gallery_height" type="int">400</property>
+ <object name="gallery_properties" meta_type="Plone Property Sheet">
+  <property name="numthumbs" type="int">8</property>
+  <property name="photo_max_size" type="int">400</property>
+  <property name="thumb_max_size" type="int">80</property>
+  <property name="enablehistory" type="boolean">True</property>
  </object>
 </object>

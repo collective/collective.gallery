@@ -7,7 +7,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.interfaces import IPropertiesTool
 from zope import interface
 from zope import component
-from Products.ATContentTypes.interfaces.image import IATImage
 
 class BaseFolderView(core.BaseBrowserView):
     """A base gallery view"""

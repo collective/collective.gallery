@@ -77,7 +77,7 @@ try:
 except ImportError, e:
     logger.info('BBB: switch to plone3 %s'%e)
     #plone3
-    from Products.ATContentTypes.interface.folder import IATFolder as IFolder
-    from Products.ATContentTypes.interface.link import IATLink     as ILink
-    from Products.ATContentTypes.interface.topic import IATTopic   as ITopic
-    from Products.ATContentTypes.interface.image import IATImage   as IImage
+    from Products.ATContentTypes.interface import IATFolder as IFolder
+    from Products.ATContentTypes.interface import IATLink   as ILink
+    from Products.ATContentTypes.interface import IATTopic  as ITopic
+    from Products.ATContentTypes.interface import IATImage  as IImage

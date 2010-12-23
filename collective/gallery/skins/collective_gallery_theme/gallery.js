@@ -26,7 +26,7 @@ jQuery(document).ready(function($){
         //maxPagesToShow:            7,  // The maximum number of pages to display in either the top or bottom pager
         imageContainerSel:         '#galleryphoto', // The CSS selector for the element within which the main slideshow image should be rendered
         //controlsContainerSel:      '', // The CSS selector for the element within which the slideshow controls should be rendered
-        //captionContainerSel:       '', // The CSS selector for the element within which the captions should be rendered
+        captionContainerSel:       '#gallerycaption', // The CSS selector for the element within which the captions should be rendered
         //loadingContainerSel:       '#galleryloading', // The CSS selector for the element within which should be shown when an image is loading
         renderSSControls:          false, // Specifies whether the slideshow's Play and Pause links should be rendered
         renderNavControls:         false, // Specifies whether the slideshow's Next and Previous links should be rendered
@@ -90,5 +90,6 @@ jQuery(document).ready(function($){
        $('#gallerypause').hide();
        $('#galleryplay').show();
      });
+     $('#galleryphoto').tooltip({position:'center right', effect:'fade',relative:true});
 
 });

@@ -32,11 +32,9 @@
                     <img tal:attributes="src img/thumb_url;alt img/title" />
                   </a>
                   <div class="caption">
-                    <div class="image-title" tal:content="img/title">Title</div>
-                    <div class="image-desc" tal:content="img/description">Description</div>
-                    <div class="download">
-                      <a tal:attributes="href img/url" i18n:translate="">Download Original</a>
-                    </div>
+                    <h2 tal:content="img/title">Title</h2>
+                    <p class="galleryphotodesc" tal:content="img/description">Description</p>
+                    <a tal:attributes="href img/url" target="_blank" i18n:translate="">Download Original</a>
                   </div>
                 </li>
               </ul>

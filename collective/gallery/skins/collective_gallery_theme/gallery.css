@@ -5,9 +5,7 @@
 #gallerythumbs ul.thumbs{
   display:block;
   height:80px; /* thumb_max_size + 8 */
-  margin:0px;
-  margin-right:1em;
-  margin-left:1em;
+  margin:0px 1em;
 }
 #gallerythumbs ul.thumbs li {
   float: left;
@@ -41,4 +39,13 @@
 }
 #gallerycontrol #gallerynext{
     float:right;
+}
+/* caption styling */
+#gallerycaption {
+    display:none;
+    background:url('gallery_tooltip.png');
+    height:143px;
+    width:240px;
+    padding:40px 30px 10px 30px;
+    font-size:11px;
 }

@@ -9,8 +9,8 @@ def verifyImage(image):
         if not hasattr(image, attr):
             return False, "has no %s attribute"%attr
     for attr in attrs:
-        if not type(getattr(image, attr)) == str:
-            return False, "%s is not a string"%attr
+        if type(getattr(image, attr)) not in (str, unicode):
+            return False, "%s is not a string or unicode"%attr
     return True, ""
 
 

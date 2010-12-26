@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="collective.gallery">
 
   <adapter
@@ -10,7 +11,7 @@
     factory=".flickr.Link"
     name="flickr"
     />
-  <adapter
+  <adapter zcml:condition="installed BeautifulSoup"
     factory=".facebook.Link"
     name="facebook"
     />

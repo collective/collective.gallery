@@ -2,7 +2,7 @@ import unittest
 from collective.gallery.link import facebook
 from collective.gallery.tests import utils
 
-URL1 = "http://www.facebook.com/" #put a url that is supposed to work
+URL1 = "http://www.facebook.com/album.php?aid=177781&id=275081154800" #put a url that is supposed to work
 
 class Test(unittest.TestCase):
 
@@ -32,6 +32,7 @@ class Test(unittest.TestCase):
         for img in imgs:
             test, msg = utils.verifyImage(img)
             self.failUnless(test, msg)
+        self.failUnless(len(imgs)==50)
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class

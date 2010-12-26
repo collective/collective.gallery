@@ -40,6 +40,9 @@
 #gallerycontrol #gallerynext{
     float:right;
 }
+/*force thumb sizes*/
+.thumb img{width:72px; height:72px;}
+
 /* caption styling */
 #gallerycaption {
     display:none;

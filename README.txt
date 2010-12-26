@@ -56,6 +56,18 @@ flickr_
 In Plone, just paste the share link provided by flickr inside a Link content type
 and display your link content with the view gallery available in the drop down display menu.
 
+facebook_
+---------
+
+* It's free to use
+* It's a social network where you may have already an account
+* Upload and organize
+* tag your photos
+
+In Plone as with other link you just have to paste the link inside a Link content
+type. The album must be public. It's in the todo to support OAuth.
+You must be warned facebook doesn't support thumbs that much.
+
 Galleriffic_
 ============
 
@@ -143,3 +155,5 @@ Contributors
 .. _picasaweb: http://picasaweb.google.com
 .. _jcarousel: http://sorgalla.com/jcarousel
 .. _Pikachoose: http://pikachoose.com
+.. _facebook: http://www.facebook.com
+.. _beautifulsoup: http://pypi.python.org/pypi/BeautifulSoup

@@ -2,6 +2,9 @@ import logging
 import urllib
 import urlparse
 
+logger = logging.getLogger('collective.gallery.facebook')
+
+from BeautifulSoup import BeautifulSoup
 from urllib import urlencode
 from urllib2 import urlopen
 
@@ -11,23 +14,14 @@ from collective.gallery.link import DummyResource
 from zope import interface
 from zope import component
 
-#TODO: merge facebook support from garbas-fixes branch.
-
-FACEBOOK_IMAGE_SIZES = [
-    (50, 'q'),
-    (180, 'a'),
-    (720, 'n'), ]       # n is for original
-
 def check(url):
-    """Ex: 
-    
-    >>> check('http://picasaweb.google.fr/ceronjeanpierre/PhotosTriEsDuMariage#')
-    True
-    >>> check('http://picasaweb.google.com')
-    False
-    """
-    starts = url.startswith('http://www.facebook.com')
-    return starts
+    """Check if the url is valid"""
+
+    starts = url.startswith('http://www.facebook.com/album.php?')
+    has_aid = 'aid=' in url
+    has_id= '&id=' in url
+
+    return starts and has_aid and has_id
 
 dummy = DummyResource()
 
@@ -42,9 +36,10 @@ class Link(object):
         self.width = 400
         self.height = 400
         self.url = context.getRemoteUrl()
+        self.validator = check
 
     def validate(self):
-        return check(self.url)
+        return self.validator(self.url)
 
     @property
     def creator(self):
@@ -61,11 +56,17 @@ class Link(object):
     def photos(self):
 
         if not self.validate(): return dummy.photos()
-        f = urlopen(self.url)
-        html = f.read()
-        f.close()
-        return facebook_extract_photos(html, sizes)
+        try:
+            f = urlopen(self.url)
+            html = f.read()
+            f.close()
+            soup = BeautifulSoup(html)
+            anchors = soup.findAll('a', attrs={'class':'uiMediaThumb uiScrollableThumb uiMediaThumbHuge'})
+            return map(Photo, anchors)
 
+        except Exception, e:
+            logger.error('FACEBOOK backend error: %s'%e)
+            return dummy.photos()
 
     @property
     def title(self):
@@ -81,56 +82,17 @@ class Link(object):
 
 
 class Photo(object):
-    """Photo implementation"""
+    """Photo implementation
+    http://developers.facebook.com/docs/reference/fql/photo
+    """
     interface.implements(interfaces.IPhoto)
 
-    def __init__(self, photo):
-        self.url = photo.content.src
-        self.thumb_url = photo.media.thumbnail[0].url
-        self.title = photo.title.text
-        self.description = photo.summary.text or ''
-
-#FROM GARBAS BRANCH
-#        elif url.startswith('http://www.facebook.com'):
-#            try:
-#                f = urlopen(url)
-#                html = f.read()
-#                f.close()
-#                return facebook_extract_images(html, sizes)
-#
-#            except Exception, e:
-#                msg = 'FACEBOOK URL Exception: %s %s. Exception: %s'
-#                logger.info(msg % (self.context, url, e))
-#                return []
-#
-#        else:
-#            return []
-#
-def facebook_extract_photos(html, sizes):
-    start_pos = html.find('<td class="vTop hLeft">') + 23
-    if start_pos == 22:
-        return []
-    url_start_pos = html[start_pos:].find(
-        '<i style="background-image: url(') + 32 + start_pos
-    url_end_pos = html[url_start_pos:].find(')') + url_start_pos
-    title_start_pos = html[start_pos:].find('title="') + 7 + start_pos
-    title_end_pos = html[title_start_pos:].find('"') + title_start_pos
-    if url_end_pos > title_end_pos:
-        end_pos = url_end_pos
-    else:
-        end_pos = title_end_pos
-
-    url_thumb = html[url_start_pos:url_end_pos]
-    url = url_thumb.split('.')
-
-    def create_url(size_char):
-        return '.'.join(url[:-2] + [url[-2][:-1] + size_char] + url[-1:])
-
-    image = dict(
-        title=html[title_start_pos:title_end_pos],
-        description='',
-        url=create_url('n'), )
-    for size_name, size in sizes.items():
-        image[str('url_' + size_name)] = create_url(
-                get_approx_size_value(size, FACEBOOK_IMAGE_SIZES))
-    return [image] + facebook_extract_images(html[end_pos:], sizes)
+    def __init__(self, anchor):
+        img = anchor.find('i')
+        self.title=anchor['title']
+        self.id=str(anchor['name']) #it s the facebook unique id of the photo
+        style = img['style']
+        link_url = str(style[len('background-image: url('):-len(');')])
+        self.thumb_url = link_url.replace('_a.','_t.')
+        self.url = link_url.replace('_a.','_n.')
+        self.description = u''

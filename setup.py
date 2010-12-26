@@ -26,9 +26,13 @@ setup(name='collective.gallery',
           'setuptools',
           'gdata',
           'flickrapi',
-          'collective.js.galleriffic'
+          'collective.js.galleriffic',
           # -*- Extra requirements: -*-
       ],
+      extras_require = dict(
+          tests=['BeautifulSoup'],
+          facebook=['BeautifulSoup'],
+      ),
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]

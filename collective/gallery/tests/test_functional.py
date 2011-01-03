@@ -11,17 +11,17 @@ def test_suite():
 
         ztc.ZopeDocFileSuite(
             'topic.txt', package='collective.gallery',
-            test_class=base.GalleryFunctionalTestCase,
+            test_class=base.FunctionalTestCase,
             optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | 
                         doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
         ztc.ZopeDocFileSuite(
             'folder.txt', package='collective.gallery',
-            test_class=base.GalleryFunctionalTestCase,
+            test_class=base.FunctionalTestCase,
             optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | 
                         doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
         ztc.ZopeDocFileSuite(
             'link/link.txt', package='collective.gallery',
-            test_class=base.GalleryFunctionalTestCase,
+            test_class=base.FunctionalTestCase,
             optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | 
                         doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
         ])

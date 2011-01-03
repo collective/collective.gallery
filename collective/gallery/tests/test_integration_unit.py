@@ -6,11 +6,11 @@ example.
 """
 
 import unittest
-from collective.gallery.tests.base import GalleryTestCase
+from collective.gallery.tests import base
 
 from Products.CMFCore.utils import getToolByName
 
-class TestSetup(GalleryTestCase):
+class TestSetup(base.TestCase):
     """The name of the class should be meaningful. This may be a class that
     tests the installation of a particular product.
     """

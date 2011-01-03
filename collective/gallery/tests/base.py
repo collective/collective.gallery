@@ -19,14 +19,14 @@ def setup_addon():
 setup_addon()
 ptc.setupPloneSite(extension_profiles=['collective.gallery:default'])
 
-class GalleryTestCase(ptc.PloneTestCase):
+class TestCase(ptc.PloneTestCase):
     """We use this base class for all the tests in this package. If necessary,
     we can put common utility or setup code in here. This applies to unit 
     test cases.
     """
 
 
-class GalleryFunctionalTestCase(ptc.FunctionalTestCase):
+class FunctionalTestCase(ptc.FunctionalTestCase):
     """We use this class for functional integration tests that use doctest
     syntax. Again, we can put basic common utility or setup code in here.
     """

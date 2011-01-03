@@ -8,15 +8,18 @@ from Testing import ZopeTestCase as ztc
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
 
-@onsetup
-def setup_addon():
-    fiveconfigure.debug_mode = True
-    import collective.gallery
-    zcml.load_config('configure.zcml', collective.gallery)
-    fiveconfigure.debug_mode = False
-    ztc.installPackage('collective.gallery')
+from collective.gallery.tests import layer
 
-setup_addon()
+#@onsetup
+#def setup_addon():
+#    fiveconfigure.debug_mode = True
+#    import collective.gallery
+#    zcml.load_config('configure.zcml', collective.gallery)
+#    fiveconfigure.debug_mode = False
+#    ztc.installPackage('collective.gallery')
+
+#setup_addon()
+
 ptc.setupPloneSite(extension_profiles=['collective.gallery:default'])
 
 class TestCase(ptc.PloneTestCase):
@@ -25,9 +28,12 @@ class TestCase(ptc.PloneTestCase):
     test cases.
     """
 
+    layer = layer.Gallery
+
 
 class FunctionalTestCase(ptc.FunctionalTestCase):
     """We use this class for functional integration tests that use doctest
     syntax. Again, we can put basic common utility or setup code in here.
     """
 
+    layer = layer.Gallery

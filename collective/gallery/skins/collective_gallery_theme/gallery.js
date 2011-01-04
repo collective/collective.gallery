@@ -1,4 +1,7 @@
 // We only want these styles applied when javascript is enabled
+var maxsize = 400;
+var onMouseOutOpacity = 0.67;
+
 jQuery(document).ready(function($){
     if ($('div#gallerythumbs').length == 0){return;}
     $('div#gallerythumbs').css({'display': 'block'});
@@ -9,7 +12,6 @@ jQuery(document).ready(function($){
         'border-bottom':'none'
     });
 
-    var onMouseOutOpacity = 0.67;
     $('.thumbs li').opacityrollover({
      mouseOutOpacity: onMouseOutOpacity,
      mouseOverOpacity: 1.0,
@@ -52,7 +54,23 @@ jQuery(document).ready(function($){
            }
         },
         onTransitionOut:           undefined, // accepts a delegate like such: function(slide, caption, isSync, callback) { ... }
-        onTransitionIn:            undefined, // accepts a delegate like such: function(slide, caption, isSync) { ... }
+        onTransitionIn:            function(newSlide, newCaption, isSync){
+            //code kept from galleriffic
+            newSlide.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
+            if (newCaption)
+                newCaption.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
+
+            var photo = $('#galleryphoto img');
+            if (!photo)return;
+            var dw = photo.width() - maxsize;
+            var dh = photo.height() - maxsize;
+            if (dw > 0 || dh > 0) {
+                if (dw > dh){
+                    photo.width(maxsize);
+                }else{photo.height(maxsize);}
+            }
+            delete photo;
+        }, // accepts a delegate like such: function(slide, caption, isSync) { ... }
         onPageTransitionOut:       undefined, // accepts a delegate like such: function(slide, caption, isSync, callback) { ... }
         onPageTransitionIn:        undefined, // accepts a delegate like such: function(slide, caption, isSync) { ... }
         onImageAdded:              undefined, // accepts a delegate like such: function(imageData, $li) { ... }

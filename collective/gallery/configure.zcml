@@ -7,11 +7,10 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.gallery">
 
-  <include file="upgrades.zcml"/>
-
   <five:registerPackage package="." initialize=".initialize" />
 
   <i18n:registerTranslations directory="locales" />
+
   <cmf:registerDirectory name="collective_gallery_theme"/>
 
   <include package=".link" />
@@ -30,6 +29,7 @@
       description='Uninstall collective.gallery from Plone'
       provides="Products.GenericSetup.interfaces.EXTENSION"
   />
+
   <browser:page
     name="gallery"
     for=".interfaces.ILink"
@@ -65,5 +65,8 @@
     class="collective.gallery.link.BaseLinkView"
     permission="zope2.View"
   />
-  <adapter factory=".folder.Photo" />
+
+  <include file="upgrades.zcml"/>
+
+
 </configure>

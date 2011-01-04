@@ -145,13 +145,6 @@ class Link(object):
             logger.info(msg%(self.context, url, e))
             return []
 
-    def search(self, query):
-        return []
-    
-    def add(self, photos):
-        pass
-
-
 class Photo(object):
     """Photo implementation specific to picasaweb service"""
     interface.implements(interfaces.IPhoto)
@@ -162,4 +155,3 @@ class Photo(object):
         self.thumb_url = photo.media.thumbnail[0].url
         self.title = photo.title.text
         self.description = photo.summary.text or ''
-

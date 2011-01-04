@@ -1,9 +1,12 @@
 from zope import interface
 from zope import schema
-from collective.gallery import messageFactory as _
-from collective.gallery import logger
+
 from plone.app.layout.globals.interfaces import IViewView
 
+from collective.gallery import messageFactory as _
+
+class IGalleryLayer(interface.Interface):
+    """Browser layer"""
 
 class IPhoto(interface.Interface):
     """Metadatas schema of a photo"""
@@ -67,6 +70,7 @@ try:
     from Products.ATContentTypes.interfaces.topic import IATTopic as ITopic
     from Products.ATContentTypes.interfaces.image import IATImage as IImage
 except ImportError, e:
+    from collective.gallery import logger
     logger.info('BBB: switch to plone3 %s'%e)
     #plone3
     from Products.ATContentTypes.interface import IATFolder as IFolder

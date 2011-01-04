@@ -1,11 +1,14 @@
+from urlparse import urlsplit
+from urllib import quote
+
+from zope import component
+from zope import interface
+
+from plone.memoize import ram
+
 from collective.gallery import interfaces
 from collective.gallery import cache
 from collective.gallery import core
-from plone.memoize import ram
-from urlparse import urlsplit
-from urllib import quote
-from zope import component
-from zope import interface
 
 class BaseLinkView(core.BaseBrowserView):
     """A base browser view for link content type"""
@@ -46,16 +49,6 @@ class BaseLinkView(core.BaseBrowserView):
     def title(self):
         resource = self._resource()
         return resource.title
-
-    def search(self, query):
-        resource = self._resource()
-        return resource.search(query)
-
-    
-    def add(self, photos):
-        resource = self._resource()
-        resource.add(photos)
-
 
     def break_url(self):
         """Taken from p4a.videoembed to be used as utility in template

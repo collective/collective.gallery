@@ -3,8 +3,12 @@ import urllib
 import urlparse
 
 logger = logging.getLogger('collective.gallery.facebook')
+try:
+    from BeautifulSoup import BeautifulSoup
+    HAS_DEPENDENCY = True
+except ImportError:
+    HAS_DEPENDENCY = False
 
-from BeautifulSoup import BeautifulSoup
 from urllib import urlencode
 from urllib2 import urlopen
 
@@ -39,7 +43,7 @@ class Link(object):
         self.validator = check
 
     def validate(self):
-        return self.validator(self.url)
+        return self.validator(self.url) and HAS_DEPENDENCY
 
     @property
     def creator(self):
@@ -73,13 +77,6 @@ class Link(object):
         #TODO: support this
         if not self.validate(): return dummy.creator
         return ""
-
-    def search(self, query):
-        return []
-    
-    def add(self, photos):
-        pass
-
 
 class Photo(object):
     """Photo implementation

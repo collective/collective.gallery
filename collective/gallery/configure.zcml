@@ -13,8 +13,6 @@
 
   <cmf:registerDirectory name="collective_gallery_theme"/>
 
-  <include package=".link" />
-
   <genericsetup:registerProfile
       name="default"
       title="collective.gallery default"
@@ -36,6 +34,7 @@
     allowed_interface="collective.gallery.interfaces.IGallery"
     class="collective.gallery.link.BaseLinkView"
     permission="zope2.View"
+    layer=".interfaces.IGalleryLayer"
   />
   <browser:page
     name="gallery"
@@ -43,6 +42,7 @@
     class="collective.gallery.folder.BaseFolderView"
     permission="zope2.View"
     allowed_interface="collective.gallery.interfaces.IGallery"
+    layer=".interfaces.IGalleryLayer"
   />
   <browser:page
     name="gallery"
@@ -50,6 +50,7 @@
     allowed_interface="collective.gallery.interfaces.IGallery"
     class="collective.gallery.topic.BaseTopicView"
     permission="zope2.View"
+    layer=".interfaces.IGalleryLayer"
   />
   <browser:page
     name="gallery-flickr-slideshow"
@@ -57,6 +58,7 @@
     template="browser/templates/flickr_slideshow.pt"
     class="collective.gallery.link.BaseLinkView"
     permission="zope2.View"
+    layer=".interfaces.IGalleryLayer"
   />
   <browser:page
     name="gallery-picasaweb-slideshow"
@@ -64,9 +66,9 @@
     template="browser/templates/picasa_slideshow.pt"
     class="collective.gallery.link.BaseLinkView"
     permission="zope2.View"
+    layer=".interfaces.IGalleryLayer"
   />
 
   <include file="upgrades.zcml"/>
-
 
 </configure>

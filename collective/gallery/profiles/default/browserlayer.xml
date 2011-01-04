@@ -1,0 +1,4 @@
+<layers>
+    <layer name="collective.gallery"
+           interface="collective.gallery.interfaces.IGalleryLayer" />
+</layers>

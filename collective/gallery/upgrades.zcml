@@ -4,11 +4,19 @@
   i18n_domain="collective.gallery">
         
   <gs:upgradeStep
-    title="Upgrade collective.gallery to 1.0"
+    title="Upgrade collective.gallery 1-10"
     description="collective.gallery upgrade step"
-    source="*"
-    destination="1.0"
-    handler=".upgrades.upgrade_to_10"
+    source="1"
+    destination="10"
+    handler=".upgrades.upgrade_1_to_10"
+    profile="collective.gallery:default"/>
+
+  <gs:upgradeStep
+    title="Upgrade collective.gallery 10-11"
+    description=""
+    source="10"
+    destination="11"
+    handler=".upgrades.upgrade_10_to_11"
     profile="collective.gallery:default"/>
 
 </configure>

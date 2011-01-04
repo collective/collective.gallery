@@ -118,12 +118,6 @@ class Link(object):
 
         return 'title not implemented'
 
-    def search(self, query):
-        return []
-    
-    def add(self, photos):
-        pass
-
 class Photo(object):
     """Photo implementation"""
     interface.implements(interfaces.IPhoto)

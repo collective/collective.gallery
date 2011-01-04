@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<componentregistry>
+ <adapters>
+  <adapter
+    factory="collective.gallery.brain.Photo"
+    for="Products.ZCatalog.interfaces.ICatalogBrain"
+    provides="collective.gallery.interfaces.IPhoto"/>
+  <adapter
+    factory="collective.gallery.link.picasaweb.Link"
+    for="collective.gallery.interfaces.ILink"
+    provides="collective.gallery.interfaces.IGallery"
+    name="picasaweb"
+    />
+  <adapter
+    factory="collective.gallery.link.flickr.Link"
+    for="collective.gallery.interfaces.ILink"
+    provides="collective.gallery.interfaces.IGallery"
+    name="flickr"
+    />
+  <adapter
+    factory="collective.gallery.link.facebook.Link"
+    for="collective.gallery.interfaces.ILink"
+    provides="collective.gallery.interfaces.IGallery"
+    name="facebook"
+    />
+ </adapters>
+</componentregistry>

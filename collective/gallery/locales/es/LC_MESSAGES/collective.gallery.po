@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.gallery\n"
-"POT-Creation-Date: 2010-05-27 09:04+0000\n"
+"POT-Creation-Date: 2011-01-04 16:59+0000\n"
 "PO-Revision-Date: 2010-11-25 07:08-0400\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
@@ -18,93 +18,76 @@ msgstr ""
 "Domain: collective.gallery\n"
 "X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
-#: ./interfaces.py:45
+#: ./interfaces.py:33
 msgid "Author"
 msgstr "Autor"
 
-#: ./interfaces.py:49
+#: ./interfaces.py:37
 msgid "Date"
 msgstr "Fecha"
 
-#: ./interfaces.py:26
+#: ./interfaces.py:35
 msgid "Description"
 msgstr "Descripción"
 
-#: ./interfaces.py:9
-msgid "Exif distance"
-msgstr "Exif distancia"
+#: ./skins/collective_gallery_theme/gallery.html.pt:37
+msgid "Download Original"
+msgstr ""
 
-#: ./interfaces.py:10
-msgid "Exposure time"
-msgstr "Tiempo de exposición"
+#: ./interfaces.py:29
+msgid "Id"
+msgstr ""
 
-#: ./interfaces.py:11
-msgid "Flash"
-msgstr "Flash"
-
-#: ./interfaces.py:12
-msgid "Focal length"
-msgstr "Longitud focal"
-
-#: ./interfaces.py:13
-msgid "ISO Speed"
-msgstr "Velocidad ISO"
-
-#: ./interfaces.py:14
-msgid "Make"
-msgstr "Hacer"
-
-#: ./interfaces.py:15
-#, fuzzy
-msgid "Manifacturer of image input equipement"
-msgstr "Empresa constructora de equipos para la de entrada de la imagen"
-
-#: ./interfaces.py:16
-msgid "Model"
-msgstr "Modelo"
-
-#: ./interfaces.py:17
-#, fuzzy
-msgid "Model of image input equipement"
-msgstr "Modelo de equipo de entrada de la imagen "
-
-#: ./interfaces.py:75
+#: ./interfaces.py:47
 msgid "Name"
 msgstr "Nombre"
 
-#: ./interfaces.py:28
-msgid "Source URL"
-msgstr "Dirección URL de fuente"
+#: ./skins/collective_gallery_theme/gallery.html.pt:21
+msgid "Next"
+msgstr ""
 
-#: ./interfaces.py:19
-msgid "The date/time the photo was taken, represented as the number of milliseconds since January 1st, 1970."
-msgstr "La fecha y hora en que la foto fue tomada, representado como el número de milisegundos desde el 1 de enero 1970."
+#: ./skins/collective_gallery_theme/gallery.html.pt:20
+msgid "Pause"
+msgstr ""
 
-#: ./interfaces.py:34
-msgid "The file object"
-msgstr "El archivo objeto"
+#: ./skins/collective_gallery_theme/gallery.html.pt:19
+msgid "Play"
+msgstr ""
 
-#: ./interfaces.py:76
+#: ./skins/collective_gallery_theme/gallery.html.pt:18
+msgid "Previous"
+msgstr ""
+
+#: ./interfaces.py:48
 msgid "The friendly name of the template"
 msgstr "El nombre amigable de la plantilla"
 
-#: ./interfaces.py:30
-msgid "Thumb source URL"
-msgstr "Dirección URL fuente de Thumb"
-
-#: ./interfaces.py:18
-msgid "Time"
-msgstr "Tiempo"
-
-#: ./interfaces.py:24
+#: ./interfaces.py:31
 msgid "Title"
 msgstr "Titulo"
 
-#: ./interfaces.py:51
-msgid "Width"
-msgstr "Ancho"
+#. Default: "Description"
+#: ./interfaces.py:15
+msgid "label_photo_description"
+msgstr ""
 
-#: ./interfaces.py:55
-msgid "height"
-msgstr "alto"
+#. Default: "Id"
+#: ./interfaces.py:11
+msgid "label_photo_id"
+msgstr ""
+
+#. Default: "Thumb source URL"
+#: ./interfaces.py:20
+msgid "label_photo_thumb"
+msgstr ""
+
+#. Default: "Title"
+#: ./interfaces.py:13
+msgid "label_photo_title"
+msgstr ""
+
+#. Default: "Source URL"
+#: ./interfaces.py:18
+msgid "label_photo_url"
+msgstr ""
 

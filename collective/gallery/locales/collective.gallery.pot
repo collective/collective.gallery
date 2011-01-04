@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-05-27 09:04+0000\n"
+"POT-Creation-Date: 2011-01-04 16:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,91 +17,76 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.gallery\n"
 
-#: ./interfaces.py:45
+#: ./interfaces.py:33
 msgid "Author"
 msgstr ""
 
-#: ./interfaces.py:49
+#: ./interfaces.py:37
 msgid "Date"
 msgstr ""
 
-#: ./interfaces.py:26
+#: ./interfaces.py:35
 msgid "Description"
 msgstr ""
 
-#: ./interfaces.py:9
-msgid "Exif distance"
+#: ./skins/collective_gallery_theme/gallery.html.pt:37
+msgid "Download Original"
 msgstr ""
 
-#: ./interfaces.py:10
-msgid "Exposure time"
+#: ./interfaces.py:29
+msgid "Id"
 msgstr ""
 
-#: ./interfaces.py:11
-msgid "Flash"
-msgstr ""
-
-#: ./interfaces.py:12
-msgid "Focal length"
-msgstr ""
-
-#: ./interfaces.py:13
-msgid "ISO Speed"
-msgstr ""
-
-#: ./interfaces.py:14
-msgid "Make"
-msgstr ""
-
-#: ./interfaces.py:15
-msgid "Manifacturer of image input equipement"
-msgstr ""
-
-#: ./interfaces.py:16
-msgid "Model"
-msgstr ""
-
-#: ./interfaces.py:17
-msgid "Model of image input equipement"
-msgstr ""
-
-#: ./interfaces.py:75
+#: ./interfaces.py:47
 msgid "Name"
 msgstr ""
 
-#: ./interfaces.py:28
-msgid "Source URL"
+#: ./skins/collective_gallery_theme/gallery.html.pt:21
+msgid "Next"
 msgstr ""
 
-#: ./interfaces.py:19
-msgid "The date/time the photo was taken, represented as the number of milliseconds since January 1st, 1970."
+#: ./skins/collective_gallery_theme/gallery.html.pt:20
+msgid "Pause"
 msgstr ""
 
-#: ./interfaces.py:34
-msgid "The file object"
+#: ./skins/collective_gallery_theme/gallery.html.pt:19
+msgid "Play"
 msgstr ""
 
-#: ./interfaces.py:76
+#: ./skins/collective_gallery_theme/gallery.html.pt:18
+msgid "Previous"
+msgstr ""
+
+#: ./interfaces.py:48
 msgid "The friendly name of the template"
 msgstr ""
 
-#: ./interfaces.py:30
-msgid "Thumb source URL"
-msgstr ""
-
-#: ./interfaces.py:18
-msgid "Time"
-msgstr ""
-
-#: ./interfaces.py:24
+#: ./interfaces.py:31
 msgid "Title"
 msgstr ""
 
-#: ./interfaces.py:51
-msgid "Width"
+#. Default: "Description"
+#: ./interfaces.py:15
+msgid "label_photo_description"
 msgstr ""
 
-#: ./interfaces.py:55
-msgid "height"
+#. Default: "Id"
+#: ./interfaces.py:11
+msgid "label_photo_id"
+msgstr ""
+
+#. Default: "Thumb source URL"
+#: ./interfaces.py:20
+msgid "label_photo_thumb"
+msgstr ""
+
+#. Default: "Title"
+#: ./interfaces.py:13
+msgid "label_photo_title"
+msgstr ""
+
+#. Default: "Source URL"
+#: ./interfaces.py:18
+msgid "label_photo_url"
 msgstr ""
 

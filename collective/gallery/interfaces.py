@@ -39,14 +39,6 @@ class IGallery(interface.Interface):
     def photos(scale="default"):
         """Return the list of all IPhoto contained in the gallery"""
 
-    def search(query):
-        """Return a lisf of IPhoto based on the query parameter. query format
-        is the same as catalog query"""
-
-    def add(photos):
-        """Add a list of IPhoto to add to the service
-        """
-
 class IGalleryTemplateTerm(interface.Interface):
     """Make a utility registred with this interface.
     It will be used to build the vocabularies and to make the

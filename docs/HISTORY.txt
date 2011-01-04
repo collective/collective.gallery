@@ -3,72 +3,88 @@ Changelog
 
 1.0b5 (unreleased)
 ----------------
+
+- fix plone3 compatibility
+
+- add jquerytool tooltip to display title and description of each photo
+
+- cleanup interfaces
+
+- add upgrade from previous releases
+
+- make gallery.js exit if no #gallerythumbs
+  
+- add metadata file to set title of gallery.html page
+
+- fix facebook backend. Now it works with BeautifulSoup if installed (zcml condition)
+
+- fix tests
+
+- update translations
+
 - remove dependency on paste.
   [thet]
 
 - add dependency on galleriffic. remove dependency on pikachoose
-  [toutpt]
 
 - add id on photo api
-  [toutpt]
 
 - improve galleriffic integration
   [toutpt jchambard]
 
-- add gallery.html view based on collective.js.galleriffic
-  [toutpt]
+- add gallery.html view based on collective.js.galleriffic. add support for
+  non well sized photo (if the backend doesn't support sizes.)
 
 1.0b4 (2010-10-25)
 ------------------
 
 - Remove Large Plone Folder from default profile. Now install well on plone4
-  [toutpt]
+
 - Move galleriffic integration into skin directory.
-  [toutpt]
+
 - BrowserView are now used has controller: template is replaced by allowed_interface
-  [toutpt]
+
 - Switch back galleriffic plone integration to example1
-  [toutpt]
+
 
 1.0b3 (2010-05-31)
 ------------------
 
 - Fix a KeyError on exif data with folder implementation (topic and folder)
-  [toutpt]
 
 1.0b2 (2010-05-26)
 ------------------
 
 - Add uninstall profile + Extensions/Install script to be used by quickinstaller
-  [toutpt]
+
 - Move templates in browser/templates folder
-  [toutpt]
+
 - Move javascript resources in browser/resources folder
-  [toutpt]
+
 - Add 'en' locale
-  [toutpt]
+
 - Add z3c.autoinclude target plone in entry points
-  [toutpt]
+
 
 1.0b1 - (2010/05/21)
 --------------------
 
-- remove harlequin and z3cform integration (too soon) [toutpt]
-- rename IImage to IPhoto and imgs() to photos() [toutpt]
-- Add rebuild i18n script as usual [toutpt]
-- Use collective.testcaselayer for tests [toutpt]
-- Add interfaces IImage and IExif on results returned by every services [toutpt]
-- Use jquery.galleriffic jquery plugin (example 1) [toutpt]
+- remove harlequin and z3cform integration (too soon) 
+- rename IImage to IPhoto and imgs() to photos() 
+- Add rebuild i18n script as usual 
+- Use collective.testcaselayer for tests 
+- Add interfaces IImage and IExif on results returned by every services 
+- Use jquery.galleriffic jquery plugin (example 1) 
 - Add flickr support [toupt]
-- Add cache support with plone.memoize.ram [toutpt]
-- Add picasa private album support on both slideshow and link browserview [toutpt]
-- Add tests on picasa components [toutpt]
+- Add cache support with plone.memoize.ram 
+- Add picasa private album support on both slideshow and link browserview 
+- Add tests on picasa components 
 
 0.1.1 - 2009/12/29
 ------------------
 
-- Add picasa slideshow flash gallery view on link content type [toutpt]
-- Add integration tests [toutpt]
+- Add picasa slideshow flash gallery view on link content type 
+- Add integration tests 
 
 0.1 - 2009/12/28
 ----------------

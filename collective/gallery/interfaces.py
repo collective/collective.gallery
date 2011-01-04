@@ -1,6 +1,6 @@
 from zope import interface
 from zope import schema
-from collective.gallery import _
+from collective.gallery import messageFactory as _
 from collective.gallery import logger
 from plone.app.layout.globals.interfaces import IViewView
 

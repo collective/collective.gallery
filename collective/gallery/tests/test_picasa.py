@@ -1,5 +1,4 @@
 import unittest
-from collective.gallery.link import picasaweb
 from collective.gallery.tests import utils
 
 NONAUTH_URL = 'http://picasaweb.google.fr/ceronjeanpierre/PhotosTriEsDuMariage'
@@ -11,6 +10,7 @@ class Test(unittest.TestCase):
         self.adapter = self.getAdapter(NONAUTH_URL)
 
     def getAdapter(self, url):
+        from collective.gallery.link import picasaweb
         return picasaweb.Link(utils.FakeLink(url))
 
     def testDefaultWithHeight(self):

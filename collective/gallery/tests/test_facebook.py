@@ -1,8 +1,7 @@
 import unittest
-from collective.gallery.link import facebook
-from collective.gallery.tests import utils
 
 URL1 = "http://www.facebook.com/album.php?aid=177781&id=275081154800" #put a url that is supposed to work
+from collective.gallery.tests import utils
 
 class Test(unittest.TestCase):
 
@@ -10,6 +9,7 @@ class Test(unittest.TestCase):
         self.adapter = self.getAdapter(URL1)
 
     def getAdapter(self, url):
+        from collective.gallery.link import facebook
         return facebook.Link(utils.FakeLink(url))
 
     def testDefaultWithHeight(self):

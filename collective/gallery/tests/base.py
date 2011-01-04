@@ -1,21 +1,42 @@
+import unittest
+
+#from zope.testing import doctestunit
+#from zope.component import testing
+from Testing import ZopeTestCase as ztc
+
+try:
+    from Zope2.App import zcml
+    from OFS import metaconfigure
+    zcml # pyflakes
+    metaconfigure
+except ImportError:
+    from Products.Five import zcml
+    from Products.Five import fiveconfigure as metaconfigure
+
 from Products.PloneTestCase import PloneTestCase as ptc
+from Products.PloneTestCase.layer import PloneSite
+from Testing.ZopeTestCase import installPackage
 
-from collective.gallery.tests import layer
+ptc.setupPloneSite(extension_profiles=('collective.gallery:default',))
 
-ptc.setupPloneSite(extension_profiles=['collective.gallery:default'])
+class Layer(PloneSite):
+
+    @classmethod
+    def setUp(cls):
+        metaconfigure.debug_mode = True
+        import collective.gallery
+        zcml.load_config('configure.zcml', collective.gallery)
+        metaconfigure.debug_mode = False
+        installPackage('collective.gallery', quiet=True)
+
+    @classmethod
+    def tearDown(cls):
+        pass
 
 class TestCase(ptc.PloneTestCase):
-    """We use this base class for all the tests in this package. If necessary,
-    we can put common utility or setup code in here. This applies to unit 
-    test cases.
-    """
 
-    layer = layer.Gallery
-
+    layer = Layer
 
 class FunctionalTestCase(ptc.FunctionalTestCase):
-    """We use this class for functional integration tests that use doctest
-    syntax. Again, we can put basic common utility or setup code in here.
-    """
-
-    layer = layer.Gallery
+    
+    layer = Layer

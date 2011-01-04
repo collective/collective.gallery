@@ -1,11 +1,11 @@
 import unittest
-from collective.gallery import topic
 from collective.gallery.tests import utils
 from zope.publisher.browser import TestRequest as Request
 
 class Test(unittest.TestCase):
     
     def setUp(self):
+        from collective.gallery import topic
         self.context = utils.FakeTopic()
         self.request = Request()
         utils.make_request_annotable(self.request)

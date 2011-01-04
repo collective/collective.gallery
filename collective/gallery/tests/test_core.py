@@ -1,11 +1,12 @@
 import unittest
-from collective.gallery import core
-from collective.gallery.tests import utils
-from ZPublisher.tests.testPublish import Request
 
 class Test(unittest.TestCase):
     
     def setUp(self):
+        from collective.gallery import core
+        from collective.gallery.tests import utils
+        from ZPublisher.tests.testPublish import Request
+
         self.context = utils.FakeContext()
         self.request = Request()
         self.view = core.BaseBrowserView(self.context, self.request)
@@ -27,6 +28,7 @@ class Test(unittest.TestCase):
         self.assertEqual(type(self.view.photos()), list)
 
     def testSize(self):
+        from collective.gallery import core
         available_sizes = [('400','400'),('300','300'),('200','200')]
         asked_size = ('350','350')
         w,h = core.sizes(available_sizes, asked_size)

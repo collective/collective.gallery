@@ -6,9 +6,7 @@ example.
 """
 
 import unittest
-from collective.gallery.tests import base
-
-from Products.CMFCore.utils import getToolByName
+import base
 
 class TestSetup(base.TestCase):
     """The name of the class should be meaningful. This may be a class that
@@ -16,7 +14,7 @@ class TestSetup(base.TestCase):
     """
 
     def afterSetUp(self):
-        self.portal_types = getToolByName(self.portal, 'portal_types')
+        self.portal_types = self.portal.portal_types
 
     def beforeTearDown(self):
         pass
@@ -24,7 +22,8 @@ class TestSetup(base.TestCase):
     def test_view_methods(self):
         for t in ('Link', 'Folder', 'Topic'):
             views = self.portal_types.getTypeInfo(t).view_methods
-            self.failUnless("gallery.html" in views, 'gallery not in views of %s'%t)
+            self.failUnless("gallery.html" in views,
+                            'gallery.html not in views of %s'%t)
 
     def test_properties(self):
         pp = self.portal.portal_properties.gallery_properties

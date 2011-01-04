@@ -1,18 +1,17 @@
 import unittest
-from collective.gallery import folder
 from collective.gallery.tests import utils
 from zope.publisher.browser import TestRequest as Request
-
-folder.BaseFolderView.catalog = utils.FakeCatalog()
 
 class Test(unittest.TestCase):
     
     def setUp(self):
+        from collective.gallery import folder
         self.context = utils.FakeContext()
         self.request = Request()
         utils.make_request_annotable(self.request)
         self.view = folder.BaseFolderView(self.context, self.request)
         self.view.settings = utils.FakeProperty
+        self.view.catalog = utils.FakeCatalog()
 
     def testPhotos(self):
     

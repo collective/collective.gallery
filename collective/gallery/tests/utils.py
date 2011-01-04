@@ -28,6 +28,7 @@ class FakeContext(object):
         self.date="a date"
         self.aq_inner = FakeAcquisition()
         self.aq_inner.aq_explicit = self
+        self._modified = "modified date"
 
     def getId(self):
         return self.id
@@ -45,7 +46,7 @@ class FakeContext(object):
         return self.date
 
     def modified(self):
-        return "a modification date"
+        return self._modified
 
     def getPhysicalPath(self):
         return ('/','a','not','existing','path')

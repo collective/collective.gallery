@@ -1,5 +1,4 @@
 import unittest
-from collective.gallery.link import flickr
 from collective.gallery.tests import utils
 
 URL_SETS_PUBLIC = 'http://www.flickr.com/photos/princeofnorway/sets/72157622650234713/'
@@ -8,7 +7,13 @@ class Test(unittest.TestCase):
 
     def setUp(self):
         self.fakelink = utils.FakeLink(URL_SETS_PUBLIC)
-        self.adapter = flickr.Link(self.fakelink)
+        self.adapter = self.getAdapter()
+
+    def getAdapter(self, link=None):
+        if not link:
+            link = self.fakelink
+        from collective.gallery.link import flickr
+        return flickr.Link(link)
 
     def testDefaultWithHeight(self):
         self.failUnless(self.adapter.width == 400)
@@ -17,7 +22,7 @@ class Test(unittest.TestCase):
     def testValidate(self):
         self.failUnless(self.adapter.validate())
         self.fakelink.remoteUrl = "http://not.flickr.com"
-        adapter = flickr.Link(self.fakelink)
+        adapter = self.getAdapter()
         self.failUnless(not adapter.validate())
 
     def testCreator(self):
@@ -38,8 +43,9 @@ class Test(unittest.TestCase):
     def testNotValideURL(self):
         url = 'http://nota.flickr.com/url'
         fakelink = utils.FakeLink(url)
-        adapter = flickr.Link(fakelink)
-        self.failUnless(not adapter.creator)
+        fakelink._modified = "updated"
+        adapter = self.getAdapter(link=fakelink)
+        self.failUnless(not adapter.creator, adapter.creator)
         self.failUnless(not adapter.photos())
 
 

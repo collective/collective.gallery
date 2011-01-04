@@ -15,4 +15,3 @@ def upgrade_to_10(context):
     for portal_type in ('Link', 'Folder', 'Topic'):
         update_layouts(portal_type)
 
-    large

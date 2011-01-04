@@ -11,8 +11,8 @@ class Test(unittest.TestCase):
         self.context = utils.FakeContext()
         self.request = Request()
         utils.make_request_annotable(self.request)
-        folder.BaseFolderView.pp = property(utils.fake_get_property)
         self.view = folder.BaseFolderView(self.context, self.request)
+        self.view.settings = utils.FakeProperty
 
     def testPhotos(self):
     

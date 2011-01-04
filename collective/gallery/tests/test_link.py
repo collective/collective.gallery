@@ -9,19 +9,19 @@ class Test(unittest.TestCase):
         request = Request()
         context = utils.FakeLink()
         utils.make_request_annotable(request)
-        link.BaseLinkView.pp = property(utils.fake_get_property)
-        self.adapter = link.BaseLinkView(context, request)
+        self.view = link.BaseLinkView(context, request)
+        self.view.settings = utils.FakeProperty
 
     def testCreator(self):
-        self.failUnless(self.adapter.creator == "ceronjeanpierre")
+        self.failUnless(self.view.creator == "ceronjeanpierre")
 
     def testPhotos(self):
-        imgs = self.adapter.photos()
+        imgs = self.view.photos()
         self.failUnless(not imgs)
         self.failUnless(len(imgs) == 0)
 
     def testCreator(self):
-        self.failUnless(not self.adapter.creator, "must be empty")
+        self.failUnless(not self.view.creator, "must be empty")
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class

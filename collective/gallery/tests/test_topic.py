@@ -9,9 +9,8 @@ class Test(unittest.TestCase):
         self.context = utils.FakeTopic()
         self.request = Request()
         utils.make_request_annotable(self.request)
-        topic.BaseTopicView.pp = property(utils.fake_get_property)
         self.view = topic.BaseTopicView(self.context, self.request)
-
+        self.view.settings = utils.FakeProperty
 
     def testPhotos(self):
         self.assertEqual(len(self.view.photos()), 2)

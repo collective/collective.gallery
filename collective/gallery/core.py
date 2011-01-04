@@ -19,11 +19,11 @@ class BaseBrowserView(BrowserView):
 
     @property
     def width(self):
-        return self.pp.gallery_properties.photo_max_size
+        return self.settings().get('photo_max_size', 400)
 
     @property
     def height(self):
-        return self.pp.gallery_properties.photo_max_size
+        return self.settings().get('photo_max_size', 400)
 
     @property
     def id(self):
@@ -45,10 +45,8 @@ class BaseBrowserView(BrowserView):
     def date(self):
         return self.context.Date()
     
-    @property
-    @view.memoize_contextless
-    def pp(self):
-        return getToolByName(self.context, 'portal_properties')
+    def settings(self):
+        return getToolByName(self.context, 'portal_properties').gallery_properties
 
     def photos(self):
         return []

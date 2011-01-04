@@ -21,12 +21,16 @@ class FakeAcquisition(object):
 class FakeContext(object):
 
     def __init__(self):
+        self.id = "myid"
         self.title = "a title"
         self.description = "a description"
         self.creators = ["myself"]
         self.date="a date"
         self.aq_inner = FakeAcquisition()
         self.aq_inner.aq_explicit = self
+
+    def getId(self):
+        return self.id
 
     def Title(self):
         return self.title
@@ -45,6 +49,16 @@ class FakeContext(object):
 
     def getPhysicalPath(self):
         return ('/','a','not','existing','path')
+
+    def objectValues(self):
+        ob1 = FakeContext()
+        ob1.title = "An image"
+        ob2 = FakeContext()
+        ob2.title = "An other image"
+        return [ob1, ob2]
+
+    def absolute_url(self):
+        return "http://nohost.com/"+self.id
 
 class FakeTopic(FakeContext):
     def queryCatalog(self, **kwargs):
@@ -94,13 +108,13 @@ def make_request_annotable(request):
 
 class FakeProperty(object):
     def __init__(self):
-        class Gallery:
-            def __init__(self):
-                self.photo_max_size = 400
-                self.numthumbs = 8
-                self.thumb_max_size = 80
-                self.enablehistory = True
-        self.gallery_properties = Gallery()
+        self.photo_max_size = 400
+        self.numthumbs = 8
+        self.thumb_max_size = 80
+        self.enablehistory = True
+    
+    def get(self, name, default=None):
+        return getattr(self, name, default)
 
 def fake_get_property(self):
     return FakeProperty()

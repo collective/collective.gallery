@@ -11,7 +11,7 @@ class Test(unittest.TestCase):
         utils.make_request_annotable(self.request)
         self.view = folder.BaseFolderView(self.context, self.request)
         self.view.settings = utils.FakeProperty
-        self.view.catalog = utils.FakeCatalog()
+        self.view._brainToPhoto = utils.brainToPhoto
 
     def testPhotos(self):
     

@@ -1,6 +1,10 @@
 from zope.interface import directlyProvides
 from zope.annotation.interfaces import IAttributeAnnotatable
 
+def brainToPhoto(ob):
+    from collective.gallery import brain
+    return brain.Photo(ob)
+
 def verifyImage(image):
     """Return True if image respect the interface, return false otherwise"""
     tests = []
@@ -51,12 +55,9 @@ class FakeContext(object):
     def getPhysicalPath(self):
         return ('/','a','not','existing','path')
 
-    def objectValues(self):
-        ob1 = FakeContext()
-        ob1.title = "An image"
-        ob2 = FakeContext()
-        ob2.title = "An other image"
-        return [ob1, ob2]
+    def getFolderContents(self, filter=None):
+        catalog = FakeCatalog()
+        return catalog.searchResults()
 
     def absolute_url(self):
         return "http://nohost.com/"+self.id

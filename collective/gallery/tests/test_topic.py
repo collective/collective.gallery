@@ -11,6 +11,7 @@ class Test(unittest.TestCase):
         utils.make_request_annotable(self.request)
         self.view = topic.BaseTopicView(self.context, self.request)
         self.view.settings = utils.FakeProperty
+        self.view._brainToPhoto = utils.brainToPhoto
 
     def testPhotos(self):
         self.assertEqual(len(self.view.photos()), 2)

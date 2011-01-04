@@ -32,10 +32,6 @@ class TestSetup(base.TestCase):
         self.failUnless(type(pp.photo_max_size) == int)
         self.failUnless(hasattr(pp, 'thumb_max_size'))
         self.failUnless(type(pp.thumb_max_size) == int)
-        self.failUnless(hasattr(pp, 'numthumbs'))
-        self.failUnless(type(pp.numthumbs) == int)
-        self.failUnless(hasattr(pp, 'enablehistory'))
-        self.failUnless(type(pp.enablehistory) == bool)
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class

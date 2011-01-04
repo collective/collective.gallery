@@ -110,9 +110,7 @@ def make_request_annotable(request):
 class FakeProperty(object):
     def __init__(self):
         self.photo_max_size = 400
-        self.numthumbs = 8
         self.thumb_max_size = 80
-        self.enablehistory = True
     
     def get(self, name, default=None):
         return getattr(self, name, default)

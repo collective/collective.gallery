@@ -19,7 +19,7 @@ jQuery(document).ready(function($){
 
     var gallery = $('#gallerythumbs').galleriffic({
 
-        //delay:                     3000, // in milliseconds
+        delay:                     3000, // in milliseconds
         numThumbs:                 5, // The number of thumbnails to show page
         //preloadAhead:              40, // Set to -1 to preload all images
         enableTopPager:            false,
@@ -42,53 +42,57 @@ jQuery(document).ready(function($){
         autoStart:                 true, // Specifies whether the slideshow should be playing or paused when the page first loads
         syncTransitions:           false, // Specifies whether the out and in transitions occur simultaneously or distinctly
         defaultTransitionDuration: 1000, // If using the default transitions, specifies the duration of the transitions
-        onSlideChange:             undefined, // accepts a delegate like such: function(prevIndex, nextIndex) { ... }
+        onSlideChange: function(prevIndex, nextIndex) {
+           if (this.isSlideshowRunning) {
+              $('#galleryplay').hide();
+              $('#gallerypause').show();
+           } else {
+              $('#gallerypause').hide();
+              $('#galleryplay').show();
+           }
+        },
         onTransitionOut:           undefined, // accepts a delegate like such: function(slide, caption, isSync, callback) { ... }
         onTransitionIn:            undefined, // accepts a delegate like such: function(slide, caption, isSync) { ... }
-        onPageTransitionOut:       undefined,
-        onPageTransitionIn:        undefined,
+        onPageTransitionOut:       undefined, // accepts a delegate like such: function(slide, caption, isSync, callback) { ... }
+        onPageTransitionIn:        undefined, // accepts a delegate like such: function(slide, caption, isSync) { ... }
         onImageAdded:              undefined, // accepts a delegate like such: function(imageData, $li) { ... }
         onImageRemoved:            undefined  // accepts a delegate like such: function(imageData, $li) { ... }
     });
-    $('#gallerypageprev').click(function(e) {
+    if (gallery.autoStart){
+        $('#galleryplay').hide();
+        $('#gallerypause').show();
+    } else {
         $('#gallerypause').hide();
         $('#galleryplay').show();
+    }
+    $('#gallerypageprev').click(function(e) {
        gallery.previousPage();
        e.preventDefault();
      });
     
     $('#gallerypagenext').click(function(e) {
-        $('#gallerypause').hide();
-        $('#galleryplay').show();
        gallery.nextPage();
        e.preventDefault();
      }); 
     $('#galleryprev').click(function(e) {
-        $('#gallerypause').hide();
-        $('#galleryplay').show();
        gallery.previous();
        e.preventDefault();
      });
     $('#gallerynext').click(function(e) {
-        $('#gallerypause').hide();
-        $('#galleryplay').show();
        gallery.next();
        e.preventDefault();
      });
-    if (gallery.autoStart)
-        $('#galleryplay').hide();
-    else 
-        $('#gallerypause').hide();
+
     $('#galleryplay').click(function(e) {
+       $('#galleryplay').hide();
        gallery.play();
        e.preventDefault();
-       $('#galleryplay').hide();
        $('#gallerypause').show();
      });
     $('#gallerypause').click(function(e) {
+       $('#gallerypause').hide();
        gallery.pause();
        e.preventDefault();
-       $('#gallerypause').hide();
        $('#galleryplay').show();
      });
      $('#galleryphoto').tooltip({position:'center right', effect:'fade',relative:true});

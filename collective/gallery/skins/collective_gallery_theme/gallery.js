@@ -1,5 +1,6 @@
 // We only want these styles applied when javascript is enabled
 jQuery(document).ready(function($){
+    if ($('div#gallerythumbs').length == 0){return;}
     $('div#gallerythumbs').css({'display': 'block'});
     $('a.thumb').css({
         'float': 'left',

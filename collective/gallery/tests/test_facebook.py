@@ -10,7 +10,9 @@ class Test(unittest.TestCase):
 
     def getAdapter(self, url):
         from collective.gallery.link import facebook
-        return facebook.Link(utils.FakeLink(url))
+        adapter = facebook.Link(utils.FakeLink(url))
+        adapter.settings = utils.FakeProperty
+        return adapter
 
     def testDefaultWithHeight(self):
         #test default values
@@ -33,6 +35,17 @@ class Test(unittest.TestCase):
             test, msg = utils.verifyImage(img)
             self.failUnless(test, msg)
         self.failUnless(len(imgs)==50)
+
+    def testNotValideURL(self):
+        url = 'http://www.facebook.com/album.php?aid=WRONG&id=WRONG'
+        fakelink = utils.FakeLink(url)
+        fakelink._modified = "updated"
+        adapter = self.getAdapter(url)
+        msg = "API not respected"
+        self.failUnless(adapter.creator == adapter.context.Creators()[0], msg)
+        self.failUnless(adapter.title == adapter.context.Title(), msg)
+        self.failUnless(len(adapter.photos())==0, msg)
+        self.failUnless(type(adapter.photos()) == list, msg)
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class

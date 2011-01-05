@@ -12,11 +12,11 @@ except ImportError:
 from urllib import urlencode
 from urllib2 import urlopen
 
-from collective.gallery import interfaces
-from collective.gallery.link import DummyResource
-
-from zope import interface
 from zope import component
+from zope import interface
+
+from collective.gallery import interfaces
+from collective.gallery.link import BaseResource
 
 def check(url):
     """Check if the url is valid"""
@@ -27,39 +27,21 @@ def check(url):
 
     return starts and has_aid and has_id
 
-dummy = DummyResource()
 
-class Link(object):
+class Link(BaseResource):
     """Facebook implements of IGallery over Link content type
     """
-    interface.implements(interfaces.IGallery)
-    component.adapts(interfaces.ILink)
 
     def __init__(self, context):
-        self.context = context
-        self.width = 400
-        self.height = 400
-        self.url = context.getRemoteUrl()
+        super(Link, self).__init__(context)
         self.validator = check
 
     def validate(self):
         return self.validator(self.url) and HAS_DEPENDENCY
 
-    @property
-    def creator(self):
-        #TODO: support this
-        if not self.validate(): return dummy.creator
-        return ""
-
-    @property
-    def albumName(self):
-        #TODO: support this
-        if not self.validate(): return dummy.creator
-        return ""
-
     def photos(self):
 
-        if not self.validate(): return dummy.photos()
+        if not self.validate(): return super(Link, self).photos()
         try:
             f = urlopen(self.url)
             html = f.read()
@@ -70,13 +52,7 @@ class Link(object):
 
         except Exception, e:
             logger.error('FACEBOOK backend error: %s'%e)
-            return dummy.photos()
-
-    @property
-    def title(self):
-        #TODO: support this
-        if not self.validate(): return dummy.creator
-        return ""
+            return super(Link, self).photos()
 
 class Photo(object):
     """Photo implementation

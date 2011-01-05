@@ -11,7 +11,9 @@ class Test(unittest.TestCase):
 
     def getAdapter(self, url):
         from collective.gallery.link import picasaweb
-        return picasaweb.Link(utils.FakeLink(url))
+        adapter = picasaweb.Link(utils.FakeLink(url))
+        adapter.settings = utils.FakeProperty
+        return adapter
 
     def testDefaultWithHeight(self):
         #test default values
@@ -54,9 +56,9 @@ class Test(unittest.TestCase):
     def testImgsWrongURL(self):
         adapter = self.getAdapter("http://notpicasaweb.com")
         msg = "API not respected"
-        self.failUnless(not adapter.creator, msg)
-        self.failUnless(not adapter.albumName, msg)
-        self.failUnless(not adapter.photos(), msg)
+        self.failUnless(adapter.creator == adapter.context.Creators()[0], msg)
+        self.failUnless(adapter.title == adapter.context.Title(), msg)
+        self.failUnless(len(adapter.photos())==0, msg)
         self.failUnless(type(adapter.photos()) == list, msg)
 
 def test_suite():

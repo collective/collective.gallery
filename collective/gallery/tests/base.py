@@ -15,7 +15,7 @@ except ImportError:
 
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import PloneSite
-from Testing.ZopeTestCase import installPackage
+from Testing.ZopeTestCase import installPackage, installProduct
 
 ptc.setupPloneSite(extension_profiles=('collective.gallery:default',))
 
@@ -33,10 +33,23 @@ class Layer(PloneSite):
     def tearDown(cls):
         pass
 
+def remove_statusmessage():
+    #monkey patch to remove statusmessage dependency
+    from collective.gallery import link
+    def addmessage(message, type=u"info"):pass
+    link.BaseLinkView.addmessage = addmessage
+
+
 class TestCase(ptc.PloneTestCase):
 
     layer = Layer
 
+    def afterSetUp(self):
+        remove_statusmessage()
+
 class FunctionalTestCase(ptc.FunctionalTestCase):
     
     layer = Layer
+
+    def afterSetUp(self):
+        remove_statusmessage()

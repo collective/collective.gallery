@@ -21,7 +21,7 @@ class Test(unittest.TestCase):
         self.failUnless(len(imgs) == 0)
 
     def testCreator(self):
-        self.failUnless(not self.view.creator, "must be empty")
+        self.failUnless(self.view.creator == self.view.context.Creators()[0])
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class

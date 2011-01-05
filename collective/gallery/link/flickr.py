@@ -4,7 +4,7 @@ from urllib import urlencode
 
 from collective.gallery import interfaces
 from collective.gallery import cache
-from collective.gallery.link import DummyResource
+from collective.gallery.link import BaseResource
 from plone.memoize import ram
 from zope import interface
 from zope import component
@@ -36,22 +36,15 @@ def extract_data(url):
         result['sets'] = url_splited[6]
     return result
 
-dummy = DummyResource()
-
-class Link(object):
+class Link(BaseResource):
     """Flickr implementation of IGallery over Link content type"""
 
-    interface.implements(interfaces.IGallery)
-    component.adapts(interfaces.ILink)
-
     def __init__(self, context):
-        self.context = context
-        self.width = 400
-        self.height = 400
-        self.url = context.getRemoteUrl()
+        super(Link, self).__init__(context)
         self._flickr = None
         self._metadata = {'creator':'', 'albumName':''}
         self._user_info = {}
+        self.validator = check
 
     @property
     @ram.cache(cache.cache_key)
@@ -67,8 +60,6 @@ class Link(object):
         result['username'] = user.find('user').find('username').text
         return result
 
-    def validate(self):
-        return check(self.url)
 
     def photos(self):
         """it depends on metdatas extracted from the url
@@ -81,11 +72,11 @@ class Link(object):
         
         """
 
-        if not self.validate():
-            return dummy.photos()
+        if not self.validate(): return super(Link, self).photos()
 
         flickr = self._flickr_service()
         metadatas = extract_data(self.url)
+
         if metadatas['type'] == 'photos':
             if metadatas['sets']:
                 set = flickr.walk_set(metadatas['sets'])
@@ -94,6 +85,7 @@ class Link(object):
                 user_id = self.user_info['user_id']
                 photos = flickr.photos_search(user_id=user_id)
                 results = [Photo(photo) for photo in set]
+
         return results
 
     def _flickr_service(self):
@@ -105,7 +97,7 @@ class Link(object):
     @property
     def creator(self):
 
-        if not self.validate(): return dummy.creator
+        if not self.validate(): return super(Link, self).creator
 
         return self.user_info['username']
 
@@ -114,10 +106,10 @@ class Link(object):
         """Return the title of the album. If you want to use link title you can
         do it in the tempalte"""
 
-        if not self.validate(): return dummy.title
+        #TODO: implement title
+        return super(Link, self).title
 
-        return 'title not implemented'
-
+        
 class Photo(object):
     """Photo implementation"""
     interface.implements(interfaces.IPhoto)

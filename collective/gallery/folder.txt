@@ -70,7 +70,7 @@ Now we return to the folder and set the default view
 
     >>> browser.getLink("My Gallery").click()
     >>> browser.getLink("Display").click()
-    >>> browser.getControl('gallery.html').click()
+    >>> browser.getControl('Gallery view').click()
     >>> browser.getControl('Save').click()
 
     >>> import tempfile as tmp

@@ -7,11 +7,11 @@ import urllib
 import urlparse
 from urllib import urlencode
 
-from collective.gallery import interfaces
-from collective.gallery.link import DummyResource
-
-from zope import interface
 from zope import component
+from zope import interface
+
+from collective.gallery import interfaces
+from collective.gallery.link import BaseResource
 
 logger = logging.getLogger('collective.gallery')
 
@@ -31,30 +31,21 @@ def check(url):
     url_splited = url.split('/')
     return starts and len(url_splited)>4
 
-dummy = DummyResource()
-
-class Link(object):
+class Link(BaseResource):
     """Picasa implements of IGallery over Link content type
     please check http://code.google.com/intl/fr/apis/picasaweb/docs/1.0/reference.html
     for a complete reference of kwargs
     """
-    interface.implements(interfaces.IGallery)
-    component.adapts(interfaces.ILink)
 
     def __init__(self, context):
-        self.context = context
-        self.width = 400
-        self.height = 400
-        self.url = context.getRemoteUrl()
+        super(Link, self).__init__(context)
         self.url_parsed = urlparse.urlparse(self.url)
-
-    def validate(self):
-        return check(self.url)
+        self.validator = check
 
     @property
     def creator(self):
 
-        if not self.validate(): return dummy.creator
+        if not self.validate(): return super(Link, self).creator
 
         if len(self.url_parsed)>2:
             if len(self.url_parsed[2].split('/')) > 2:
@@ -74,7 +65,7 @@ class Link(object):
 
     def photos(self):
 
-        if not self.validate(): return dummy.photos()
+        if not self.validate(): return super(Link, self).photos()
 
         kwargs = {}
         kwargs['kind'] = 'photo'
@@ -118,7 +109,7 @@ class Link(object):
         """Return the title of the album. If you want to use link title you can
         do it in the tempalte"""
 
-        if not self.validate(): return dummy.title
+        if not self.validate(): return super(Link, self).title
 
         url = '/data/feed/api/user/%s/album/%s'%(self.creator, self.albumName)
         if self.authkey:

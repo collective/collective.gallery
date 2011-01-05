@@ -6,9 +6,13 @@ from zope import interface
 
 from plone.memoize import ram
 
+from Products.CMFCore.utils import getToolByName
+
 from collective.gallery import interfaces
+from collective.gallery import i18n
 from collective.gallery import cache
 from collective.gallery import core
+from Products.statusmessages.interfaces import IStatusMessage
 
 class BaseLinkView(core.BaseBrowserView):
     """A base browser view for link content type"""
@@ -18,6 +22,8 @@ class BaseLinkView(core.BaseBrowserView):
         super(BaseLinkView, self).__init__(context, request)
         self.url = self.context.getRemoteUrl()
         self.resource = None
+        self._baseresource = BaseResource(self.context)
+        self._resource()
 
     def _resource(self):
         """Return the first component find that is valid for this context.
@@ -29,25 +35,38 @@ class BaseLinkView(core.BaseBrowserView):
                 if r.validate():
                     self.resource = r
                     break
-            if not self.resource:
-                self.resource = DummyResource()
-        self.resource.width = self.width
-        self.resource.height = self.height
+
+            if self.resource:
+                self.resource.width = self.width
+                self.resource.height = self.height
+            else:
+                msg = i18n.message_no_backend_for_link
+                self.addmessage(msg)
+
         return self.resource
+
+    def addmessage(self, message):
+        IStatusMessage(self.request).add(msg, type=u'error')
 
     @ram.cache(cache.cache_key)
     def photos(self):
         resource = self._resource()
+        if resource is None:
+            resource = self._baseresource
         return resource.photos()
 
     @property
     def creator(self):
         resource = self._resource()
+        if resource is None:
+            resource = self._baseresource
         return resource.creator
     
     @property
     def title(self):
         resource = self._resource()
+        if resource is None:
+            resource = self._baseresource
         return resource.title
 
     def break_url(self):
@@ -74,13 +93,64 @@ class BaseLinkView(core.BaseBrowserView):
         return host, path, query_elems, fragment
 
 
-class DummyResource(object):
-    """An IGallery that return nothing, but add a msg"""
+class BaseResource(object):
+    """An IGallery base for all link services"""
     interface.implements(interfaces.IGallery)
+    component.adapts(interfaces.ILink)
 
-    def __init__(self):
-        self.creator = ''
-        self.title = ''
+    def __init__(self, context):
+        self.context = context
+        self.url = context.getRemoteUrl()
+        def validator(url):return False
+        self.validator = validator
+        self._width = None
+        self._height = None
+
+    def validate(self):
+        return self.validator(self.url)
+
+    def get_width(self):
+        if not self._width:
+            return self.settings().get('photo_max_size', 400)
+        return self._width
+
+    def set_width(self, value):
+        self._width = value
+
+    width = property(get_width, set_width)
+
+    def get_height(self):
+        if not self._height:
+            return self.settings().get('photo_max_size', 400)
+        return self._height
+
+    def set_height(self, value):
+        self._height = value
+
+    height = property(get_height, set_height)
+
+    @property
+    def id(self):
+        return self.context.getId()
+
+    @property
+    def title(self):
+        return self.context.Title()
+
+    @property
+    def creator(self):
+        return self.context.Creators()[0]
+    
+    @property
+    def description(self):
+        return self.context.Description()
+
+    @property
+    def date(self):
+        return self.context.Date()
+    
+    def settings(self):
+        return getToolByName(self.context, 'portal_properties').gallery_properties
 
     def photos(self):
         return []

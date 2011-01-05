@@ -13,7 +13,9 @@ class Test(unittest.TestCase):
         if not link:
             link = self.fakelink
         from collective.gallery.link import flickr
-        return flickr.Link(link)
+        adapter = flickr.Link(link)
+        adapter.settings = utils.FakeProperty
+        return adapter
 
     def testDefaultWithHeight(self):
         self.failUnless(self.adapter.width == 400)
@@ -45,8 +47,11 @@ class Test(unittest.TestCase):
         fakelink = utils.FakeLink(url)
         fakelink._modified = "updated"
         adapter = self.getAdapter(link=fakelink)
-        self.failUnless(not adapter.creator, adapter.creator)
-        self.failUnless(not adapter.photos())
+        msg = "API not respected"
+        self.failUnless(adapter.creator == adapter.context.Creators()[0], msg)
+        self.failUnless(adapter.title == adapter.context.Title(), msg)
+        self.failUnless(len(adapter.photos())==0, msg)
+        self.failUnless(type(adapter.photos()) == list, msg)
 
 
 def test_suite():

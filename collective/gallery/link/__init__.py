@@ -41,12 +41,12 @@ class BaseLinkView(core.BaseBrowserView):
                 self.resource.height = self.height
             else:
                 msg = i18n.message_no_backend_for_link
-                self.addmessage(msg)
+                self.addmessage(msg, type=u"error")
 
         return self.resource
 
-    def addmessage(self, message):
-        IStatusMessage(self.request).add(msg, type=u'error')
+    def addmessage(self, message, type=u"info"):
+        IStatusMessage(self.request).add(message, type=type)
 
     @ram.cache(cache.cache_key)
     def photos(self):

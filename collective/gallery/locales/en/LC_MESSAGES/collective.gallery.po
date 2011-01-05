@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-04 16:59+0000\n"
+"POT-Creation-Date: 2011-01-05 14:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.gallery\n"
 
-#: ./interfaces.py:33
+#: ./interfaces.py:36
 msgid "Author"
 msgstr ""
 
-#: ./interfaces.py:37
+#: ./interfaces.py:40
 msgid "Date"
 msgstr ""
 
-#: ./interfaces.py:35
+#: ./interfaces.py:38
 msgid "Description"
 msgstr ""
 
@@ -33,11 +33,15 @@ msgstr ""
 msgid "Download Original"
 msgstr ""
 
-#: ./interfaces.py:29
+#: ./i18n.py:3
+msgid "Gallery view"
+msgstr ""
+
+#: ./interfaces.py:32
 msgid "Id"
 msgstr ""
 
-#: ./interfaces.py:47
+#: ./interfaces.py:50
 msgid "Name"
 msgstr ""
 
@@ -57,36 +61,41 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: ./interfaces.py:48
+#: ./interfaces.py:51
 msgid "The friendly name of the template"
 msgstr ""
 
-#: ./interfaces.py:31
+#: ./interfaces.py:34
 msgid "Title"
 msgstr ""
 
 #. Default: "Description"
-#: ./interfaces.py:15
+#: ./interfaces.py:18
 msgid "label_photo_description"
 msgstr ""
 
 #. Default: "Id"
-#: ./interfaces.py:11
+#: ./interfaces.py:14
 msgid "label_photo_id"
 msgstr ""
 
 #. Default: "Thumb source URL"
-#: ./interfaces.py:20
+#: ./interfaces.py:23
 msgid "label_photo_thumb"
 msgstr ""
 
 #. Default: "Title"
-#: ./interfaces.py:13
+#: ./interfaces.py:16
 msgid "label_photo_title"
 msgstr ""
 
 #. Default: "Source URL"
-#: ./interfaces.py:18
+#: ./interfaces.py:21
 msgid "label_photo_url"
+msgstr ""
+
+#. Default: "Gallery ERROR: This link is not supported."
+#: ./i18n.py:4
+msgid "message_no_backend_for_link"
 msgstr ""
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.gallery\n"
-"POT-Creation-Date: 2011-01-04 16:59+0000\n"
+"POT-Creation-Date: 2011-01-05 14:16+0000\n"
 "PO-Revision-Date: 2010-11-25 07:08-0400\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Domain: collective.gallery\n"
 "X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
-#: ./interfaces.py:33
+#: ./interfaces.py:36
 msgid "Author"
 msgstr "Autor"
 
-#: ./interfaces.py:37
+#: ./interfaces.py:40
 msgid "Date"
 msgstr "Fecha"
 
-#: ./interfaces.py:35
+#: ./interfaces.py:38
 msgid "Description"
 msgstr "Descripción"
 
@@ -34,11 +34,15 @@ msgstr "Descripción"
 msgid "Download Original"
 msgstr ""
 
-#: ./interfaces.py:29
+#: ./i18n.py:3
+msgid "Gallery view"
+msgstr ""
+
+#: ./interfaces.py:32
 msgid "Id"
 msgstr ""
 
-#: ./interfaces.py:47
+#: ./interfaces.py:50
 msgid "Name"
 msgstr "Nombre"
 
@@ -58,36 +62,41 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: ./interfaces.py:48
+#: ./interfaces.py:51
 msgid "The friendly name of the template"
 msgstr "El nombre amigable de la plantilla"
 
-#: ./interfaces.py:31
+#: ./interfaces.py:34
 msgid "Title"
 msgstr "Titulo"
 
 #. Default: "Description"
-#: ./interfaces.py:15
+#: ./interfaces.py:18
 msgid "label_photo_description"
 msgstr ""
 
 #. Default: "Id"
-#: ./interfaces.py:11
+#: ./interfaces.py:14
 msgid "label_photo_id"
 msgstr ""
 
 #. Default: "Thumb source URL"
-#: ./interfaces.py:20
+#: ./interfaces.py:23
 msgid "label_photo_thumb"
 msgstr ""
 
 #. Default: "Title"
-#: ./interfaces.py:13
+#: ./interfaces.py:16
 msgid "label_photo_title"
 msgstr ""
 
 #. Default: "Source URL"
-#: ./interfaces.py:18
+#: ./interfaces.py:21
 msgid "label_photo_url"
+msgstr ""
+
+#. Default: "Gallery ERROR: This link is not supported."
+#: ./i18n.py:4
+msgid "message_no_backend_for_link"
 msgstr ""
 

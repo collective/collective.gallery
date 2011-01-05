@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-04 16:59+0000\n"
+"POT-Creation-Date: 2011-01-05 14:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: JeanMichel FRANCOIS <toutpt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Domain: collective.gallery\n"
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
-#: ./interfaces.py:33
+#: ./interfaces.py:36
 msgid "Author"
 msgstr "Auteur"
 
-#: ./interfaces.py:37
+#: ./interfaces.py:40
 msgid "Date"
 msgstr "Date"
 
-#: ./interfaces.py:35
+#: ./interfaces.py:38
 msgid "Description"
 msgstr "Description"
 
@@ -34,11 +34,15 @@ msgstr "Description"
 msgid "Download Original"
 msgstr "Télécharger l'originale"
 
-#: ./interfaces.py:29
+#: ./i18n.py:3
+msgid "Gallery view"
+msgstr "vue galerie"
+
+#: ./interfaces.py:32
 msgid "Id"
 msgstr "Id"
 
-#: ./interfaces.py:47
+#: ./interfaces.py:50
 msgid "Name"
 msgstr "Nom"
 
@@ -58,36 +62,41 @@ msgstr "Lecture"
 msgid "Previous"
 msgstr "Précédente"
 
-#: ./interfaces.py:48
+#: ./interfaces.py:51
 msgid "The friendly name of the template"
 msgstr "Le nom lisible du template d'affichage"
 
-#: ./interfaces.py:31
+#: ./interfaces.py:34
 msgid "Title"
 msgstr "Titre"
 
 #. Default: "Description"
-#: ./interfaces.py:15
+#: ./interfaces.py:18
 msgid "label_photo_description"
 msgstr "Description"
 
 #. Default: "Id"
-#: ./interfaces.py:11
+#: ./interfaces.py:14
 msgid "label_photo_id"
 msgstr "Id"
 
 #. Default: "Thumb source URL"
-#: ./interfaces.py:20
+#: ./interfaces.py:23
 msgid "label_photo_thumb"
 msgstr "Vignette"
 
 #. Default: "Title"
-#: ./interfaces.py:13
+#: ./interfaces.py:16
 msgid "label_photo_title"
 msgstr "Title"
 
 #. Default: "Source URL"
-#: ./interfaces.py:18
+#: ./interfaces.py:21
 msgid "label_photo_url"
 msgstr "Adresse (URL) de la photo"
+
+#. Default: "Gallery ERROR: This link is not supported."
+#: ./i18n.py:4
+msgid "message_no_backend_for_link"
+msgstr "Erreur Galerie: Ce lien n'est pas supporté."
 

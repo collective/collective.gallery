@@ -15,7 +15,8 @@ msgstr ""
 "Language-Code: fr\n"
 "Language-Name: French\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: collective.messaging\n"
+"Domain: collective.gallery\n"
+"X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
 #: ./interfaces.py:33
 msgid "Author"
@@ -51,7 +52,7 @@ msgstr "Pause"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:19
 msgid "Play"
-msgstr "Faire défiler"
+msgstr "Lecture"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:18
 msgid "Previous"

@@ -34,10 +34,7 @@ class TestIntegration(base.TestCase):
         self.link.setRemoteUrl('http://notsupported.com/agallery')
 
     def testProperties(self):
-#        view = component.getMultiAdapter((self.link, self.link.REQUEST),
-#                                         name="gallery")
-        from collective.gallery import link
-        view = link.BaseLinkView(self.link, self.link.REQUEST)
+        view = self.link.unrestrictedTraverse('@@gallery')
         self.failUnless(view.width == 400)
         self.portal.portal_properties.gallery_properties._updateProperty('photo_max_size', 500)
 

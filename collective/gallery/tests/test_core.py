@@ -31,8 +31,7 @@ class Test(unittest.TestCase):
 class TestIntegration(base.TestCase):
     
     def testProperties(self):
-        from collective.gallery import core
-        view = core.BaseBrowserView(self.portal, self.app.REQUEST)
+        view = self.portal.unrestrictedTraverse('@@gallery')
         self.failUnless(view.width == 400)
         self.portal.portal_properties.gallery_properties._updateProperty('photo_max_size', 500)
         self.failUnless(view.width == 500)

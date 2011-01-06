@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.0b5 (unreleased)
-----------------
+1.0b5 (2011-01-06)
+------------------
 
 - fix fast navigation bug (where imgs where added one upon the other) -> Need
   to position images in absolute

@@ -9,7 +9,7 @@ import base
 def test_suite():
 
     TEST_CLASS = base.FunctionalTestCase
-    OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE | 
+    OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
                         doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
     return unittest.TestSuite([
 

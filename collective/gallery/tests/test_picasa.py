@@ -21,7 +21,7 @@ class Test(base.UnitTestCase):
         #test default values
         self.failUnless(self.adapter.width == 400)
         self.failUnless(self.adapter.height == 400)
-    
+
     def testValidate(self):
         self.failUnless(self.adapter.validate())
         adapter = self.getAdapter(AUTH_URL)
@@ -31,7 +31,7 @@ class Test(base.UnitTestCase):
 
     def testCreator(self):
         self.failUnless(self.adapter.creator == "ceronjeanpierre")
-    
+
     def testAuthKey(self):
         self.failUnless(not self.adapter.authkey)
         adapter = self.getAdapter(AUTH_URL)

@@ -1,4 +1,3 @@
-from zope import component
 from zope import interface
 
 from collective.gallery import interfaces

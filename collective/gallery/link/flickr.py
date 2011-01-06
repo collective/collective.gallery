@@ -1,13 +1,10 @@
 import flickrapi
-from Products.CMFCore.utils import getToolByName
-from urllib import urlencode
 
 from collective.gallery import interfaces
 from collective.gallery import cache
 from collective.gallery.link import BaseResource
 from plone.memoize import ram
 from zope import interface
-from zope import component
 
 API_KEY = '37f7bd2f16b0071fb536ae907473780a'
 
@@ -16,8 +13,8 @@ def check(url):
 
 def extract_data(url):
     """Return metadata from this flickr url
-    
-    
+
+
     >>> extract_data('http://www.flickr.com/photos/princeofnorway/')
     {'yahoo_account':'princeofnorway', 'sets':None}
     >>> extranct_data('http://www.flickr.com/photos/princeofnorway/sets/72157623726009622/')
@@ -28,7 +25,7 @@ def extract_data(url):
               'type':None,
               }
     if not check(url): return result
-    
+
     url_splited = url.split('/')
     result['type'] = url_splited[3]
     result['yahoo_account'] = url_splited[4]
@@ -64,12 +61,12 @@ class Link(BaseResource):
     def photos(self):
         """it depends on metdatas extracted from the url
         but we have different case:
-        
+
         http://www.flickr.com/photos/rbpdesigner
         We have the username, return all photos
-        
+
         http://www.flickr.com/photos/autowitch/sets/107460/
-        
+
         """
 
         if not self.validate(): return super(Link, self).photos()
@@ -109,20 +106,20 @@ class Link(BaseResource):
         #TODO: implement title
         return super(Link, self).title
 
-        
+
 class Photo(object):
     """Photo implementation"""
     interface.implements(interfaces.IPhoto)
 
     def __init__(self, photo):
         thumb_url = "http://farm%s.static.flickr.com/%s/%s_%s_s.jpg" % (
-            photo.get('farm'), 
-            photo.get('server'), 
-            photo.get('id'), 
+            photo.get('farm'),
+            photo.get('server'),
+            photo.get('id'),
             photo.get('secret'))
         url = "http://farm%s.static.flickr.com/%s/%s_%s.jpg" % (
-            photo.get('farm'), 
-            photo.get('server'), 
+            photo.get('farm'),
+            photo.get('server'),
             photo.get('id'),
             photo.get('secret'))
 

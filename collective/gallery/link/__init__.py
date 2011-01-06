@@ -64,7 +64,7 @@ class BaseLinkView(core.BaseBrowserView):
         if resource is None:
             resource = self._baseresource
         return resource.creator
-    
+
     @property
     def title(self):
         resource = self._resource()
@@ -143,7 +143,7 @@ class BaseResource(object):
     @property
     def creator(self):
         return self.context.Creators()[0]
-    
+
     @property
     def description(self):
         return self.context.Description()
@@ -151,7 +151,7 @@ class BaseResource(object):
     @property
     def date(self):
         return self.context.Date()
-    
+
     def settings(self):
         return getToolByName(self.context, 'portal_properties').gallery_properties
 

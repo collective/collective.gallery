@@ -2,7 +2,7 @@ from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
 class Test(base.UnitTestCase):
-    
+
     def setUp(self):
         super(Test, self).setUp()
         from collective.gallery import topic

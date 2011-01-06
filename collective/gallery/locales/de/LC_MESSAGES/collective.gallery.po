@@ -3,20 +3,19 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: collective.gallery\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2011-01-06 12:36+0000\n"
-"PO-Revision-Date: 2010-11-25 07:08-0400\n"
-"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
-"Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
+"PO-Revision-Date: 2011-01-06 12:36+0000\n"
+"Last-Translator: Johannes Raggam <raggam-nl@adm.at>\n"
+"Language-Team: german\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: es\n"
-"Language-Name: Spanish\n"
+"Language-Code: de\n"
+"Language-Name: Deutsch\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.gallery\n"
-"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
 #: ./interfaces.py:36
 msgid "Author"
@@ -24,79 +23,79 @@ msgstr "Autor"
 
 #: ./interfaces.py:40
 msgid "Date"
-msgstr "Fecha"
+msgstr "Datum"
 
 #: ./interfaces.py:38
 msgid "Description"
-msgstr "Descripción"
+msgstr "Beschreibung"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:37
 msgid "Download Original"
-msgstr ""
+msgstr "Original downloaden"
 
 #: ./i18n.py:3
 msgid "Gallery view"
-msgstr ""
+msgstr "Fotogalerie"
 
 #: ./interfaces.py:32
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ./interfaces.py:50
 msgid "Name"
-msgstr "Nombre"
+msgstr "Name"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:21
 msgid "Next"
-msgstr ""
+msgstr "Weiter"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:20
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:19
 msgid "Play"
-msgstr ""
+msgstr "Abspielen"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:18
 msgid "Previous"
-msgstr ""
+msgstr "Zurück"
 
 #: ./interfaces.py:51
 msgid "The friendly name of the template"
-msgstr "El nombre amigable de la plantilla"
+msgstr ""
 
 #: ./interfaces.py:34
 msgid "Title"
-msgstr "Titulo"
+msgstr "Titel"
 
 #. Default: "Description"
 #: ./interfaces.py:18
 msgid "label_photo_description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. Default: "Id"
 #: ./interfaces.py:14
 msgid "label_photo_id"
-msgstr ""
+msgstr "Id"
 
 #. Default: "Thumb source URL"
 #: ./interfaces.py:23
 msgid "label_photo_thumb"
-msgstr ""
+msgstr "Url des Thumbnails"
 
 #. Default: "Title"
 #: ./interfaces.py:16
 msgid "label_photo_title"
-msgstr ""
+msgstr "Titel"
 
 #. Default: "Source URL"
 #: ./interfaces.py:21
 msgid "label_photo_url"
-msgstr ""
+msgstr "Url des Fotos"
 
 #. Default: "Gallery ERROR: This link is not supported."
 #: ./i18n.py:4
 msgid "message_no_backend_for_link"
-msgstr ""
+msgstr "Fehler: Dieser Link wird nicht unterstützt."
 

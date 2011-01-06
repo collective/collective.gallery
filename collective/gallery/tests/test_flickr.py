@@ -21,7 +21,7 @@ class Test(base.UnitTestCase):
     def testDefaultWithHeight(self):
         self.failUnless(self.adapter.width == 400)
         self.failUnless(self.adapter.height == 400)
-    
+
     def testValidate(self):
         self.failUnless(self.adapter.validate())
         self.context.remoteUrl = "http://not.flickr.com"

@@ -1,5 +1,3 @@
-from zope.interface import directlyProvides
-from zope.annotation.interfaces import IAttributeAnnotatable
 
 def brainToPhoto(ob):
     from collective.gallery import brain
@@ -7,7 +5,6 @@ def brainToPhoto(ob):
 
 def verifyImage(image):
     """Return True if image respect the interface, return false otherwise"""
-    tests = []
     attrs = ('id', 'title', 'description', 'url', 'thumb_url')
     for attr in attrs:
         if not hasattr(image, attr):
@@ -81,11 +78,11 @@ class FakeBrain(object):
 
     def getURL(self):
         return "http://fakebrain.com"
-    
+
     def getObject(self):
         ob = FakeContext()
         ob.title = self.Title
-        
+
         return ob
 
 class FakeCatalog(object):
@@ -100,14 +97,11 @@ class FakeCatalog(object):
     def modified(self):
         return '654654654654'
 
-def make_request_annotable(request):
-    directlyProvides(request, IAttributeAnnotatable)
-
 class FakeProperty(object):
     def __init__(self):
         self.photo_max_size = 400
         self.thumb_max_size = 80
-    
+
     def getProperty(self, name, default=None):
         return getattr(self, name, default)
 

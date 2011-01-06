@@ -1,6 +1,4 @@
 import logging
-import urllib
-import urlparse
 
 logger = logging.getLogger('collective.gallery.facebook')
 try:
@@ -9,10 +7,8 @@ try:
 except ImportError:
     HAS_DEPENDENCY = False
 
-from urllib import urlencode
 from urllib2 import urlopen
 
-from zope import component
 from zope import interface
 
 from collective.gallery import interfaces

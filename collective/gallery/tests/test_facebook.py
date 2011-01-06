@@ -19,7 +19,7 @@ class Test(base.UnitTestCase):
         #test default values
         self.failUnless(self.adapter.width == 400)
         self.failUnless(self.adapter.height == 400)
-    
+
     def testValidate(self):
         self.failUnless(self.adapter.validate())
         adapter = self.getAdapter(URL1)
@@ -29,7 +29,7 @@ class Test(base.UnitTestCase):
 
     def testCreator(self):
         pass #not arelady supported
-    
+
     def testPhotos(self):
         imgs = self.adapter.photos()
         for img in imgs:

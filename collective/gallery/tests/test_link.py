@@ -1,6 +1,5 @@
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
-from zope import component
 
 class Test(base.UnitTestCase):
 
@@ -9,9 +8,6 @@ class Test(base.UnitTestCase):
         from collective.gallery import link
         self.view = link.BaseLinkView(self.context, self.request)
         self.view.settings = utils.FakeProperty
-
-    def testCreator(self):
-        self.failUnless(self.view.creator == "ceronjeanpierre")
 
     def testPhotos(self):
         imgs = self.view.photos()

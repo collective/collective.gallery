@@ -1,10 +1,37 @@
 // We only want these styles applied when javascript is enabled
-var maxsize = 400;
-var onMouseOutOpacity = 0.67;
 
 jQuery(document).ready(function($){
+  var galleryMaxsize = 400;
+  var galleryMouseOpacity = 0.67;
+  var galleryPhoto = $('#galleryphoto');
+  var galleryPhotoPosition = galleryPhoto.position();
+  var galleryPhotoWidth = galleryPhoto.width();
+  var galleryPhotoHeight = galleryPhoto.height();
+  
+  function galleryResizePhoto(photo) {
+      // resize the photo if the scale is greater than our maxsize
+      if (!photo)return;
+      var dw = photo.width() - galleryMaxsize;
+      var dh = photo.height() - galleryMaxsize;
+      if (dw > 0 || dh > 0) {
+          if (dw > dh){
+              photo.width(galleryMaxsize);
+          }else{photo.height(galleryMaxsize);}
+      }
+  }
+  function galleryCenterPhoto(photo) {
+      // display the photo in the good absolute position
+      // fix fast navigation bug (where imgs where added one upon the other)
+      if (!photo)return;
+      var photoWidth = photo.width();
+      var photoHeight = photo.height();
+      var photoTop = galleryPhotoPosition.top + (galleryPhotoHeight - photoHeight) / 2;
+      var photoLeft = galleryPhotoPosition.left + (galleryPhotoWidth - photoWidth) / 2;
+      photo.parent().parent().css({'position': 'absolute', 'top': photoTop + 'px', 'left': photoLeft + 'px'});
+  }
+
     if ($('div#gallerythumbs').length == 0){return;}
-    if ($('ul#thumbs li').length == 0){return;}
+    if ($('ul.thumbs li').length == 0){return;}
     $('div#gallerythumbs').css({'display': 'block'});
     $('a.thumb').css({
         'float': 'left',
@@ -13,8 +40,8 @@ jQuery(document).ready(function($){
         'border-bottom':'none'
     });
 
-    $('.thumbs li').opacityrollover({
-     mouseOutOpacity: onMouseOutOpacity,
+    $('.thumbs li, #gallerypageprev, #gallerypagenext').opacityrollover({
+     mouseOutOpacity: galleryMouseOpacity,
      mouseOverOpacity: 1.0,
      fadeSpeed: 'fast',
      exemptionSelector: '.selected'
@@ -43,8 +70,8 @@ jQuery(document).ready(function($){
         enableHistory:             false, // Specifies whether the url's hash and the browser's history cache should update when the current slideshow image changes
         enableKeyboardNavigation:  false, // Specifies whether keyboard navigation is enabled
         autoStart:                 true, // Specifies whether the slideshow should be playing or paused when the page first loads
-        syncTransitions:           false, // Specifies whether the out and in transitions occur simultaneously or distinctly
-        defaultTransitionDuration: 1000, // If using the default transitions, specifies the duration of the transitions
+        syncTransitions:           true, // Specifies whether the out and in transitions occur simultaneously or distinctly
+        defaultTransitionDuration: 500, // If using the default transitions, specifies the duration of the transitions
         onSlideChange: function(prevIndex, nextIndex) {
            if (this.isSlideshowRunning) {
               $('#galleryplay').hide();
@@ -57,20 +84,13 @@ jQuery(document).ready(function($){
         onTransitionOut:           undefined, // accepts a delegate like such: function(slide, caption, isSync, callback) { ... }
         onTransitionIn:            function(newSlide, newCaption, isSync){
             //code kept from galleriffic
+            $('.image-caption').hide();
             newSlide.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
             if (newCaption)
                 newCaption.fadeTo(this.getDefaultTransitionDuration(isSync), 1.0);
+            galleryResizePhoto(newSlide.find('img'));
+            galleryCenterPhoto(newSlide.find('img'));
 
-            var photo = $('#galleryphoto img');
-            if (!photo)return;
-            var dw = photo.width() - maxsize;
-            var dh = photo.height() - maxsize;
-            if (dw > 0 || dh > 0) {
-                if (dw > dh){
-                    photo.width(maxsize);
-                }else{photo.height(maxsize);}
-            }
-            delete photo;
         }, // accepts a delegate like such: function(slide, caption, isSync) { ... }
         onPageTransitionOut:       undefined, // accepts a delegate like such: function(slide, caption, isSync, callback) { ... }
         onPageTransitionIn:        undefined, // accepts a delegate like such: function(slide, caption, isSync) { ... }

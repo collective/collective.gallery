@@ -4,6 +4,10 @@ Changelog
 1.0b5 (unreleased)
 ----------------
 
+- fix fast navigation bug (where imgs where added one upon the other) -> Need
+  to position images in absolute
+  [sylvainb toutpt]
+
 - German translation.
   [thet]
 

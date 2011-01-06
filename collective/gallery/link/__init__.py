@@ -46,7 +46,10 @@ class BaseLinkView(core.BaseBrowserView):
         return self.resource
 
     def addmessage(self, message, type=u"info"):
-        IStatusMessage(self.request).add(message, type=type)
+        try:
+            IStatusMessage(self.request).add(message, type=type)
+        except TypeError:
+            pass
 
     @ram.cache(cache.cache_key)
     def photos(self):
@@ -111,7 +114,7 @@ class BaseResource(object):
 
     def get_width(self):
         if not self._width:
-            return self.settings().get('photo_max_size', 400)
+            return self.settings().getProperty('photo_max_size', 400)
         return self._width
 
     def set_width(self, value):
@@ -121,7 +124,7 @@ class BaseResource(object):
 
     def get_height(self):
         if not self._height:
-            return self.settings().get('photo_max_size', 400)
+            return self.settings().getProperty('photo_max_size', 400)
         return self._height
 
     def set_height(self, value):

@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+	xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.gallery">
+
+    <plone:portlet
+        name="collective.folderishtypes.show_galleries"
+        interface=".show_galleries.IShowGalleriesPortlet"
+        assignment=".show_galleries.Assignment"
+        renderer=".show_galleries.Renderer"
+        addview=".show_galleries.AddForm"
+        />
+
+</configure>

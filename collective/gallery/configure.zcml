@@ -13,6 +13,9 @@
 
   <cmf:registerDirectory name="collective_gallery_theme"/>
 
+  <include package=".portlets" />
+
+
   <genericsetup:registerProfile
       name="default"
       title="collective.gallery default"

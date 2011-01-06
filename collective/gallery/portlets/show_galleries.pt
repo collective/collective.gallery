@@ -1,0 +1,5 @@
+<div class="show_gallery_portlet">
+    <tal:rep repeat="gallery view/get_galleries">
+        <p content="gallery" />
+    </tal:rep>
+</div>

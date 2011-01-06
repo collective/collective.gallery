@@ -1,4 +1,5 @@
 import unittest
+from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
 URL_SETS_PUBLIC = 'http://www.flickr.com/photos/princeofnorway/sets/72157622650234713/'
@@ -53,6 +54,8 @@ class Test(unittest.TestCase):
         self.failUnless(len(adapter.photos())==0, msg)
         self.failUnless(type(adapter.photos()) == list, msg)
 
+class TestIntegration(base.TestCase):
+    pass
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class
@@ -60,4 +63,5 @@ def test_suite():
     """
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(Test))
+    suite.addTest(unittest.makeSuite(TestIntegration))
     return suite

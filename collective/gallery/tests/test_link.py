@@ -35,9 +35,11 @@ class TestIntegration(base.TestCase):
     def testProperties(self):
 #        view = component.getMultiAdapter((self.link, self.link.REQUEST),
 #                                         name="gallery")
-        view = self.link.unrestrictedTraverse('@@gallery')
+        from collective.gallery import link
+        view = link.BaseLinkView(self.link, self.app.REQUEST)
         self.failUnless(view.width == 400)
-        self.portal.portal_properties.gallery_properties.photo_max_size = 500
+        self.portal.portal_properties.gallery_properties._updateProperty('photo_max_size', 500)
+
         self.failUnless(view.width == 500)
 
 def test_suite():

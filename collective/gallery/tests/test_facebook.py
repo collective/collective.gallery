@@ -1,6 +1,7 @@
 import unittest
 
 URL1 = "http://www.facebook.com/album.php?aid=177781&id=275081154800" #put a url that is supposed to work
+from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
 class Test(unittest.TestCase):
@@ -47,10 +48,14 @@ class Test(unittest.TestCase):
         self.failUnless(len(adapter.photos())==0, msg)
         self.failUnless(type(adapter.photos()) == list, msg)
 
+class TestIntegration(base.TestCase):
+    pass
+
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class
     above
     """
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(Test))
+    suite.addTest(unittest.makeSuite(TestIntegration))
     return suite

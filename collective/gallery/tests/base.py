@@ -38,6 +38,8 @@ class TestCase(ptc.PloneTestCase):
 
     layer = Layer
 
+    def getGalleryView(self, context):
+        return context.unrestrictedTraverse('@@gallery')
 
 class FunctionalTestCase(ptc.FunctionalTestCase):
     

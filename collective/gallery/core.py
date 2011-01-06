@@ -19,11 +19,11 @@ class BaseBrowserView(BrowserView):
 
     @property
     def width(self):
-        return self.settings().get('photo_max_size', 400)
+        return self.settings().getProperty('photo_max_size', 400)
 
     @property
     def height(self):
-        return self.settings().get('photo_max_size', 400)
+        return self.settings().getProperty('photo_max_size', 400)
 
     @property
     def id(self):

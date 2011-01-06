@@ -25,8 +25,8 @@ jQuery(document).ready(function($){
       if (!photo)return;
       var photoWidth = photo.width();
       var photoHeight = photo.height();
-      var photoTop = galleryPhotoPosition.top + (galleryPhotoHeight - photoHeight) / 2;
-      var photoLeft = galleryPhotoPosition.left + (galleryPhotoWidth - photoWidth) / 2;
+      var photoTop = parseInt(galleryPhotoPosition.top + (galleryPhotoHeight - photoHeight) / 2);
+      var photoLeft = parseInt(galleryPhotoPosition.left + (galleryPhotoWidth - photoWidth) / 2);
       photo.parent().parent().css({'position': 'absolute', 'top': photoTop + 'px', 'left': photoLeft + 'px'});
   }
 

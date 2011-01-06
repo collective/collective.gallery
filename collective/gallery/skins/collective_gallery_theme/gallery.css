@@ -21,10 +21,6 @@
 
 #galleryphoto {
   height:420px; /* photo_max_size + 20 */
-  width:420px;
-  display:table-cell;
-  vertical-align:middle;
-  text-align:center;
 }
 #gallerycontrol,
 #galleryphoto,

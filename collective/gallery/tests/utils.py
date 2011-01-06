@@ -113,7 +113,7 @@ class FakeProperty(object):
         self.photo_max_size = 400
         self.thumb_max_size = 80
     
-    def get(self, name, default=None):
+    def getProperty(self, name, default=None):
         return getattr(self, name, default)
 
 def fake_get_property(self):

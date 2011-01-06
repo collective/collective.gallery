@@ -1,46 +1,29 @@
-import unittest
+import unittest2 as unittest
+from plone.app import testing
+from collective.gallery.tests import layer
 
-#from zope.testing import doctestunit
-#from zope.component import testing
-from Testing import ZopeTestCase as ztc
+class TestCase(unittest.TestCase):
 
-try:
-    from Zope2.App import zcml
-    from OFS import metaconfigure
-    zcml # pyflakes
-    metaconfigure
-except ImportError:
-    from Products.Five import zcml
-    from Products.Five import fiveconfigure as metaconfigure
+    layer = layer.GALLERY_INTEGRATION
 
-from Products.PloneTestCase import PloneTestCase as ptc
-from Products.PloneTestCase.layer import PloneSite
-from Testing.ZopeTestCase import installPackage, installProduct
-
-ptc.setupPloneSite(extension_profiles=('collective.gallery:default',))
-
-class Layer(PloneSite):
-
-    @classmethod
-    def setUp(cls):
-        metaconfigure.debug_mode = True
-        import collective.gallery
-        zcml.load_config('configure.zcml', collective.gallery)
-        metaconfigure.debug_mode = False
-        installPackage('collective.gallery', quiet=True)
-
-    @classmethod
-    def tearDown(cls):
-        pass
-
-
-class TestCase(ptc.PloneTestCase):
-
-    layer = Layer
+    def setUp(self):
+        super(TestCase, self).setUp()
+        self.portal = self.layer['portal']
+        testing.setRoles(self.portal, testing.TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Folder', 'test-folder')
+        testing.setRoles(self.portal, testing.TEST_USER_ID, ['Member'])
+        self.folder = self.portal['test-folder']
 
     def getGalleryView(self, context):
         return context.unrestrictedTraverse('@@gallery')
 
-class FunctionalTestCase(ptc.FunctionalTestCase):
+class FunctionalTestCase(unittest.TestCase):
     
-    layer = Layer
+    layer = layer.GALLERY_FUNCTIONAL
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        testing.setRoles(self.portal, testing.TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Folder', 'test-folder')
+        testing.setRoles(self.portal, testing.TEST_USER_ID, ['Member'])
+        self.folder = self.portal['test-folder']

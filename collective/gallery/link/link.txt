@@ -2,19 +2,19 @@
 Link functional doctest
 =========================
 
-    >>> from Products.Five.testbrowser import Browser
-    >>> browser = Browser()
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(self.layer['app'])
     >>> browser.handleErrors = False
     >>> portal_url = self.portal.absolute_url()
     >>> self.portal.error_log._ignored_exceptions = ()
-    >>> from Products.PloneTestCase.setup import portal_owner, default_password
+    >>> from plone.app.testing import TEST_USER_NAME, TEST_USER_PASSWORD
     >>> browser.open(portal_url)
 
 Just login
 
     >>> browser.getLink('Log in').click()
-    >>> browser.getControl(name='__ac_name').value = portal_owner
-    >>> browser.getControl(name='__ac_password').value = default_password
+    >>> browser.getControl(name='__ac_name').value = TEST_USER_NAME
+    >>> browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
     >>> browser.getControl(name='submit').click()
     >>> "You are now logged in" in browser.contents
     True

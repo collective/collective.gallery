@@ -27,7 +27,8 @@ class Test(unittest.TestCase):
 
 class TestIntegration(base.TestCase):
 
-    def afterSetUp(self):
+    def setUp(self):
+        super(TestIntegration, self).setUp()
         self.folder.invokeFactory(id='mylink', type_name='Link')
         self.link = self.folder.mylink
         self.link.setRemoteUrl('http://notsupported.com/agallery')
@@ -36,7 +37,7 @@ class TestIntegration(base.TestCase):
 #        view = component.getMultiAdapter((self.link, self.link.REQUEST),
 #                                         name="gallery")
         from collective.gallery import link
-        view = link.BaseLinkView(self.link, self.app.REQUEST)
+        view = link.BaseLinkView(self.link, self.link.REQUEST)
         self.failUnless(view.width == 400)
         self.portal.portal_properties.gallery_properties._updateProperty('photo_max_size', 500)
 

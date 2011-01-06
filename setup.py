@@ -30,7 +30,7 @@ setup(name='collective.gallery',
           # -*- Extra requirements: -*-
       ],
       extras_require = dict(
-          tests=['BeautifulSoup'],
+          tests=['BeautifulSoup', 'plone.app.testing'],
           facebook=['BeautifulSoup'],
       ),
       entry_points="""

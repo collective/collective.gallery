@@ -73,6 +73,13 @@ Now we return to the folder and set the default view
     >>> browser.getControl('Gallery view').click()
     >>> browser.getControl('Save').click()
 
+Make some assertions
+
+    >>> '<div id="gallery">' in browser.contents
+    True
+    >>> '<ul class="thumbs noscript">' in browser.contents
+    True
+
     >>> import tempfile as tmp
     >>> def contents():
     ...    fd, fn = tmp.mkstemp(suffix=".html", prefix="testbrowser-")

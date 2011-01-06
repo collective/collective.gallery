@@ -18,3 +18,97 @@ Just login
     >>> browser.getControl(name='submit').click()
     >>> "You are now logged in" in browser.contents
     True
+
+First we add a folder
+
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Folder').click()
+    >>> browser.getControl('Add').click()
+    >>> browser.getControl('Title').value = 'My Photos'
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-photos/'
+
+Next we add some images inside the folder
+
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Image').click()
+    >>> browser.getControl('Add').click()
+    >>> from plone.app.blob.tests.utils import getFile
+    >>> control = browser.getControl(name='image_file')
+    >>> control.filename = 'bar.gif'
+    >>> control.value = getFile('image.gif')
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-photos/bar.gif/view'
+
+    >>> browser.getLink("My Photos").click()
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Image').click()
+    >>> browser.getControl('Add').click()
+    >>> from plone.app.blob.tests.utils import getFile
+    >>> control = browser.getControl(name='image_file')
+    >>> control.filename = 'bar.png'
+    >>> control.value = getFile('image.png')
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-photos/bar.png/view'
+
+    >>> browser.getLink("My Photos").click()
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Image').click()
+    >>> browser.getControl('Add').click()
+    >>> from plone.app.blob.tests.utils import getFile
+    >>> control = browser.getControl(name='image_file')
+    >>> control.filename = 'bar.jpg'
+    >>> control.value = getFile('image.jpg')
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-photos/bar.jpg/view'
+
+Now we return to the folder and set the default view
+
+    >>> browser.getLink("My Photos").click()
+    >>> browser.getLink("Display").click()
+    >>> browser.getControl('Gallery view').click()
+    >>> browser.getControl('Save').click()
+
+Get back to home to add a topic and add a criteria on portal_type with 'Image'
+
+    >>> browser.getLink('Home').click()
+    >>> browser.getLink("Add new").click()
+    >>> browser.getControl('Collection').click()
+    >>> browser.getControl('Add').click()
+    >>> browser.getControl(name='title').value = 'My Gallery'
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/my-gallery/'
+    >>> browser.getLink('Criteria').click()
+    >>> browser.getControl('Field name').value = ['Type']
+    >>> browser.getControl('Criteria type').value = ['ATPortalTypeCriterion']
+    >>> browser.getControl('Add criteria').click()
+    >>> browser.getControl(name='crit__Type_ATPortalTypeCriterion_value:list').value = ['Image']
+    >>> browser.getControl(name='form.button.Save').click()
+    >>> browser.getLink('View').click()
+
+Now set the default view to gallery
+
+    >>> browser.getLink("Display").click()
+    >>> browser.getControl('Gallery view').click()
+    >>> browser.getControl('Save').click()
+
+Make some assertions
+
+    >>> '<div id="gallery">' in browser.contents
+    True
+    >>> '<ul class="thumbs noscript">' in browser.contents
+    True
+
+    >>> import tempfile as tmp
+    >>> def contents():
+    ...    fd, fn = tmp.mkstemp(suffix=".html", prefix="testbrowser-")
+    ...    file = open(fn, 'w')
+    ...    file.write(browser.contents)
+    ...    file.close()
+    ...    print fn
+

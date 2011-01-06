@@ -4,69 +4,136 @@ please pin the version to 2.0.9
 Introduction
 ============
 
-Gallery is an add-on full of features with a design that make it easy to customize.
+This add-on is gallery add-on for Plone.
 
-It is tested with: Plone 3.3.X and Plone 4
+It is tested with Plone 4 but it is also used with Plone 3.
 
-It support Galleriffic_ plugin with jquery.history embed in the package.
+This add-on is split in two parts: the UI and components
 
-Plone integration of galleriffic use example1_. An other example can be find
-on http://goo.gl/yqNi
+The goals are:
 
-Goals
-=====
-
-* Have a simple to customize gallery product for plone.
+* Have a simple to customize gallery add-on for plone (non intrusive).
 * Use very ligth weight resources
 * Don't embed display configuration inside data
 
-Features
-========
+User Interface
+==============
+
+The user interface has been designed to be easy to customize. Files are located
+in the skin directory (easy to customize):
+
+* gallery.html.pt: Zope Page Template to render the html code
+* gallery.css: pure css design to display 400*400 photos
+* gallery.html.pt.metadata: to set the title of the page in display drop down menu
+* gallery.js: the javascript integration of galleriffic_.
+* gallery_tooltip.png: the tooltip used to display the title/description of the photo
+
+The user interface has many feature:
+
+* resize photo if too big by setting the width or height
+* paginate thumbs for navigation (5 by default)
+* opacity on mouse rollover thumbs
+* play / pause (autostart by default)
+* display more than 300 photos without any performance issue
+* display title and description throw a smart jquerytool tooltip
+
+Components (Backend)
+====================
+
+Summary:
 
 * No custom content type, only views
 * Works with lots of photos (is developed to work with +300 photos)
 * Ramcache setup with a default key to one hours + modification date
 * Works with Folder, Topic and Link content types
 * picasaweb_ and flickr_ support.
-* I18N: english and french are available
-* tested
+* facebook support if you add BeautifulSoup_ to your setup.
+* I18N: english, french and german are available
+
+collective.gallery use zope.components to provide as much reusable as possible
+components.
+
+First we have photo resources. Plone already manage this for you:
+
+* Folder and Large Plone Folder can contains Image
+* Topic can be criterized to list only Image
+* Link can be sources of photos throw picasaweb.google.com and flickr.com services.
+
+Next you have the business component: IGallery. This interface is implemented
+at two levels:
+
+* As named adapter over IATLink to get photos from picasaweb or flickr.
+* As browserview to control the resource (@@gallery)
+
+Folder & Image
+--------------
+
+Folder and Image content type can be used to build a gallery. Add a folder and
+then add every images in it. Once its done come up to the folder and choose
+'Gallery view' in the display drop down menu and voila.
+
+The folder gallery component query the portal_catalog and adapts brains to
+IPhoto.
+
+Topic & Image
+-------------
+
+Topic can be used to build a gallery. Add a topic and add criteria on the Type
+to select only Image. Next choose the 'Gallery view' in the drop down menu and
+voila.
+
+The topic gallery component use the topic's queryCatalog method to get brains,
+then they are adapted to IPhoto
+
+Link
+----
+
+Link can be used to build a gallery. Add a link, set URL to one of the following
+services, validate and choose the 'Gallery view' in the drop down menu and
+voila.
+
+The link gallery component get all named adapters from Link to IGallery and call
+the validate method. The first validated adapter is kept as resources.
 
 picasaweb_
-----------
+~~~~~~~~~~
 
-* It's free to use
-* Web albums, synchronised with picasa software
-* Share your albums
-* Add geo-tags to your photos
-* Automatically organize your photos based on the people in them
-* Display in a slideshow (flash)
+In Plone, just paste the share link provided by picasaweb inside a Link content
+type and display your link content with the view 'Gallery view' available in the
+drop down display menu.
 
-In Plone, just paste the share link provided by picasaweb inside a Link content type
-and display your link content with the view gallery available in the drop down display menu.
+SIZES : 32, 48, 64, 72, 104, 144, 150, 160, 94, 110, 128, 200, 220, 288, 320,
+          400, 512, 576, 640, 720, 800, 912, 1024, 1152, 1280, 1440, 1600
+
+All metadatas are supported
 
 flickr_
--------
+~~~~~~~
 
-* It's free to use
-* Share your photos
-* Upload and organize
-* Add geo-tags to your photos
-* Display in a slideshow (flash)
+In Plone, just paste the share link provided by flickr inside a Link content
+type and display your link content with the view gallery available in the drop down display menu.
 
-In Plone, just paste the share link provided by flickr inside a Link content type
-and display your link content with the view gallery available in the drop down display menu.
+Flickr service is not album centric but photo centric. Supported case:
+
+  http://www.flickr.com/photos/autowitch/sets/107460
+  It is an album, no problem
+
+  http://www.flickr.com/photos/rbpdesigner
+  We have the username, return all photos
+
+IPhoto.description metadata is not supported
 
 facebook_
----------
+~~~~~~~~~
 
-* It's free to use
-* It's a social network where you may have already an account
-* Upload and organize
-* tag your photos
+You must have added BeautifulSoup_ to your Plone setup to make this work.
 
 In Plone as with other link you just have to paste the link inside a Link content
-type. The album must be public. It's in the todo to support OAuth.
-You must be warned facebook doesn't support thumbs that much.
+type.
+
+The album must be public.
+
+IPhoto.description metadata is not supported
 
 Galleriffic_
 ============
@@ -83,27 +150,30 @@ Galleriffic_
 * Graceful degradation when javascript is not available
 * Support for multiple galleries per page
 
-Pickachoose_
-============
+Integrators
+===========
 
-* easy to setup
-* jCarousel integrates smoothly with PikaChoose to give your gallery simple and effective carousel.
+Because it is easy to customize, lets write some lines about how to fit gallery
+to your needs.
 
-Components
-==========
+Some advices:
 
-collective.gallery use zope.components to provide as much reusable as possible components.
+be fixed width. Photo are fixed, you want your gallery to be nice, lets fixed its width.
 
-First we have photo resources. Plone already manage this for you:
+You can configure in properties the max photo size you want but backends may not support
+this settings.
 
-* Folder and Large Plone Folder can contains Image
-* Topic can be criterized to list only Image
-* Link can be sources of photos throw picasaweb.google.com and flickr.com services.
+Most of galleries do not contains every photos in the same size or in the same proportions.
+Take care of this when you are customizing javascript and css.
 
-Next you have the business component: IGallery. This interface is implemented at two levels:
+All controllers can be placed where ever you want because they are accessed by #id
 
-* As named adapter over IATLink to get photos from picasaweb or flickr.
-* As browserview to control the resource (@@gallery)
+Gallery is not configurable because it needs to generate javascript and css.
+It would make the add-on too much complex to customize. If you want configuration take
+a look at plonetruegallery_
+
+You want more ?
+===============
 
 The picasaweb and flickr services let you embed a flash slideshow to display your photos.
 Views are already available to use those services:
@@ -157,3 +227,4 @@ Contributors
 .. _Pikachoose: http://pikachoose.com
 .. _facebook: http://www.facebook.com
 .. _beautifulsoup: http://pypi.python.org/pypi/BeautifulSoup
+.. _plonetruegallery: http://plone.org/products/plone-true-gallery

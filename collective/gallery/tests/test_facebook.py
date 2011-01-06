@@ -1,17 +1,17 @@
-import unittest
-
 URL1 = "http://www.facebook.com/album.php?aid=177781&id=275081154800" #put a url that is supposed to work
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
-class Test(unittest.TestCase):
+class Test(base.UnitTestCase):
 
     def setUp(self):
+        super(Test, self).setUp()
         self.adapter = self.getAdapter(URL1)
 
     def getAdapter(self, url):
         from collective.gallery.link import facebook
-        adapter = facebook.Link(utils.FakeLink(url))
+        self.context.remoteUrl = url
+        adapter = facebook.Link(self.context)
         adapter.settings = utils.FakeProperty
         return adapter
 
@@ -39,8 +39,6 @@ class Test(unittest.TestCase):
 
     def testNotValideURL(self):
         url = 'http://www.facebook.com/album.php?aid=WRONG&id=WRONG'
-        fakelink = utils.FakeLink(url)
-        fakelink._modified = "updated"
         adapter = self.getAdapter(url)
         msg = "API not respected"
         self.failUnless(adapter.creator == adapter.context.Creators()[0], msg)
@@ -52,10 +50,4 @@ class TestIntegration(base.TestCase):
     pass
 
 def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(Test))
-    suite.addTest(unittest.makeSuite(TestIntegration))
-    return suite
+    return base.build_test_suite((Test, TestIntegration))

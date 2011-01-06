@@ -33,6 +33,7 @@ class FakeContext(object):
         self.aq_inner = FakeAcquisition()
         self.aq_inner.aq_explicit = self
         self._modified = "modified date"
+        self.remoteUrl = '' #fake Link
 
     def getId(self):
         return self.id
@@ -62,20 +63,14 @@ class FakeContext(object):
     def absolute_url(self):
         return "http://nohost.com/"+self.id
 
-class FakeTopic(FakeContext):
-    def queryCatalog(self, **kwargs):
+    def queryCatalog(self, **kwargs): #fake Topic
         catalog = FakeCatalog()
         return catalog.searchResults()
 
-class FakeLink(FakeContext):
-    def __init__(self, url=""):
-        super(FakeLink, self).__init__()
-        self.remoteUrl = url
-    
-    def getRemoteUrl(self):
+    def getRemoteUrl(self): #fake Link
         return self.remoteUrl
 
-    def modified(self):
+    def modified(self): #for ram cache key
         return "a modification date"
 
 class FakeBrain(object):

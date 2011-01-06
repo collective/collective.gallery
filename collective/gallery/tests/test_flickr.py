@@ -1,18 +1,18 @@
-import unittest
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
 URL_SETS_PUBLIC = 'http://www.flickr.com/photos/princeofnorway/sets/72157622650234713/'
 
-class Test(unittest.TestCase):
+class Test(base.UnitTestCase):
 
     def setUp(self):
-        self.fakelink = utils.FakeLink(URL_SETS_PUBLIC)
+        super(Test, self).setUp()
+        self.context.remoteUrl = URL_SETS_PUBLIC
         self.adapter = self.getAdapter()
 
     def getAdapter(self, link=None):
         if not link:
-            link = self.fakelink
+            link = self.context
         from collective.gallery.link import flickr
         adapter = flickr.Link(link)
         adapter.settings = utils.FakeProperty
@@ -24,7 +24,7 @@ class Test(unittest.TestCase):
     
     def testValidate(self):
         self.failUnless(self.adapter.validate())
-        self.fakelink.remoteUrl = "http://not.flickr.com"
+        self.context.remoteUrl = "http://not.flickr.com"
         adapter = self.getAdapter()
         self.failUnless(not adapter.validate())
 
@@ -45,9 +45,9 @@ class Test(unittest.TestCase):
 
     def testNotValideURL(self):
         url = 'http://nota.flickr.com/url'
-        fakelink = utils.FakeLink(url)
-        fakelink._modified = "updated"
-        adapter = self.getAdapter(link=fakelink)
+        self.context.remoteUrl = url
+        self.context._modified = "updated 2"
+        adapter = self.getAdapter()
         msg = "API not respected"
         self.failUnless(adapter.creator == adapter.context.Creators()[0], msg)
         self.failUnless(adapter.title == adapter.context.Title(), msg)
@@ -58,10 +58,4 @@ class TestIntegration(base.TestCase):
     pass
 
 def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(Test))
-    suite.addTest(unittest.makeSuite(TestIntegration))
-    return suite
+    return base.build_test_suite((Test, TestIntegration))

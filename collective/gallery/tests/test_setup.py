@@ -5,7 +5,6 @@ You will find lots of examples of this type of test in CMFPlone/tests, for
 example.
 """
 
-import unittest
 from collective.gallery.tests import base
 
 class TestSetup(base.TestCase):
@@ -35,9 +34,4 @@ class TestSetup(base.TestCase):
         self.failUnless(type(pp.thumb_max_size) == int)
 
 def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestSetup))
-    return suite
+   return base.build_test_suite((TestSetup,))

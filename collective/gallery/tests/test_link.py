@@ -1,17 +1,13 @@
-import unittest
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
-from zope.publisher.browser import TestRequest as Request
 from zope import component
 
-class Test(unittest.TestCase):
+class Test(base.UnitTestCase):
 
     def setUp(self):
+        super(Test, self).setUp()
         from collective.gallery import link
-        request = Request()
-        context = utils.FakeLink()
-        utils.make_request_annotable(request)
-        self.view = link.BaseLinkView(context, request)
+        self.view = link.BaseLinkView(self.context, self.request)
         self.view.settings = utils.FakeProperty
 
     def testCreator(self):
@@ -41,10 +37,4 @@ class TestIntegration(base.TestCase):
         self.failUnless(view.width == 500)
 
 def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(Test))
-    suite.addTest(unittest.makeSuite(TestIntegration))
-    return suite
+    return base.build_test_suite((Test, TestIntegration))

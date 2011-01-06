@@ -1,15 +1,10 @@
-import unittest
 from collective.gallery.tests import base
 
-class Test(unittest.TestCase):
+class Test(base.UnitTestCase):
     
     def setUp(self):
+        super(Test, self).setUp()
         from collective.gallery import core
-        from collective.gallery.tests import utils
-        from ZPublisher.tests.testPublish import Request
-
-        self.context = utils.FakeContext()
-        self.request = Request()
         self.view = core.BaseBrowserView(self.context, self.request)
 
     def testTitle(self):
@@ -40,6 +35,4 @@ def test_suite():
     """This sets up a test suite that actually runs the tests in the class
     above
     """
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(Test))
-    return suite
+    return base.build_test_suite((Test, TestIntegration))

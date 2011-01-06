@@ -1,5 +1,5 @@
 import doctest
-import unittest
+import unittest2 as unittest
 
 #from zope.testing import doctestunit
 #from zope.component import testing

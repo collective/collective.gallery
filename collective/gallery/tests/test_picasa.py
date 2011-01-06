@@ -1,18 +1,19 @@
-import unittest
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
 NONAUTH_URL = 'http://picasaweb.google.fr/ceronjeanpierre/PhotosTriEsDuMariage'
 AUTH_URL = 'http://picasaweb.google.com/toutpt/20091116ConcertDeRammstein?authkey=Gv1sRgCN2i5uS0y5_lLQ#'
 
-class Test(unittest.TestCase):
+class Test(base.UnitTestCase):
 
     def setUp(self):
+        super(Test, self).setUp()
         self.adapter = self.getAdapter(NONAUTH_URL)
 
     def getAdapter(self, url):
         from collective.gallery.link import picasaweb
-        adapter = picasaweb.Link(utils.FakeLink(url))
+        self.context.remoteUrl = url
+        adapter = picasaweb.Link(self.context)
         adapter.settings = utils.FakeProperty
         return adapter
 
@@ -66,10 +67,4 @@ class TestIntegration(base.TestCase):
     pass
 
 def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(Test))
-    suite.addTest(unittest.makeSuite(TestIntegration))
-    return suite
+   return base.build_test_suite((Test, TestIntegration))

@@ -4,6 +4,9 @@ Changelog
 1.0b5 (unreleased)
 ----------------
 
+- German translation.
+  [thet]
+
 - add a browser layer and register adapters in plone componentregistry
 
 - fix plone3 compatibility

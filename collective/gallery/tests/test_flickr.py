@@ -21,7 +21,7 @@ class Test(unittest.TestCase):
     def testDefaultWithHeight(self):
         self.failUnless(self.adapter.width == 400)
         self.failUnless(self.adapter.height == 400)
-    
+
     def testValidate(self):
         self.failUnless(self.adapter.validate())
         self.fakelink.remoteUrl = "http://not.flickr.com"

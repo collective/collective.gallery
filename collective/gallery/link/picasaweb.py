@@ -3,11 +3,9 @@ import gdata.photos.service
 import gdata.media
 import gdata.geo
 import logging
-import urllib
 import urlparse
 from urllib import urlencode
 
-from zope import component
 from zope import interface
 
 from collective.gallery import interfaces
@@ -20,8 +18,8 @@ SIZES = (32, 48, 64, 72, 104, 144, 150, 160, 94, 110, 128, 200, 220, 288, 320,
 
 
 def check(url):
-    """Ex: 
-    
+    """Ex:
+
     >>> check('http://picasaweb.google.fr/ceronjeanpierre/PhotosTriEsDuMariage#')
     True
     >>> check('http://picasaweb.google.com')

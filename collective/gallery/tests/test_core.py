@@ -2,7 +2,7 @@ import unittest
 from collective.gallery.tests import base
 
 class Test(unittest.TestCase):
-    
+
     def setUp(self):
         from collective.gallery import core
         from collective.gallery.tests import utils
@@ -29,7 +29,7 @@ class Test(unittest.TestCase):
         self.assertEqual(type(self.view.photos()), list)
 
 class TestIntegration(base.TestCase):
-    
+
     def testProperties(self):
         view = self.portal.unrestrictedTraverse('@@gallery')
         self.failUnless(view.width == 400)

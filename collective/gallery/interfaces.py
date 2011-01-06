@@ -1,8 +1,6 @@
 from zope import interface
 from zope import schema
 
-from plone.app.layout.globals.interfaces import IViewView
-
 from collective.gallery import messageFactory as _
 
 class IGalleryLayer(interface.Interface):
@@ -26,7 +24,7 @@ class IPhoto(interface.Interface):
 class IGallery(interface.Interface):
     """A gallery is the business component of collective.gallery. A gallery
     manage a set of photos. The schema contains classic dublin core
-    
+
     """
 
     id = schema.ASCIILine(title=_(u"Id"))

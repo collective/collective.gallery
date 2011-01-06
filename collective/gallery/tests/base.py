@@ -18,7 +18,7 @@ class TestCase(unittest.TestCase):
         return context.unrestrictedTraverse('@@gallery')
 
 class FunctionalTestCase(unittest.TestCase):
-    
+
     layer = layer.GALLERY_FUNCTIONAL
 
     def setUp(self):

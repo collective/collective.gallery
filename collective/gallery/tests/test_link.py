@@ -2,7 +2,6 @@ import unittest
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 from zope.publisher.browser import TestRequest as Request
-from zope import component
 
 class Test(unittest.TestCase):
 
@@ -22,7 +21,7 @@ class Test(unittest.TestCase):
         self.failUnless(not imgs)
         self.failUnless(len(imgs) == 0)
 
-    def testCreator(self):
+    def testCreator2(self):
         self.failUnless(self.view.creator == self.view.context.Creators()[0])
 
 class TestIntegration(base.TestCase):

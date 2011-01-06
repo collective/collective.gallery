@@ -1,6 +1,5 @@
 from Products.Five import BrowserView
 from collective.gallery import interfaces
-from plone.memoize import view
 from zope import interface
 from Products.CMFCore.utils import getToolByName
 

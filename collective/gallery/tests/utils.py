@@ -7,7 +7,6 @@ def brainToPhoto(ob):
 
 def verifyImage(image):
     """Return True if image respect the interface, return false otherwise"""
-    tests = []
     attrs = ('id', 'title', 'description', 'url', 'thumb_url')
     for attr in attrs:
         if not hasattr(image, attr):
@@ -71,7 +70,7 @@ class FakeLink(FakeContext):
     def __init__(self, url=""):
         super(FakeLink, self).__init__()
         self.remoteUrl = url
-    
+
     def getRemoteUrl(self):
         return self.remoteUrl
 
@@ -86,11 +85,11 @@ class FakeBrain(object):
 
     def getURL(self):
         return "http://fakebrain.com"
-    
+
     def getObject(self):
         ob = FakeContext()
         ob.title = self.Title
-        
+
         return ob
 
 class FakeCatalog(object):
@@ -112,7 +111,7 @@ class FakeProperty(object):
     def __init__(self):
         self.photo_max_size = 400
         self.thumb_max_size = 80
-    
+
     def getProperty(self, name, default=None):
         return getattr(self, name, default)
 

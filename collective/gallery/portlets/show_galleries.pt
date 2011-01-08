@@ -1,5 +1,8 @@
-<div class="show_gallery_portlet">
-    <tal:rep repeat="gallery view/get_galleries">
-        <p content="gallery" />
+<div class="show_gallery_portlet"
+    tal:define="gallerydict view/get_gallery_pictures"
+    tal:condition="gallerydict/pictures">
+    <h2 tal:content="gallerydict/gallery/title" />
+    <tal:rep repeat="picture gallerydict/pictures">
+        <tal:img replace="structure python:picture.tag(scale='mini')" />
     </tal:rep>
 </div>

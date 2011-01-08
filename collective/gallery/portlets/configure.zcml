@@ -10,6 +10,7 @@
         assignment=".show_galleries.Assignment"
         renderer=".show_galleries.Renderer"
         addview=".show_galleries.AddForm"
+        editview=".show_galleries.EditForm"
         />
 
 </configure>

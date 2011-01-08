@@ -17,6 +17,9 @@ from Products.CMFCore.utils import getToolByName
 
 from collective.gallery import messageFactory as _
 
+import random
+from Products.ATContentTypes.interfaces import IATImage
+
 class IShowGalleriesPortlet(IPortletDataProvider):
     search_portal = schema.Bool(
         title=u'Search portal for galleries',
@@ -76,16 +79,24 @@ class Renderer(base.Renderer):
         query['path'] = {'query': '/'.join(context.getPhysicalPath())}
         brains = cat(**query)
 
+        # TODO: import gallery view names from config.py or make this somehow
+        #       more generic
         return [brain for brain in brains
                 if brain.getObject().defaultView() in ('gallery.html',)]
 
-    # TODO: cache me
     def get_gallery_pictures(self):
         num_pictures = self.data.num_pictures
         galleries = self.get_galleries()
-
+        if not galleries: return []
+        gallery = random.choice(galleries).getObject()
+        pictures = [pic for pic in gallery.contentValues()
+                    if IATImage.providedBy(pic)]
+        if len(pictures) > num_pictures:
+            pictures = random.sample(pictures, num_pictures)
+        return {'gallery': gallery, 'pictures': pictures}
 
     @property
     def available(self):
+        # TODO: if not search_portal, only show me for folderish contexts
         return True
 

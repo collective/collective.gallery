@@ -4,8 +4,8 @@
   i18n:domain="collective.gallery">
   <portlet
     addview="collective.folderishtypes.show_galleries"
-    title = "Show Galleries Portlet"
-    description = "Add portlet to show the pictures of the portals galleries"
+    title = "Gallery Portlet"
+    description = "Add portlet to show pictures from galleries."
     />
 </portlets>
 

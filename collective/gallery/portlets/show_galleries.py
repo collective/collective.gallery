@@ -45,13 +45,13 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u"Show Galleries Portlet")
+        return _(u"Gallery Portlet")
 
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IShowGalleriesPortlet)
-    label = _(u"Add portlet to show the pictures of the portals galleries")
-    description = _(u"This portlet shows the pictures of the portals galleries.")
+    label = _(u"Add portlet to show pictures from galleries")
+    description = _(u"This portlet shows pictures from galleries.")
 
     def create(self, data):
         return Assignment(**data)
@@ -59,8 +59,8 @@ class AddForm(base.AddForm):
 
 class EditForm(base.EditForm):
     form_fields = form.Fields(IShowGalleriesPortlet)
-    label = _(u"Add portlet to show the pictures of the portals galleries")
-    description = _(u"This portlet shows the pictures of the portals galleries.")
+    label = _(u"Add portlet to show pictures from galleries")
+    description = _(u"This portlet shows pictures from galleries.")
 
 
 class Renderer(base.Renderer):

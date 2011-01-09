@@ -119,5 +119,5 @@ msgstr "Galerie"
 #. Default: "More pictures from this gallery"
 #: ./portlets/show_galleries.pt:30
 msgid "portlet_more"
-msgstr "Mehr Bilder von dieser Galerie"
+msgstr "Mehr Bilder aus dieser Galerie"
 

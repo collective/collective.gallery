@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-06 12:36+0000\n"
+"POT-Creation-Date: 2011-01-09 00:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,19 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.gallery\n"
 
-#: ./interfaces.py:36
+#: ./portlets/show_galleries.py:53
+msgid "Add portlet to show pictures from galleries"
+msgstr ""
+
+#: ./interfaces.py:34
 msgid "Author"
 msgstr ""
 
-#: ./interfaces.py:40
+#: ./interfaces.py:38
 msgid "Date"
 msgstr ""
 
-#: ./interfaces.py:38
+#: ./interfaces.py:36
 msgid "Description"
 msgstr ""
 
@@ -33,15 +37,19 @@ msgstr ""
 msgid "Download Original"
 msgstr ""
 
+#: ./portlets/show_galleries.py:48
+msgid "Gallery Portlet"
+msgstr ""
+
 #: ./i18n.py:3
 msgid "Gallery view"
 msgstr ""
 
-#: ./interfaces.py:32
+#: ./interfaces.py:30
 msgid "Id"
 msgstr ""
 
-#: ./interfaces.py:50
+#: ./interfaces.py:48
 msgid "Name"
 msgstr ""
 
@@ -61,41 +69,55 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: ./interfaces.py:51
+#: ./interfaces.py:49
 msgid "The friendly name of the template"
 msgstr ""
 
-#: ./interfaces.py:34
+#: ./portlets/show_galleries.py:54
+msgid "This portlet shows pictures from galleries."
+msgstr ""
+
+#: ./interfaces.py:32
 msgid "Title"
 msgstr ""
 
 #. Default: "Description"
-#: ./interfaces.py:18
+#: ./interfaces.py:16
 msgid "label_photo_description"
 msgstr ""
 
 #. Default: "Id"
-#: ./interfaces.py:14
+#: ./interfaces.py:12
 msgid "label_photo_id"
 msgstr ""
 
 #. Default: "Thumb source URL"
-#: ./interfaces.py:23
+#: ./interfaces.py:21
 msgid "label_photo_thumb"
 msgstr ""
 
 #. Default: "Title"
-#: ./interfaces.py:16
+#: ./interfaces.py:14
 msgid "label_photo_title"
 msgstr ""
 
 #. Default: "Source URL"
-#: ./interfaces.py:21
+#: ./interfaces.py:19
 msgid "label_photo_url"
 msgstr ""
 
 #. Default: "Gallery ERROR: This link is not supported."
 #: ./i18n.py:4
 msgid "message_no_backend_for_link"
+msgstr ""
+
+#. Default: "Gallery"
+#: ./portlets/show_galleries.pt:12
+msgid "portlet_from_gallery"
+msgstr ""
+
+#. Default: "More pictures from this gallery"
+#: ./portlets/show_galleries.pt:30
+msgid "portlet_more"
 msgstr ""
 

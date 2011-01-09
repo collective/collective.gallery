@@ -218,6 +218,8 @@ Authors
 
 Contributors
 
+  - Johannes Raggam <raggam-nl@adm.at>
+
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com
 .. _Galleriffic: http://www.twospy.com/galleriffic/

@@ -22,15 +22,15 @@ from Products.ATContentTypes.interfaces import IATImage
 
 class IShowGalleriesPortlet(IPortletDataProvider):
     search_portal = schema.Bool(
-        title=u'Search portal for galleries',
-        description=u'If selected, search the whole portal for galleries.'\
-            'otherwise search only subfolders of the current path.',
+        title=_(u'Search portal for galleries'),
+        description=_(u'If selected, search the whole portal for galleries.'\
+            'otherwise search only subfolders of the current path.'),
         required=True,
         default=True)
 
     num_pictures = schema.Int(
-        title=u'Number of Pictures',
-        description=u'Define the number of pictures to show in the portlet',
+        title=_(u'Number of Pictures'),
+        description=_(u'Define the number of pictures to show in the portlet'),
         required=True,
         default=1,
         min=1)

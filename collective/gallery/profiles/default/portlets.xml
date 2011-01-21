@@ -3,7 +3,7 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="collective.gallery">
   <portlet
-    addview="collective.folderishtypes.show_galleries"
+    addview="collective.gallery.show_galleries"
     title = "Gallery Portlet"
     description = "Add portlet to show pictures from galleries."
     />

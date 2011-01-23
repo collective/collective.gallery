@@ -19,4 +19,12 @@
     handler=".upgrades.upgrade_10_to_11"
     profile="collective.gallery:default"/>
 
+  <gs:upgradeStep
+    title="Upgrade collective.gallery 11-12"
+    description=""
+    source="11"
+    destination="12"
+    handler=".upgrades.upgrade_11_to_12"
+    profile="collective.gallery:default"/>
+
 </configure>

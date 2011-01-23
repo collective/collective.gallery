@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.gallery\n"
-"POT-Creation-Date: 2011-01-09 00:42+0000\n"
+"POT-Creation-Date: 2011-01-13 14:46+0000\n"
 "PO-Revision-Date: 2010-11-25 07:08-0400\n"
 "Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
 "Language-Team: Spanish <plone-conosur@lists.plone.org>\n"
@@ -30,6 +30,10 @@ msgstr "Autor"
 msgid "Date"
 msgstr "Fecha"
 
+#: ./portlets/show_galleries.py:33
+msgid "Define the number of pictures to show in the portlet"
+msgstr ""
+
 #: ./interfaces.py:36
 msgid "Description"
 msgstr "Descripción"
@@ -50,12 +54,20 @@ msgstr ""
 msgid "Id"
 msgstr ""
 
+#: ./portlets/show_galleries.py:26
+msgid "If selected, search the whole portal for galleries.otherwise search only subfolders of the current path."
+msgstr ""
+
 #: ./interfaces.py:48
 msgid "Name"
 msgstr "Nombre"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:21
 msgid "Next"
+msgstr ""
+
+#: ./portlets/show_galleries.py:32
+msgid "Number of Pictures"
 msgstr ""
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:20
@@ -68,6 +80,10 @@ msgstr ""
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:18
 msgid "Previous"
+msgstr ""
+
+#: ./portlets/show_galleries.py:25
+msgid "Search portal for galleries"
 msgstr ""
 
 #: ./interfaces.py:49

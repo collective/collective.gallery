@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-09 00:42+0000\n"
+"POT-Creation-Date: 2011-01-13 14:46+0000\n"
 "PO-Revision-Date: 2011-01-06 12:36+0000\n"
 "Last-Translator: Johannes Raggam <raggam-nl@adm.at>\n"
 "Language-Team: german\n"
@@ -29,6 +29,10 @@ msgstr "Autor"
 msgid "Date"
 msgstr "Datum"
 
+#: ./portlets/show_galleries.py:33
+msgid "Define the number of pictures to show in the portlet"
+msgstr "Geben Sie die Anzahl der Bilder an, die im Portlet angezeigt werden soll."
+
 #: ./interfaces.py:36
 msgid "Description"
 msgstr "Beschreibung"
@@ -49,6 +53,10 @@ msgstr "Fotogalerie"
 msgid "Id"
 msgstr "Id"
 
+#: ./portlets/show_galleries.py:26
+msgid "If selected, search the whole portal for galleries.otherwise search only subfolders of the current path."
+msgstr "Wenn ausgewählt, wird das gesamte Portal nach Bildergalerien durchsucht. Wenn nicht, wird ab dem aktuellen Pfad gesucht."
+
 #: ./interfaces.py:48
 msgid "Name"
 msgstr "Name"
@@ -56,6 +64,10 @@ msgstr "Name"
 #: ./skins/collective_gallery_theme/gallery.html.pt:21
 msgid "Next"
 msgstr "Weiter"
+
+#: ./portlets/show_galleries.py:32
+msgid "Number of Pictures"
+msgstr "Anzahl von Bildern"
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:20
 msgid "Pause"
@@ -68,6 +80,10 @@ msgstr "Abspielen"
 #: ./skins/collective_gallery_theme/gallery.html.pt:18
 msgid "Previous"
 msgstr "Zurück"
+
+#: ./portlets/show_galleries.py:25
+msgid "Search portal for galleries"
+msgstr "Portal nach Galerien durchsuchen"
 
 #: ./interfaces.py:49
 msgid "The friendly name of the template"

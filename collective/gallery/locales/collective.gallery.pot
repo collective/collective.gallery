@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-09 00:42+0000\n"
+"POT-Creation-Date: 2011-01-13 14:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,10 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: ./portlets/show_galleries.py:33
+msgid "Define the number of pictures to show in the portlet"
+msgstr ""
+
 #: ./interfaces.py:36
 msgid "Description"
 msgstr ""
@@ -49,12 +53,20 @@ msgstr ""
 msgid "Id"
 msgstr ""
 
+#: ./portlets/show_galleries.py:26
+msgid "If selected, search the whole portal for galleries.otherwise search only subfolders of the current path."
+msgstr ""
+
 #: ./interfaces.py:48
 msgid "Name"
 msgstr ""
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:21
 msgid "Next"
+msgstr ""
+
+#: ./portlets/show_galleries.py:32
+msgid "Number of Pictures"
 msgstr ""
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:20
@@ -67,6 +79,10 @@ msgstr ""
 
 #: ./skins/collective_gallery_theme/gallery.html.pt:18
 msgid "Previous"
+msgstr ""
+
+#: ./portlets/show_galleries.py:25
+msgid "Search portal for galleries"
 msgstr ""
 
 #: ./interfaces.py:49

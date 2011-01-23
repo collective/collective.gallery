@@ -25,6 +25,5 @@ def upgrade_10_to_11(context):
 def upgrade_11_to_12(context):
     """Portlet has been added.
     """
-    import pdb;pdb.set_trace()
     context.runAllImportStepsFromProfile('profile-collective.gallery:default')
 

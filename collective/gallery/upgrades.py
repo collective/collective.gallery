@@ -25,5 +25,5 @@ def upgrade_10_to_11(context):
 def upgrade_11_to_12(context):
     """Portlet has been added.
     """
-    context.runAllImportStepsFromProfile('profile-collective.gallery:default')
+    context.runImportStepFromProfile('profile-collective.gallery:default', 'portlets')
 

@@ -13,8 +13,8 @@
 
   <cmf:registerDirectory name="collective_gallery_theme"/>
 
+  <include package="plone.app.portlets"/>
   <include package=".portlets" />
-
 
   <genericsetup:registerProfile
       name="default"

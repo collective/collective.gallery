@@ -72,6 +72,14 @@
     layer=".interfaces.IGalleryLayer"
   />
 
+  <browser:viewlet
+    name="collective.gallery"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    class=".viewlets.gallery-viewlet.GalleryViewlet"
+    permission="zope2.View"
+    layer=".interfaces.IGalleryLayer"
+    />
+
   <include file="upgrades.zcml"/>
 
 </configure>

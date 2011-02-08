@@ -72,14 +72,6 @@
     layer=".interfaces.IGalleryLayer"
   />
 
-  <browser:page
-    for="*"
-    name="itemview_viewlet"
-    template="itemview_viewlet.pt"
-    permission="zope2.View"
-    layer=".interfaces.IGalleryLayer"
-    />
-
   <include file="upgrades.zcml"/>
 
 </configure>

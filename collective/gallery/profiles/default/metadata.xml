@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>12</version>
+  <version>13</version>
   <dependencies>
     <dependency>profile-collective.js.galleriffic:default</dependency>
+    <dependency>profile-collective.portlet.itemview:default</dependency>
   </dependencies>
 </metadata>

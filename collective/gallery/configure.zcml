@@ -72,10 +72,10 @@
     layer=".interfaces.IGalleryLayer"
   />
 
-  <browser:viewlet
-    name="collective.gallery"
-    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-    class=".viewlets.gallery-viewlet.GalleryViewlet"
+  <browser:page
+    for="*"
+    name="itemview_viewlet"
+    template="itemview_viewlet.pt"
     permission="zope2.View"
     layer=".interfaces.IGalleryLayer"
     />

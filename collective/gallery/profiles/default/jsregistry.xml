@@ -6,4 +6,9 @@
     cacheable="True" compression="safe" cookable="False"
     enabled="True" expression=""  inline="False" conditionalcomment=""/>
 
+ <javascript 
+    id="gallery-portlet.js"
+    cacheable="True" compression="safe" cookable="False"
+    enabled="True" expression=""  inline="False" conditionalcomment=""/>
+
 </object>

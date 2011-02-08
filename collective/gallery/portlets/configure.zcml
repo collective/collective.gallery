@@ -13,4 +13,18 @@
         editview=".show_galleries.EditForm"
         />
 
+    <utility
+        factory=".itemview.GalleryPortletViewEntry"
+        name="gallery"
+        />
+
+    <browser:page
+        name="gallery_portlet"
+        for="*"
+        class=".itemview.GalleryPortletView"
+        template="itemview.pt"
+        permission="zope2.View"
+        layer="collective.gallery.interfaces.IGalleryLayer"
+        />
+
 </configure>

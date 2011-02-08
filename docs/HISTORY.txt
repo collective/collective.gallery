@@ -4,6 +4,9 @@ Changelog
 1.0b6 (unreleased)
 ------------------
 
+- Add itemview gallery portlet
+  [toutpt]
+
 - Add gallery portlet.
   [thet]
 

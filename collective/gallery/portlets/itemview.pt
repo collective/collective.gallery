@@ -1,0 +1,16 @@
+<div class="portlet" id="portletgallery">
+  <div id="slideshow"></div>
+  <ul class="thumbs noscript" style="display:none;">
+    <li tal:repeat="img view/photos">
+      <a class="thumb" tal:attributes="title img/title;href img/url; name img/id" title="Title #0">
+        <img tal:attributes="src img/thumb_url;alt img/title" />
+      </a>
+      <div class="caption">
+        <h2 tal:content="img/title">Title</h2>
+      </div>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript">
+init_galleryportlet('#portletgallery', '#slideshow');
+</script>

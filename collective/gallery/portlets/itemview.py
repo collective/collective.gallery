@@ -3,6 +3,8 @@ from zope import component
 from zope import interface
 from collective.gallery import interfaces
 from Products.Five.browser import BrowserView
+import logging
+logger = logging.getLogger('collective.gallery')
 
 class GalleryPortletViewEntry(object):
     interface.implements(vocabulary.IPortletView)
@@ -31,7 +33,7 @@ class GalleryPortletView(BrowserView):
 
     def photos(self):
         """Return the list of all IPhoto contained in the gallery"""
-        
         if not self.galleryview: return []
-        return self.galleryview.photos()
+        photos = self.galleryview.photos()
+        return photos
 

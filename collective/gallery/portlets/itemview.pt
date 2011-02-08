@@ -1,5 +1,5 @@
 <div class="portlet" id="portletgallery">
-  <div id="slideshow"></div>
+  <div id="slideshow" style="height:250px;"></div>
   <ul class="thumbs noscript" style="display:none;">
     <li tal:repeat="img view/photos">
       <a class="thumb" tal:attributes="title img/title;href img/url; name img/id" title="Title #0">

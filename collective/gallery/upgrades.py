@@ -31,3 +31,4 @@ def upgrade_12_to_13(context):
     """Add a dependency on collective.portlet.itemview
     """
     context.runAllImportStepsFromProfile('profile-collective.portlet.itemview:default')
+    context.runImportStepFromProfile('profile-collective.gallery:default', 'jsregistry')

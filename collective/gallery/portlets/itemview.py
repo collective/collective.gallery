@@ -9,7 +9,7 @@ logger = logging.getLogger('collective.gallery')
 class GalleryPortletViewEntry(object):
     interface.implements(vocabulary.IPortletView)
     
-    id = "gallery_portlet"
+    id = "itemview_portlet_gallery"
     name = u"Gallery"
 
 class GalleryPortletView(BrowserView):

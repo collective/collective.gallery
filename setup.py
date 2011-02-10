@@ -27,7 +27,6 @@ setup(name='collective.gallery',
           'gdata',
           'flickrapi',
           'collective.js.galleriffic',
-          'collective.portlet.itemview',
           # -*- Extra requirements: -*-
       ],
       extras_require = dict(

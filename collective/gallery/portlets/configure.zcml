@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
 	xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="collective.gallery">
 
     <plone:portlet
@@ -13,13 +14,13 @@
         editview=".show_galleries.EditForm"
         />
 
-    <utility
+    <utility zcml:conditional="installed collective.portlet.itemview"
         factory=".itemview.GalleryPortletViewEntry"
         name="gallery"
         />
 
-    <browser:page
-        name="gallery_portlet"
+    <browser:page zcml:conditional="installed collective.portlet.itemview"
+        name="itemview_portlet_gallery"
         for="*"
         class=".itemview.GalleryPortletView"
         template="itemview.pt"

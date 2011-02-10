@@ -14,12 +14,13 @@
         editview=".show_galleries.EditForm"
         />
 
-    <utility zcml:conditional="installed collective.portlet.itemview"
+
+    <utility zcml:condition="installed collective.portlet.itemview"
         factory=".itemview.GalleryPortletViewEntry"
         name="gallery"
         />
 
-    <browser:page zcml:conditional="installed collective.portlet.itemview"
+    <browser:page zcml:condition="installed collective.portlet.itemview"
         name="itemview_portlet_gallery"
         for="*"
         class=".itemview.GalleryPortletView"

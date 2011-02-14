@@ -9,10 +9,11 @@
 
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
-        <span i18n:translate="portlet_from_gallery">Gallery</span>
-        <tal:repl content="gallerydict/gallery/title">
-           GALLERY TITLE
-        </tal:repl>
+        <span>
+          <span tal:omit-tag=""
+            i18n:translate="portlet_from_gallery">Gallery</span>
+          <tal:repl content="gallerydict/gallery/title">TITLE</tal:repl>
+        </span>
         <span class="portletTopRight"></span>
     </dt>
 

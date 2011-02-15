@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-#
-# GNU General Public License (GPL)
-#
-__author__ = """Johannes Raggam <johannes@raggam.co.at>"""
-__docformat__ = 'plaintext'
-
 from zope import schema
 from zope.formlib import form
 from zope.interface import implements
@@ -35,13 +28,21 @@ class IShowGalleriesPortlet(IPortletDataProvider):
         default=1,
         min=1)
 
+    image_size = schema.Choice(
+        title=_(u'Image Size'),
+        description=_(u'Select, which image scale should be used for the portlet.'),
+        required=True,
+        default=None,
+        vocabulary="collective.gallery.ImageScaleVocabulary")
+
 
 class Assignment(base.Assignment):
     implements(IShowGalleriesPortlet)
 
-    def __init__(self, search_portal=True, num_pictures=1):
+    def __init__(self, search_portal=True, num_pictures=1, image_size=None):
         self.search_portal= search_portal
         self.num_pictures = num_pictures
+        self.image_size = image_size
 
     @property
     def title(self):
@@ -65,6 +66,10 @@ class EditForm(base.EditForm):
 
 class Renderer(base.Renderer):
     render = ViewPageTemplateFile('show_galleries.pt')
+
+    @property
+    def image_scale(self):
+        return getattr(self.data, 'image_size', 'mini')
 
     # TODO: cache me
     def get_galleries(self):

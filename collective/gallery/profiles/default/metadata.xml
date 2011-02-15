@@ -3,6 +3,5 @@
   <version>13</version>
   <dependencies>
     <dependency>profile-collective.js.galleriffic:default</dependency>
-    <dependency>profile-collective.portlet.itemview:default</dependency>
   </dependencies>
 </metadata>

@@ -27,6 +27,7 @@ setup(name='collective.gallery',
           'gdata',
           'flickrapi',
           'collective.js.galleriffic',
+          'collective.setuphandlertools',
           # -*- Extra requirements: -*-
       ],
       extras_require = dict(

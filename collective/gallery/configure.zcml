@@ -16,6 +16,11 @@
   <include package="plone.app.portlets"/>
   <include package=".portlets" />
 
+  <utility
+      component=".vocabularies.ImageScaleVocabulary"
+      name="collective.gallery.ImageScaleVocabulary"
+      />
+
   <genericsetup:registerProfile
       name="default"
       title="collective.gallery default"

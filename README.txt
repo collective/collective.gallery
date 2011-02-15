@@ -37,6 +37,12 @@ The user interface has many feature:
 * display more than 300 photos without any performance issue
 * display title and description throw a smart jquerytool tooltip
 
+There are also two portets, which can be used:
+
+* "Show Galleries" portlet to display random photos from random galleries.
+* An itemview portlet to display specific photos.
+
+
 Components (Backend)
 ====================
 
@@ -171,6 +177,22 @@ All controllers can be placed where ever you want because they are accessed by #
 Gallery is not configurable because it needs to generate javascript and css.
 It would make the add-on too much complex to customize. If you want configuration take
 a look at plonetruegallery_
+
+To register the "Show Galleries" portlet, you can add the following xml snippet
+to your portlets.xml Generic Setup file:::
+
+    <assignment
+      name="gallery-portlet"
+      category="context"
+      key="/"
+      manager="plone.rightcolumn"
+      type="collective.gallery.show_galleries"
+      visible="True">
+      <property name="search_portal">True</property>
+      <property name="num_pictures">1</property>
+      <property name="image_size">mini</property>
+   </assignment>
+
 
 You want more ?
 ===============

@@ -35,4 +35,12 @@
     handler=".upgrades.upgrade_12_to_13"
     profile="collective.gallery:default"/>
 
+  <gs:upgradeStep
+    title="Upgrade collective.gallery 13-14"
+    description=""
+    source="13"
+    destination="14"
+    handler=".upgrades.upgrade_13_to_14"
+    profile="collective.gallery:default"/>
+
 </configure>

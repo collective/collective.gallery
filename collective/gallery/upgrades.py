@@ -31,3 +31,10 @@ def upgrade_12_to_13(context):
     """Add a dependency on collective.portlet.itemview
     """
     context.runImportStepFromProfile('profile-collective.gallery:default', 'jsregistry')
+
+def upgrade_13_to_14(context):
+    """Update gallery portlet with image_size field.
+    """
+    from collective.gallery.portlets.show_galleries import IShowGalleriesPortlet
+    from collective.setuphandlertools import update_portlet_schema
+    update_portlet_schema(context, IShowGalleriesPortlet, 'image_size', 'mini')

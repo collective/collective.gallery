@@ -39,8 +39,9 @@ class IShowGalleriesPortlet(IPortletDataProvider):
 
 class Assignment(base.Assignment):
     implements(IShowGalleriesPortlet)
+    image_size = 'mini'
 
-    def __init__(self, search_portal=True, num_pictures=1, image_size=None):
+    def __init__(self, search_portal=True, num_pictures=1, image_size='mini'):
         self.search_portal= search_portal
         self.num_pictures = num_pictures
         self.image_size = image_size

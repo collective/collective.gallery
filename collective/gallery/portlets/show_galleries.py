@@ -4,6 +4,7 @@ from zope.interface import implements
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
+from plone.memoize.view import memoize
 
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
@@ -89,19 +90,22 @@ class Renderer(base.Renderer):
         return [brain for brain in brains
                 if brain.getObject().defaultView() in ('gallery.html',)]
 
+    @memoize
     def get_gallery_pictures(self):
+        gallery = None
+        pictures = []
         num_pictures = self.data.num_pictures
         galleries = self.get_galleries()
-        if not galleries: return []
-        gallery = random.choice(galleries).getObject()
-        pictures = [pic for pic in gallery.contentValues()
-                    if IATImage.providedBy(pic)]
-        if len(pictures) > num_pictures:
-            pictures = random.sample(pictures, num_pictures)
+        if galleries:
+            gallery = random.choice(galleries).getObject()
+            pictures = [pic for pic in gallery.contentValues()
+                        if IATImage.providedBy(pic)]
+            if len(pictures) > num_pictures:
+                pictures = random.sample(pictures, num_pictures)
         return {'gallery': gallery, 'pictures': pictures}
 
     @property
     def available(self):
         # TODO: if not search_portal, only show me for folderish contexts
-        return True
-
+        showme = bool(self.get_gallery_pictures()['pictures'])
+        return showme

@@ -67,6 +67,7 @@ try:
     from Products.ATContentTypes.interfaces.link import IATLink   as ILink
     from Products.ATContentTypes.interfaces.topic import IATTopic as ITopic
     from Products.ATContentTypes.interfaces.image import IATImage as IImage
+    from Products.ZCatalog.interfaces import ICatalogBrain
 except ImportError, e:
     from collective.gallery import logger
     logger.info('BBB: switch to plone3 %s'%e)
@@ -75,3 +76,5 @@ except ImportError, e:
     from Products.ATContentTypes.interface import IATLink   as ILink
     from Products.ATContentTypes.interface import IATTopic  as ITopic
     from Products.ATContentTypes.interface import IATImage  as IImage
+    class ICatalogBrain(interface.Interface):
+        pass

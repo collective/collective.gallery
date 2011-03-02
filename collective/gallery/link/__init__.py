@@ -47,7 +47,7 @@ class BaseLinkView(core.BaseBrowserView):
 
     def addmessage(self, message, type=u"info"):
         try:
-            IStatusMessage(self.request).add(message, type=type)
+            IStatusMessage(self.request).addStatusMessage(message, type=type)
         except TypeError:
             pass
 

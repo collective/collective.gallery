@@ -1,5 +1,7 @@
+from zope import component
 from zope import interface
 
+from collective.gallery import brain
 from collective.gallery import interfaces
 from collective.gallery import core
 
@@ -15,4 +17,8 @@ class BaseFolderView(core.BaseBrowserView):
         return self.context.getFolderContents(contentFilter)
 
     def _brainToPhoto(self, ob):
-        return interfaces.IPhoto(ob)
+        try:
+            photo = interfaces.IPhoto(ob)
+        except component.ComponentLookupError,e :
+            photo = brain.Photo(ob)
+        return photo

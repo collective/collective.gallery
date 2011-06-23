@@ -1,0 +1,8 @@
+[main]
+host = http://www.transifex.net
+
+[Plone.collective-gallery]
+file_filter = locales/<lang>/LC_MESSAGES/collective.gallery.po
+source_file = locales/collective.gallery.pot
+source_lang = en
+

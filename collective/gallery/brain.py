@@ -11,7 +11,9 @@ class Photo(object):
     def __init__(self, brain):
         self.id = brain.getId
         self.url = brain.getURL()
-        self.thumb_url = self.url + self.thumb_url_suffix()
+        if brain.portal_type == 'News Item':
+            self.url += '/image'
+        self.thumb_url = brain.getURL() + self.thumb_url_suffix()
         self.title = brain.Title
         self.description = brain.Description
 

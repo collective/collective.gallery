@@ -16,6 +16,9 @@ Changelog
 - Add transifex configuration
   [toutpt]
 
+- Add support for News Item
+  [toutpt]
+
 1.0b5 (2011-01-06)
 ------------------
 

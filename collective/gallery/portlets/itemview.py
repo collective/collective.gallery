@@ -1,4 +1,3 @@
-import random
 from collective.portlet.itemview import vocabulary
 from zope import component
 from zope import interface
@@ -31,11 +30,10 @@ class GalleryPortletView(BrowserView):
         self.title = self.context.Title()
         self.creator = self.context.Creators()[0]
         self.description = self.context.Description()
-        self.portletid = 'itemviewgallery'+str(random.randint(100, 9999))
-        self.slideshowid = 'galleryslideshow'+str(random.randint(100, 9999))
 
     def photos(self):
         """Return the list of all IPhoto contained in the gallery"""
         if not self.galleryview: return []
         photos = self.galleryview.photos()
         return photos
+

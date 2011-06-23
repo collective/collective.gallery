@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       tal:omit-tag="">
-<dl class="portlet" i18n:domain="collective.gallery" tal:attributes="id view/portletid">
+<dl class="portlet" id="portletgallery" i18n:domain="collective.gallery">
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
         <span tal:content="view/title">
@@ -11,7 +11,7 @@
         <span class="portletTopRight"></span>
     </dt>
     <dd>
-      <div id="slideshow" style="height:250px;" tal:attributes="id view/slideshowid"></div>
+      <div id="slideshow" style="height:250px;"></div>
       <ul class="thumbs noscript" style="display:none;">
         <li tal:repeat="img view/photos">
           <a class="thumb" tal:attributes="title img/title;href img/url; name img/id" title="Title #0">
@@ -24,5 +24,7 @@
       </ul>
     </dd>
 </dl>
-<script type="text/javascript" tal:content="string:init_galleryportlet('#${view/portletid}', '#${view/slideshowid}');"></script>
+<script type="text/javascript">
+init_galleryportlet('#portletgallery', '#slideshow');
+</script>
 </html>

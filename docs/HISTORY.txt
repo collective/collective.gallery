@@ -13,6 +13,9 @@ Changelog
 - Add gallery portlet.
   [thet]
 
+- Add transifex configuration
+  [toutpt]
+
 1.0b5 (2011-01-06)
 ------------------
 

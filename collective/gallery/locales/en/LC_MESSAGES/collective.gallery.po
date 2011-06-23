@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-01-13 14:46+0000\n"
+"POT-Creation-Date: 2011-05-02 09:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,12 +12,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Language: en\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.gallery\n"
 
-#: ./portlets/show_galleries.py:53
+#: ./portlets/show_galleries.py:56
 msgid "Add portlet to show pictures from galleries"
 msgstr ""
 
@@ -29,7 +28,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: ./portlets/show_galleries.py:33
+#: ./portlets/show_galleries.py:27
 msgid "Define the number of pictures to show in the portlet"
 msgstr ""
 
@@ -41,7 +40,7 @@ msgstr ""
 msgid "Download Original"
 msgstr ""
 
-#: ./portlets/show_galleries.py:48
+#: ./portlets/show_galleries.py:51
 msgid "Gallery Portlet"
 msgstr ""
 
@@ -53,8 +52,12 @@ msgstr ""
 msgid "Id"
 msgstr ""
 
-#: ./portlets/show_galleries.py:26
+#: ./portlets/show_galleries.py:20
 msgid "If selected, search the whole portal for galleries.otherwise search only subfolders of the current path."
+msgstr ""
+
+#: ./portlets/show_galleries.py:33
+msgid "Image Size"
 msgstr ""
 
 #: ./interfaces.py:48
@@ -65,7 +68,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: ./portlets/show_galleries.py:32
+#: ./portlets/show_galleries.py:26
 msgid "Number of Pictures"
 msgstr ""
 
@@ -81,15 +84,19 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: ./portlets/show_galleries.py:25
+#: ./portlets/show_galleries.py:19
 msgid "Search portal for galleries"
+msgstr ""
+
+#: ./portlets/show_galleries.py:34
+msgid "Select, which image scale should be used for the portlet."
 msgstr ""
 
 #: ./interfaces.py:49
 msgid "The friendly name of the template"
 msgstr ""
 
-#: ./portlets/show_galleries.py:54
+#: ./portlets/show_galleries.py:57
 msgid "This portlet shows pictures from galleries."
 msgstr ""
 
@@ -128,12 +135,12 @@ msgid "message_no_backend_for_link"
 msgstr ""
 
 #. Default: "Gallery"
-#: ./portlets/show_galleries.pt:12
+#: ./portlets/show_galleries.pt:13
 msgid "portlet_from_gallery"
 msgstr ""
 
 #. Default: "More pictures from this gallery"
-#: ./portlets/show_galleries.pt:30
+#: ./portlets/show_galleries.pt:31
 msgid "portlet_more"
 msgstr ""
 

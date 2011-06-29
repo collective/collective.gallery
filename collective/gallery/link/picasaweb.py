@@ -26,8 +26,9 @@ def check(url):
     False
     """
     starts = url.startswith("http://picasaweb.google")
+    starts_https = url.startswith("https://picasaweb.google")
     url_splited = url.split('/')
-    return starts and len(url_splited)>4
+    return (starts or starts_https) and len(url_splited)>4
 
 class Link(BaseResource):
     """Picasa implements of IGallery over Link content type

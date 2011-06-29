@@ -35,7 +35,7 @@ class Test(base.UnitTestCase):
         for img in imgs:
             test, msg = utils.verifyImage(img)
             self.failUnless(test, msg)
-        self.failUnless(len(imgs)==50)
+        self.failUnless(len(imgs)==50, len(imgs))
 
     def testNotValideURL(self):
         url = 'http://www.facebook.com/album.php?aid=WRONG&id=WRONG'

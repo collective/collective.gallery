@@ -3,6 +3,7 @@ from collective.gallery.tests import utils
 
 NONAUTH_URL = 'http://picasaweb.google.fr/ceronjeanpierre/PhotosTriEsDuMariage'
 AUTH_URL = 'http://picasaweb.google.com/toutpt/20091116ConcertDeRammstein?authkey=Gv1sRgCN2i5uS0y5_lLQ#'
+HTTPS_URL = 'https://picasaweb.google.com/fotonowiacy/NaszeOkolice'
 
 class Test(base.UnitTestCase):
 
@@ -28,6 +29,8 @@ class Test(base.UnitTestCase):
         self.failUnless(adapter.validate())
         adapter = self.getAdapter("http://nopicasa.google.com")
         self.failUnless(not adapter.validate())
+        adapter = self.getAdapter(HTTPS_URL)
+        self.failUnless(adapter.validate())
 
     def testCreator(self):
         self.failUnless(self.adapter.creator == "ceronjeanpierre")

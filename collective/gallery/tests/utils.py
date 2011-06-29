@@ -75,6 +75,7 @@ class FakeBrain(object):
         self.Title = ""
         self.Description = ""
         self.getId = ""
+        self.portal_type = ""
 
     def getURL(self):
         return "http://fakebrain.com"

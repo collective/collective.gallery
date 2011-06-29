@@ -19,6 +19,9 @@ Changelog
 - Add support for News Item
   [toutpt]
 
+- Fix https picasaweb url doesn't work
+  [toutpt]
+
 1.0b5 (2011-01-06)
 ------------------
 

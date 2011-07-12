@@ -39,6 +39,14 @@ class Link(BaseResource):
     def __init__(self, context):
         super(Link, self).__init__(context)
         self.url_parsed = urlparse.urlparse(self.url)
+        query = {}
+        for q_string in self.url_parsed.query.split('&'):
+            q_splited = q_string.split('=')
+            if len(q_splited)>1:
+                key = q_splited[0]
+                value = q_splited[1]
+                query[key] = value
+        self.query = query
         self.validator = check
 
     @property
@@ -46,21 +54,20 @@ class Link(BaseResource):
 
         if not self.validate(): return super(Link, self).creator
 
-        if len(self.url_parsed)>2:
-            if len(self.url_parsed[2].split('/')) > 2:
-                return self.url_parsed[2].split('/')[1]
+        path = self.url_parsed.path.split('/')
+        if len(path)>1:
+            return path[1]
 
     @property
     def albumName(self):
-        if len(self.url_parsed)>2:
-            if len(self.url_parsed[2].split('/')) > 2:
-                return self.url_parsed[2].split('/')[2]
+        path = self.url_parsed.path.split('/')
+        if len(path)>2:
+            return path[2]
 
     @property
     def authkey(self):
-        if len(self.url_parsed)>3:
-            if self.url_parsed[4] and '=' in self.url_parsed[4]:
-                return self.url_parsed[4].split('=')[1]
+        if 'authkey' in self.query:
+            return self.query['authkey']
 
     def photos(self):
 
@@ -126,7 +133,9 @@ class Link(BaseResource):
             return u""
 
     def _gdata_photos(self, url):
+
         gd_client = gdata.photos.service.PhotosService()
+
         try:
             photos = gd_client.GetFeed(url)
             return photos.entry

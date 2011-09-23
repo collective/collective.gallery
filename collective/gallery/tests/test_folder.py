@@ -19,7 +19,10 @@ class Test(base.UnitTestCase):
         # all this behaviour you'll also need to patch getToolByName which is
         # used by this method, thus I think it'd be easier to implement this
         # testcase as integrational, inherited from PloneTestCase
-        from Products.Five import zcml
+        try:
+            from Zope2.App import zcml
+        except ImportError, e:
+            from Products.Five import zcml
         import zope.component
         import zope.annotation
         zcml.load_config('meta.zcml', zope.component)

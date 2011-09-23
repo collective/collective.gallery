@@ -7,6 +7,9 @@ Changelog
 - Fix picasaweb url parser bug with authkey
   [toutpt]
 
+- update zcml import from Zope2.App
+  [toutpt]
+
 1.0b6 (2011-06-29)
 ------------------
 

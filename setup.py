@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0b7dev'
+version = '1.0b7'
 
 setup(name='collective.gallery',
       version=version,
@@ -30,8 +30,8 @@ setup(name='collective.gallery',
           # -*- Extra requirements: -*-
       ],
       extras_require = dict(
-          tests=['BeautifulSoup', 'plone.app.testing'],
-          facebook=[],
+          tests=['plone.app.testing'],
+          facebook=[], #was beautifulsoup
       ),
       entry_points="""
       # -*- Entry points: -*-

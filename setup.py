@@ -31,7 +31,7 @@ setup(name='collective.gallery',
       ],
       extras_require = dict(
           tests=['BeautifulSoup', 'plone.app.testing'],
-          facebook=['BeautifulSoup'],
+          facebook=[],
       ),
       entry_points="""
       # -*- Entry points: -*-

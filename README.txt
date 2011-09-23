@@ -53,7 +53,7 @@ Summary:
 * Ramcache setup with a default key to one hours + modification date
 * Works with Folder, Topic and Link content types
 * picasaweb_ and flickr_ support.
-* facebook support if you add BeautifulSoup_ to your setup.
+* facebook support.
 * I18N: english, french and german are available
 
 collective.gallery use zope.components to provide as much reusable as possible
@@ -131,8 +131,6 @@ IPhoto.description metadata is not supported
 
 facebook_
 ~~~~~~~~~
-
-You must have added BeautifulSoup_ to your Plone setup to make this work.
 
 In Plone as with other link you just have to paste the link inside a Link content
 type.
@@ -250,5 +248,4 @@ Contributors
 .. _jcarousel: http://sorgalla.com/jcarousel
 .. _Pikachoose: http://pikachoose.com
 .. _facebook: http://www.facebook.com
-.. _beautifulsoup: http://pypi.python.org/pypi/BeautifulSoup
 .. _plonetruegallery: http://plone.org/products/plone-true-gallery

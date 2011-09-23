@@ -10,6 +10,9 @@ Changelog
 - update zcml import from Zope2.App
   [toutpt]
 
+- update facebook support (remove the need of BeautifulSoup, we now use json)
+  [toutpt]
+
 1.0b6 (2011-06-29)
 ------------------
 

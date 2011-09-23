@@ -1,4 +1,5 @@
-URL1 = "http://www.facebook.com/album.php?aid=177781&id=275081154800" #put a url that is supposed to work
+URL1 = "http://www.facebook.com/media/set/?set=a.416328449800.177781.275081154800"
+URL2 = "http://www.facebook.com/album.php?aid=177781&id=275081154800" #put a url that is supposed to work
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 

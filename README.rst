@@ -113,6 +113,12 @@ SIZES : 32, 48, 64, 72, 104, 144, 150, 160, 94, 110, 128, 200, 220, 288, 320,
 
 All metadatas are supported
 
+Link supported are:
+
+* http://picasaweb.google.XX/userid/albumname
+* https://picasaweb.google.XX/userid/albumname
+* https://picasaweb.google.XX/userid/privatealbumname?authkey=AUTHKEY
+
 flickr_
 ~~~~~~~
 

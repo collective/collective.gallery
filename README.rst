@@ -141,7 +141,10 @@ facebook_
 In Plone as with other link you just have to paste the link inside a Link content
 type.
 
-The album must be public.
+The album must be public. Links supported are:
+
+* http://www.facebook.com/album.php?aid=ALBUMID&id=OTHERID
+* http://www.facebook.com/media/set/?set=a.ALBUMID.OTHERID.STHELSE (the url must contains 5 dots)
 
 IPhoto.description metadata is not supported
 

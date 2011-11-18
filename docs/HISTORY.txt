@@ -6,7 +6,7 @@ Changelog
 
 - Fix http://plone.org/products/collective.gallery/issues/3
   Flikr links on author (/photos/author) don't display
-
+- Add https support on facebook link
 
 1.0 (2011-11-13)
 ----------------

@@ -26,9 +26,10 @@ def check(url):
     has_id= '&id=' in url
 
     starts = url.startswith('http://www.facebook.com/media/set/?set=a.')
+    starts_https = url.startswith('https://www.facebook.com/media/set/?set=a.')
     dots = len(url.split('.')) == 6
 
-    return (starts and dots) or (old_starts and has_aid and has_id)
+    return ((starts or starts_https) and dots) or (old_starts and has_aid and has_id)
 
 
 class Link(BaseResource):

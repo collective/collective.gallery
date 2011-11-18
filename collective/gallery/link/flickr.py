@@ -81,7 +81,7 @@ class Link(BaseResource):
             else:
                 user_id = self.user_info['user_id']
                 photos = flickr.photos_search(user_id=user_id)
-                results = [Photo(photo) for photo in set]
+                results = [Photo(photo) for photo in photos[0]]
 
         return results
 

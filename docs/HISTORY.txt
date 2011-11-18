@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.1 (unreleased)
+----------------
+
+- Fix http://plone.org/products/collective.gallery/issues/3
+  Flikr links on author (/photos/author) don't display
+
+
 1.0 (2011-11-13)
 ----------------
 

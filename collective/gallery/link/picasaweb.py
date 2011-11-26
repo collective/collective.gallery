@@ -9,7 +9,7 @@ from urllib import urlencode
 from zope import interface
 
 from collective.gallery import interfaces
-from collective.gallery.link import BaseResource
+from collective.gallery.link.base import BaseResource
 
 logger = logging.getLogger('collective.gallery')
 
@@ -47,12 +47,9 @@ class Link(BaseResource):
                 value = q_splited[1]
                 query[key] = value
         self.query = query
-        self.validator = check
 
     @property
     def creator(self):
-
-        if not self.validate(): return super(Link, self).creator
 
         path = self.url_parsed.path.split('/')
         if len(path)>1:
@@ -70,8 +67,6 @@ class Link(BaseResource):
             return self.query['authkey']
 
     def photos(self):
-
-        if not self.validate(): return super(Link, self).photos()
 
         kwargs = {}
         kwargs['kind'] = 'photo'
@@ -103,19 +98,12 @@ class Link(BaseResource):
         return imgmax
 
     def _build_structure(self, photos):
-        results = []
-
-        for photo in photos:
-            results.append(Photo(photo))
-
-        return results
+        return map(Photo, photos)
 
     @property
     def title(self):
         """Return the title of the album. If you want to use link title you can
         do it in the tempalte"""
-
-        if not self.validate(): return super(Link, self).title
 
         url = '/data/feed/api/user/%s/album/%s'%(self.creator, self.albumName)
         if self.authkey:

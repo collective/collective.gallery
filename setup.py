@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.1dev'
+version = '2.0dev'
 
 setup(name='collective.gallery',
       version=version,

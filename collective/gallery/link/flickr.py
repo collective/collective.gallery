@@ -2,7 +2,7 @@ import flickrapi
 
 from collective.gallery import interfaces
 from collective.gallery import cache
-from collective.gallery.link import BaseResource
+from collective.gallery.link.base import BaseResource
 from plone.memoize import ram
 from zope import interface
 
@@ -41,7 +41,6 @@ class Link(BaseResource):
         self._flickr = None
         self._metadata = {'creator':'', 'albumName':''}
         self._user_info = {}
-        self.validator = check
 
     @property
     @ram.cache(cache.cache_key)
@@ -69,21 +68,23 @@ class Link(BaseResource):
 
         """
 
-        if not self.validate(): return super(Link, self).photos()
-
         flickr = self._flickr_service()
         metadatas = extract_data(self.url)
 
         if metadatas['type'] == 'photos':
+
             if metadatas['sets']:
                 set = flickr.walk_set(metadatas['sets'])
-                results = [Photo(photo) for photo in set]
+                return self._build_structure(set)
             else:
                 user_id = self.user_info['user_id']
                 photos = flickr.photos_search(user_id=user_id)
-                results = [Photo(photo) for photo in photos[0]]
+                return self._build_structure(photos[0])
 
-        return results
+        return []
+
+    def _build_structure(self, photos):
+        return map(Photo, photos)
 
     def _flickr_service(self):
         """Return the flickr service"""
@@ -93,8 +94,6 @@ class Link(BaseResource):
 
     @property
     def creator(self):
-
-        if not self.validate(): return super(Link, self).creator
 
         return self.user_info['username']
 

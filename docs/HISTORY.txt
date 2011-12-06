@@ -4,6 +4,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- add Italian translation
+  [giacomos]
+
 - add new classifiers
 
 - Fix http://plone.org/products/collective.gallery/issues/3

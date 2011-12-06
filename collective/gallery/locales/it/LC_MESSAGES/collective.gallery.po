@@ -1,0 +1,148 @@
+# Translation of collective.gallery.pot to Italian
+# Giacomo Spettoli <giacomo.spettoli@gmail.com>, 2011.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-05-02 09:16+0000\n"
+"PO-Revision-Date: 2011-12-06 23:00+0200\n"
+"Last-Translator: Giacomo Spettoli <giacomo.spettoli@gmail.com>\n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1\n"
+"Language-Code: it\n"
+"Language-Name: Italiano\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.gallery\n"
+"X-Is-Fallback-For: it-ch it-it\n"
+
+#: ./portlets/show_galleries.py:56
+msgid "Add portlet to show pictures from galleries"
+msgstr "Aggiungi una portlet per mostrare le immagini dalle gallerie"
+
+#: ./interfaces.py:34
+msgid "Author"
+msgstr "Autore"
+
+#: ./interfaces.py:38
+msgid "Date"
+msgstr "Data"
+
+#: ./portlets/show_galleries.py:27
+msgid "Define the number of pictures to show in the portlet"
+msgstr "Inserisci il numero di immagini da mostrare nella portlet"
+
+#: ./interfaces.py:36
+msgid "Description"
+msgstr "Descrizione"
+
+#: ./skins/collective_gallery_theme/gallery.html.pt:37
+msgid "Download Original"
+msgstr "Scarica l'originale"
+
+#: ./portlets/show_galleries.py:51
+msgid "Gallery Portlet"
+msgstr "Portlet Galleria"
+
+#: ./i18n.py:3
+msgid "Gallery view"
+msgstr "Vista Galleria"
+
+#: ./interfaces.py:30
+msgid "Id"
+msgstr "Id"
+
+#: ./portlets/show_galleries.py:20
+msgid "If selected, search the whole portal for galleries.otherwise search only subfolders of the current path."
+msgstr "Se selezionato, le gallerie verranno cercate nell'intero portale altrimenti verranno cercate solo nelle sotto cartelle del percorso corrente."
+
+#: ./portlets/show_galleries.py:33
+msgid "Image Size"
+msgstr "Dimensione dell'immagine"
+
+#: ./interfaces.py:48
+msgid "Name"
+msgstr "Nome"
+
+#: ./skins/collective_gallery_theme/gallery.html.pt:21
+msgid "Next"
+msgstr "Successivo"
+
+#: ./portlets/show_galleries.py:26
+msgid "Number of Pictures"
+msgstr "Numero di immagini"
+
+#: ./skins/collective_gallery_theme/gallery.html.pt:20
+msgid "Pause"
+msgstr "Pausa"
+
+#: ./skins/collective_gallery_theme/gallery.html.pt:19
+msgid "Play"
+msgstr "Inizia"
+
+#: ./skins/collective_gallery_theme/gallery.html.pt:18
+msgid "Previous"
+msgstr "Precedente"
+
+#: ./portlets/show_galleries.py:19
+msgid "Search portal for galleries"
+msgstr "Cerca le gallerie nel portale"
+
+#: ./portlets/show_galleries.py:34
+msgid "Select, which image scale should be used for the portlet."
+msgstr "Selezionare quale dimensione di immagine deve essere usata nella portlet."
+
+#: ./interfaces.py:49
+msgid "The friendly name of the template"
+msgstr "Il nome del template"
+
+#: ./portlets/show_galleries.py:57
+msgid "This portlet shows pictures from galleries."
+msgstr "Questa portlet mostra le immagini dalle gallerie."
+
+#: ./interfaces.py:32
+msgid "Title"
+msgstr "Titolo"
+
+#. Default: "Description"
+#: ./interfaces.py:16
+msgid "label_photo_description"
+msgstr "Descrizione"
+
+#. Default: "Id"
+#: ./interfaces.py:12
+msgid "label_photo_id"
+msgstr "Id"
+
+#. Default: "Thumb source URL"
+#: ./interfaces.py:21
+msgid "label_photo_thumb"
+msgstr "URL sorgente della miniatura"
+
+#. Default: "Title"
+#: ./interfaces.py:14
+msgid "label_photo_title"
+msgstr "Titolo"
+
+#. Default: "Source URL"
+#: ./interfaces.py:19
+msgid "label_photo_url"
+msgstr "URL sorgente"
+
+#. Default: "Gallery ERROR: This link is not supported."
+#: ./i18n.py:4
+msgid "message_no_backend_for_link"
+msgstr "Errore della Galleria: questo collegamento non è supportato."
+
+#. Default: "Gallery"
+#: ./portlets/show_galleries.pt:13
+msgid "portlet_from_gallery"
+msgstr "Galleria"
+
+#. Default: "More pictures from this gallery"
+#: ./portlets/show_galleries.pt:31
+msgid "portlet_more"
+msgstr "Altre immagini da questa galleria"
+

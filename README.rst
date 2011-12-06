@@ -54,7 +54,7 @@ Summary:
 * Works with Folder, Topic and Link content types
 * picasaweb_ and flickr_ support.
 * facebook support.
-* I18N: english, french and german are available
+* I18N: english, french, german and italian are available
 
 collective.gallery use zope.components to provide as much reusable as possible
 components.

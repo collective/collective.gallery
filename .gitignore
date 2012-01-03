@@ -11,6 +11,7 @@ eggs
 fake-eggs
 parts
 dist
+var
 .installed.cfg
 .mr.developer.cfg
 .hg

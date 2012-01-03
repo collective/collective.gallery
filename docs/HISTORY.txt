@@ -14,6 +14,8 @@ Changelog
 
 - Add https support on facebook link
 
+- fix uninstall profile to remove component from persistent registry
+
 1.0 (2011-11-13)
 ----------------
 

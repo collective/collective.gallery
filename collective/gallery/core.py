@@ -49,3 +49,15 @@ class BaseBrowserView(BrowserView):
 
     def photos(self):
         return []
+
+    def get_photo(self, index=0):
+        photos = self.photos()
+
+        if len(photos) == 0:
+            return {'url':'','title':u'', 'description':u'', 'thumb_url':''}
+
+        if index > len(self.photos()):
+            if index!=0:
+                index=0
+
+        return photos[index]

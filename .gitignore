@@ -21,3 +21,6 @@ var
 *.pyo
 *.tmp*
 src
+.project
+.pydevproject
+.settings

@@ -5,7 +5,9 @@ from collective.gallery import interfaces
 from Products.CMFCore.utils import getToolByName
 
 class BaseResource(object):
-    """An IGallery base for all link services"""
+    """An IGallery base for all link services
+    
+    """
     interface.implements(interfaces.IGallery)
     component.adapts(interfaces.ILink)
 

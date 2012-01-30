@@ -220,15 +220,6 @@ This add-on is use in production here and there:
 * http://www.nantes-developpement.com/search?portal_type=Diaporama
 * http://www.recuperateurdepluie.fr/photos-aqualogic
 
-Roadmap
-=======
-
-* [1.0] finish the css
-* [1.1] exif integration
-* [2.0] add photos
-* [2.0] search photos
-* [2.0] collective.harlequin as an extra dependency
-
 Credits
 =======
 

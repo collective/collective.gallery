@@ -20,7 +20,7 @@
     <tal:rep repeat="picture gallerydict/pictures">
     <dd tal:define="oddrow repeat/picture/odd"
         tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
-        <a href="" tal:attributes="href string:${picture/absolute_url}/view">
+        <a href="" tal:attributes="href gallerydict/gallery/absolute_url">
             <tal:img replace="structure python:picture.tag(scale=view.image_scale)" />
         </a><br />
     </dd>

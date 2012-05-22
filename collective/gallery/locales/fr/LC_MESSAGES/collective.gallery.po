@@ -140,9 +140,9 @@ msgstr "Erreur Galerie: Ce lien n'est pas supporté."
 #. Default: "Gallery"
 #: ./portlets/show_galleries.pt:13
 msgid "portlet_from_gallery"
-msgstr ""
+msgstr "Album"
 
 #. Default: "More pictures from this gallery"
 #: ./portlets/show_galleries.pt:31
 msgid "portlet_more"
-msgstr ""
+msgstr "Voir l'album"

@@ -75,9 +75,19 @@ Now we return to the folder and set the default view
 
 Get back to home to add a topic and add a criteria on portal_type with 'Image'
 
-    >>> browser.getLink('Home').click()
+
+Enable topic (for plone42+)
+
+    >>> browser.open(portal.portal_types.absolute_url()+ '/Topic/manage_propertiesForm')
+    >>> browser.getControl(name='global_allow:boolean').value = True
+    >>> browser.getControl('Save').click()
+
+Add a collection (Topic)
+
+    >>> browser.open(portal.absolute_url())
+    >>> tp = 'Collection (old-style)' in browser.contents and 'Collection (old-style)' or 'Collection'
     >>> browser.getLink("Add new").click()
-    >>> browser.getControl('Collection').click()
+    >>> browser.getControl(tp).click()
     >>> browser.getControl('Add').click()
     >>> browser.getControl(name='title').value = 'My Gallery'
     >>> browser.getControl('Save').click()

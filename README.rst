@@ -133,6 +133,12 @@ Flickr service is not album centric but photo centric. Supported case:
   http://www.flickr.com/photos/rbpdesigner
   We have the username, return all photos
 
+  http://www.flickr.com/photos/searchtags/123,456
+  We return the photos of a search on the comma separated list of tags
+
+  http://www.flickr.com/photos/rbpdesigner/searchtags/123,456
+  We return the photos of a search on the comma separated list of tags; for that specific user
+
 IPhoto.description metadata is not supported
 
 facebook_
@@ -243,6 +249,7 @@ Authors
 
 Contributors
 
+  - Mathieu Le Marec - Pasquet <kiorky@cryptelium.net> 
   - Johannes Raggam <raggam-nl@adm.at>
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif

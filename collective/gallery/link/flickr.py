@@ -13,24 +13,36 @@ def check(url):
 
 def extract_data(url):
     """Return metadata from this flickr url
+    Basicly there is 3 types of urls
 
+        - User :
+                - http://www.flickr.com/photos/princeofnorway/
 
-    >>> extract_data('http://www.flickr.com/photos/princeofnorway/')
-    {'yahoo_account':'princeofnorway', 'sets':None}
-    >>> extranct_data('http://www.flickr.com/photos/princeofnorway/sets/72157623726009622/')
-    {'yahoo_account':'princeofnorway', 'sets':'72157623726009622'}
+        - User + sets :
+
+            - http://www.flickr.com/photos/princeofnorway/sets/72157623726009622/
+
+        - Tags Filters With or without Users:
+
+            - http://www.flickr.com/photos/searchtags/1,2,3
+            - http://www.flickr.com/photos/princeofnorway/searchtags/1,2,3
     """
-    result = {'yahoo_account':None,
-              'sets':None,
-              'type':None,
+    result = {'yahoo_account': None,
+              'sets': None,
+              'searchtags': None,
+              'type': None,
               }
+    mapping = {'photos':'yahoo_account'}
     if not check(url): return result
-
     url_splited = url.split('/')
     result['type'] = url_splited[3]
-    result['yahoo_account'] = url_splited[4]
-    if len(url_splited) > 6 and url_splited[5] == 'sets':
-        result['sets'] = url_splited[6]
+    for m in ['photos', 'sets', 'searchtags']:
+        if m in url_splited:
+            val = url_splited[url_splited.index(m) + 1]
+            # special case: search on tags without user
+            if val == 'searchtags' and m == 'photos':
+                continue
+            result[mapping.get(m, m)] = val
     return result
 
 class Link(BaseResource):
@@ -44,17 +56,24 @@ class Link(BaseResource):
         self.validator = check
 
     @property
-    @ram.cache(cache.cache_key)
+    @ram.cache(cache.url_cache_key)
     def user_info(self):
         """In the url we have the yahoo account of the guy, not the username...
         """
+        result = {
+            'user_yahooaccount': None,
+            'user_id': None,
+            'username': None,
+        }
         flickr = self._flickr_service()
-        user = flickr.urls_lookupUser(url=self.url)
-        url_splited = self.url.split('/')
-        result = {}
-        result['user_yahooaccount'] = url_splited[4]
-        result['user_id'] = user.find('user').get('id')
-        result['username'] = user.find('user').find('username').text
+        result['user_yahooaccount'] = extract_data(
+            self.url)['yahoo_account']
+        # we search on a user, because it would extracted as None otherwise
+        if result['user_yahooaccount']:
+            user = flickr.urls_lookupUser(url=self.url)
+            result['user_id'] = user.find('user').get('id')
+            result['username'] = user.find(
+                'user').find('username').text
         return result
 
 
@@ -74,15 +93,24 @@ class Link(BaseResource):
         flickr = self._flickr_service()
         metadatas = extract_data(self.url)
 
+        resuts = []
         if metadatas['type'] == 'photos':
             if metadatas['sets']:
                 set = flickr.walk_set(metadatas['sets'])
                 results = [Photo(photo) for photo in set]
             else:
-                user_id = self.user_info['user_id']
-                photos = flickr.photos_search(user_id=user_id)
+                kw = {}
+                if self.user_info['user_id']:
+                    kw['user_id'] = self.user_info['user_id']
+                if metadatas['searchtags']:
+                    kw['tags' ] = metadatas['searchtags']
+                if (not 'user_id' in kw
+                    and not 'tags' in kw):
+                    raise Exception(
+                        'invalid search, '
+                        'at least user or tags is needed')
+                photos = flickr.photos_search(**kw)
                 results = [Photo(photo) for photo in photos[0]]
-
         return results
 
     def _flickr_service(self):

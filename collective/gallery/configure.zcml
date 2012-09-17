@@ -11,8 +11,6 @@
 
   <i18n:registerTranslations directory="locales" />
 
-  <cmf:registerDirectory name="collective_gallery_theme"/>
-
   <include package="plone.app.portlets"/>
   <include package=".portlets" />
 
@@ -26,13 +24,6 @@
       title="collective.gallery default"
       directory="profiles/default"
       description='Install collective.gallery in Plone'
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-      name="uninstall"
-      title="collective.gallery uninstall"
-      directory="profiles/uninstall"
-      description='Uninstall collective.gallery from Plone'
       provides="Products.GenericSetup.interfaces.EXTENSION"
   />
 

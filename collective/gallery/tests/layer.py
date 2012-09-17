@@ -10,13 +10,10 @@ class CollectiveGalleryLayer(PloneSandboxLayer):
     def setUpZope(self, app, configurationContext):
         # Load ZCML
         import collective.gallery
-        import collective.js.galleriffic
         self.loadZCML(package=collective.gallery)
-        self.loadZCML(package=collective.js.galleriffic)
 
         # Install product and call its initialize() function
         z2.installProduct(app, 'collective.gallery')
-        z2.installProduct(app, 'collective.js.galleriffic')
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
@@ -25,7 +22,6 @@ class CollectiveGalleryLayer(PloneSandboxLayer):
     def tearDownZope(self, app):
         # Uninstall product
         z2.uninstallProduct(app, 'collective.gallery')
-        z2.uninstallProduct(app, 'collective.js.galleriffic')
 
 FIXTURE = CollectiveGalleryLayer()
 

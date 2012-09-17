@@ -59,7 +59,7 @@ class BaseLinkView(core.BaseBrowserView):
         except TypeError:
             pass
 
-    @ram.cache(cache.cache_key)
+#    @ram.cache(cache.cache_key)
     def photos(self):
         self.initialize()
         resource = self.resource

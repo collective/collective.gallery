@@ -39,6 +39,10 @@ class Test(base.UnitTestCase):
              [('searchtags', 'foo,bar'), ('sets', 'foo'), ('type', 'photos'), ('yahoo_account', 'princeofnorway')]),
             ('http://www.flickr.com/photos/searchtags/foo,bar',
              [('searchtags', 'foo,bar'), ('sets', None), ('type', 'photos'), ('yahoo_account', None)]),
+            ('http://www.flickr.com/photos/yahoo_account/foo/sets',
+             [('searchtags', None), ('sets', None), ('type', 'photos'), ('yahoo_account', 'yahoo_account')]),
+            ('http://www.flickr.com/photos/yahoo_account/foo/sets/searchtags/foo',
+             [('searchtags', 'foo'), ('sets', None), ('type', 'photos'), ('yahoo_account', 'yahoo_account')]),
         ]
         def dotest(test, wanted):
             res = extract_data(test)
@@ -56,6 +60,12 @@ class Test(base.UnitTestCase):
         self.failUnless(user_info['user_id']=="41300176@N02")
         self.failUnless(user_info['username']=="CJsarp")
         self.failUnless(user_info['user_yahooaccount']=="princeofnorway")
+
+    def testNotExistingUserExtracted(self):
+        self.context.remoteUrl = 'http://www.flickr.com/photos/notexistinguser/sets'
+        adapter = self.getAdapter(self.context)
+        with self.assertRaises(Exception):
+            adapter.user_info
 
     def testPhotos(self):
         imgs = self.adapter.photos()

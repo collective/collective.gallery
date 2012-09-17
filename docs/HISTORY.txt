@@ -1,6 +1,11 @@
 Changelog
 =========
 
+
+1.2 (unreleased)
+----------------
+- Add tags search urls for the flickr backend [kiorky]
+
 1.1 (2012-01-03)
 ----------------
 

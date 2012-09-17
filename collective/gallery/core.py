@@ -1,7 +1,12 @@
-from Products.Five import BrowserView
-from collective.gallery import interfaces
+from zope import component
 from zope import interface
+from Products.Five import BrowserView
+
 from Products.CMFCore.utils import getToolByName
+from plone.registry.interfaces import IRegistry
+
+from collective.gallery import interfaces
+
 
 class BaseBrowserView(BrowserView):
     """This code is the base code of gallery views.
@@ -15,14 +20,15 @@ class BaseBrowserView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+        self._settings = None
 
     @property
     def width(self):
-        return self.settings().getProperty('photo_max_size', 400)
+        return self.settings().photo_max_size
 
     @property
     def height(self):
-        return self.settings().getProperty('photo_max_size', 400)
+        return self.settings().photo_max_size
 
     @property
     def id(self):
@@ -45,7 +51,10 @@ class BaseBrowserView(BrowserView):
         return self.context.Date()
     
     def settings(self):
-        return getToolByName(self.context, 'portal_properties').gallery_properties
+        if self._settings is None:
+            registry = component.getUtility(IRegistry)
+            self._settings = registry.forInterface(interfaces.IGallerySettings)
+        return self._settings
 
     def photos(self):
         return []

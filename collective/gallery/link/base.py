@@ -1,8 +1,10 @@
 from zope import component
 from zope import interface
+
 from collective.gallery import interfaces
 
 from Products.CMFCore.utils import getToolByName
+from plone.registry.interfaces import IRegistry
 
 class BaseResource(object):
     """An IGallery base for all link services
@@ -16,10 +18,11 @@ class BaseResource(object):
         self.url = context.getRemoteUrl()
         self._width = None
         self._height = None
+        self._settings = None
 
     def get_width(self):
         if not self._width:
-            return self.settings().getProperty('photo_max_size', 400)
+            return self.settings().photo_max_size
         return self._width
 
     def set_width(self, value):
@@ -29,7 +32,7 @@ class BaseResource(object):
 
     def get_height(self):
         if not self._height:
-            return self.settings().getProperty('photo_max_size', 400)
+            return self.settings().photo_max_size
         return self._height
 
     def set_height(self, value):
@@ -58,7 +61,10 @@ class BaseResource(object):
         return self.context.Date()
 
     def settings(self):
-        return getToolByName(self.context, 'portal_properties').gallery_properties
+        if self._settings is None:
+            registry = component.getUtility(IRegistry)
+            self._settings = registry.forInterface(interfaces.IGallerySettings)
+        return self._settings
 
     def photos(self):
         return []

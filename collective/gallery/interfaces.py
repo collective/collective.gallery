@@ -63,6 +63,14 @@ class IGalleryTemplateTerm(interface.Interface):
         the url is a picasa one.
         """
 
+
+class IGallerySettings(interface.Interface):
+    """Global settings"""
+
+    photo_max_size = schema.Int(title=u"Width",
+                                default=400)
+
+
 #dependencies
 try:
     #plone4

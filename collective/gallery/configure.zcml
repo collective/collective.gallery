@@ -8,6 +8,7 @@
     i18n_domain="collective.gallery">
 
   <include package="Products.CMFCore" file="permissions.zcml" />
+  <include package="plone.app.registry" />
   <five:registerPackage package="." initialize=".initialize" />
   <i18n:registerTranslations directory="locales" />
 
@@ -35,7 +36,7 @@
     title="Upgrade collective.gallery"
     description="common upgrade step: apply the profile"
     source="*"
-    destination="20"
+    destination="21"
     handler=".upgrades.common"
     profile="collective.gallery:default"/>
 

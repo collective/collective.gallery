@@ -20,13 +20,12 @@ class TestSetup(base.TestCase):
     def beforeTearDown(self):
         pass
 
-    def test_properties(self):
-        pp = self.portal.portal_properties.gallery_properties
+    def testRegistry(self):
+        from collective.gallery.interfaces import IGallerySettings
+        pp = self.portal.portal_registry.forInterface(IGallerySettings)
         self.failUnless(hasattr(pp, 'photo_max_size'))
         self.failUnless(pp.photo_max_size == 400)
         self.failUnless(type(pp.photo_max_size) == int)
-        self.failUnless(hasattr(pp, 'thumb_max_size'))
-        self.failUnless(type(pp.thumb_max_size) == int)
 
 
 def test_suite():

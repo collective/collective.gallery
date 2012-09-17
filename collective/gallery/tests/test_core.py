@@ -25,11 +25,14 @@ class Test(base.UnitTestCase):
 
 class TestIntegration(base.TestCase):
     
-    def testProperties(self):
+    def testRegistry(self):
         from collective.gallery import core
+        from plone.registry.interfaces import IRegistry
         view = core.BaseBrowserView(self.portal, None)
+        registry = self.portal.portal_registry
         self.failUnless(view.width == 400)
-        self.portal.portal_properties.gallery_properties._updateProperty('photo_max_size', 500)
+        key = 'collective.gallery.interfaces.IGallerySettings.photo_max_size'
+        registry[key] = 500
         self.failUnless(view.width == 500)
 
 def test_suite():

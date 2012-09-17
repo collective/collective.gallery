@@ -25,10 +25,11 @@ class TestIntegration(base.TestCase):
         self.link = self.folder.mylink
         self.link.setRemoteUrl('http://notsupported.com/agallery')
 
-    def testProperties(self):
+    def testRegistry(self):
         view = self.link.unrestrictedTraverse('@@gallery')
         self.failUnless(view.width == 400)
-        self.portal.portal_properties.gallery_properties._updateProperty('photo_max_size', 500)
+        key = 'collective.gallery.interfaces.IGallerySettings.photo_max_size'
+        self.portal.portal_registry[key] = 500
 
         self.failUnless(view.width == 500)
 

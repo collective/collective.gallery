@@ -16,5 +16,5 @@ class ZClean(BrowserView):
         setup = getToolByName(self.context, 'portal_setup')
         setup.runAllImportStepsFromProfile(PROFILE)
         status = IStatusMessage(self.request)
-        status.add("Apply profile collective.gallery:zclean")
+        status.add("profile collective.gallery:zclean applied")
         self.request.response.redirect(self.context.absolute_url())

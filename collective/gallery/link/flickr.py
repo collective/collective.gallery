@@ -36,11 +36,19 @@ def extract_data(url):
     if not check(url): return result
     url_splited = url.split('/')
     result['type'] = url_splited[3]
+    if len(url_splited) > 4:
+        result['yahoo_account'] = url_splited[4]
+        if result['yahoo_account'] in ['searchtags', 'sets']:
+            result['yahoo_account'] = None
     for m in ['photos', 'sets', 'searchtags']:
         if m in url_splited:
-            val = url_splited[url_splited.index(m) + 1]
+            try:
+                val = url_splited[url_splited.index(m) + 1]
+            except IndexError, e:
+                val = None
             # special case: search on tags without user
-            if val == 'searchtags' and m == 'photos':
+            if (val in ['searchtags', 'photos', 'sets']
+                and m in ['searchtags', 'photos', 'sets']):
                 continue
             result[mapping.get(m, m)] = val
     return result
@@ -70,10 +78,16 @@ class Link(BaseResource):
             self.url)['yahoo_account']
         # we search on a user, because it would extracted as None otherwise
         if result['user_yahooaccount']:
-            user = flickr.urls_lookupUser(url=self.url)
-            result['user_id'] = user.find('user').get('id')
-            result['username'] = user.find(
-                'user').find('username').text
+            try:
+                user = flickr.urls_lookupUser(url=self.url)
+                result['user_id'] = user.find('user').get('id')
+                result['username'] = user.find(
+                    'user').find('username').text
+            except Exception, e:
+                # a search on photos is the only case without user
+                # and we should skip the user test failure
+                if not 'photos/searchtags' in self.url:
+                    raise e
         return result
 
 

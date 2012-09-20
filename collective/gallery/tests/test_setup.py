@@ -23,10 +23,7 @@ class TestSetup(base.TestCase):
     def testRegistry(self):
         from collective.gallery.interfaces import IGallerySettings
         pp = self.portal.portal_registry.forInterface(IGallerySettings)
-        self.failUnless(hasattr(pp, 'photo_max_size'))
-        self.failUnless(pp.photo_max_size == 400)
-        self.failUnless(type(pp.photo_max_size) == int)
+        self.assertTrue(hasattr(pp, 'photo_max_size'))
+        self.assertTrue(pp.photo_max_size == 400)
+        self.assertTrue(type(pp.photo_max_size) == int)
 
-
-def test_suite():
-    return base.build_test_suite((TestSetup,))

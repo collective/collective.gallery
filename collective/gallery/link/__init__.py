@@ -34,7 +34,11 @@ class BaseLinkView(core.BaseBrowserView):
         self._baseresource = BaseResource(self.context)
 #        self._resource()
 
-    def initialize(self):
+    def __call__(self):
+        self.update()
+        return self.index()
+
+    def update(self):
         """Return the first component find that is valid for this context.
         If none are found use a dummy ressource"""
         if self.resource is None:
@@ -46,12 +50,21 @@ class BaseLinkView(core.BaseBrowserView):
             elif check_flickr(url):
                 self.resource = FlickrLink(self.context)
 
-            if self.resource:
-                self.resource.width = self.width
-                self.resource.height = self.height
-            else:
-                msg = i18n.message_no_backend_for_link
-                self.addmessage(msg, type=u"error")
+        if self.resource is None:
+            resources = component.getAdapters((self.context,),
+                                              interfaces.IGallery)
+            for name,r in resources:
+                #every adapters should have a validate method
+                if r.validate():
+                    self.resource = r
+                    break
+
+        if self.resource:
+            self.resource.width = self.width
+            self.resource.height = self.height
+        else:
+            msg = i18n.message_no_backend_for_link
+            self.addmessage(msg, type=u"error")
 
     def addmessage(self, message, type=u"info"):
         try:
@@ -61,7 +74,6 @@ class BaseLinkView(core.BaseBrowserView):
 
 #    @ram.cache(cache.cache_key)
     def photos(self):
-        self.initialize()
         resource = self.resource
         if resource is None:
             resource = self._baseresource
@@ -69,7 +81,6 @@ class BaseLinkView(core.BaseBrowserView):
 
     @property
     def creator(self):
-        self.initialize()
         resource = self.resource
         if resource is None:
             resource = self._baseresource
@@ -77,7 +88,6 @@ class BaseLinkView(core.BaseBrowserView):
 
     @property
     def title(self):
-        self.initialize()
         resource = self.resource
         if resource is None:
             resource = self._baseresource

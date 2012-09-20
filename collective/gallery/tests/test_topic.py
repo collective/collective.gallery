@@ -18,9 +18,3 @@ class Test(base.UnitTestCase):
 class TestIntegration(base.TestCase):
     pass
 
-
-def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    return base.build_test_suite((Test, TestIntegration))

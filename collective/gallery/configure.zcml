@@ -33,10 +33,18 @@
   />
 
   <genericsetup:upgradeStep
+    title="Upgrade collective.gallery to 2.0"
+    description="uninstall 1.0 releated stuff"
+    source="*"
+    destination="2000"
+    handler=".upgrades.zclean"
+    profile="collective.gallery:default"/>
+
+  <genericsetup:upgradeStep
     title="Upgrade collective.gallery"
     description="common upgrade step: apply the profile"
-    source="*"
-    destination="21"
+    source="2000"
+    destination="2001"
     handler=".upgrades.common"
     profile="collective.gallery:default"/>
 
@@ -87,5 +95,28 @@
     layer=".interfaces.IGalleryLayer"
     permission="cmf.ManagePortal"
   />
+  <adapter
+    factory=".brain.Photo"
+    for="Products.ZCatalog.interfaces.ICatalogBrain"
+    provides=".interfaces.IPhoto"
+    />
+  <adapter
+    factory=".link.picasaweb.Link"
+    for=".interfaces.ILink"
+    provides=".interfaces.IGallery"
+    name="picasaweb"
+    />
+  <adapter
+    factory=".link.flickr.Link"
+    for=".interfaces.ILink"
+    provides=".interfaces.IGallery"
+    name="flickr"
+    />
+  <adapter
+    factory=".link.facebook.Link"
+    for=".interfaces.ILink"
+    provides=".interfaces.IGallery"
+    name="facebook"
+    />
 
 </configure>

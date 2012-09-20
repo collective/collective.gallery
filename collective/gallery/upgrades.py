@@ -18,3 +18,6 @@ class ZClean(BrowserView):
         status = IStatusMessage(self.request)
         status.add("profile collective.gallery:zclean applied")
         self.request.response.redirect(self.context.absolute_url())
+
+def zclean(context):
+    context.runAllImportStepsFromProfile('profile-collective.gallery:zclean')

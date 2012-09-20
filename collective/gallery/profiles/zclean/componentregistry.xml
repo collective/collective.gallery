@@ -4,24 +4,29 @@
   <adapter
     factory="collective.gallery.brain.Photo"
     for="Products.ZCatalog.interfaces.ICatalogBrain"
-    provides="collective.gallery.interfaces.IPhoto"/>
+    provides="collective.gallery.interfaces.IPhoto"
+    remove="True"
+    />
   <adapter
     factory="collective.gallery.link.picasaweb.Link"
     for="collective.gallery.interfaces.ILink"
     provides="collective.gallery.interfaces.IGallery"
     name="picasaweb"
+    remove="True"
     />
   <adapter
     factory="collective.gallery.link.flickr.Link"
     for="collective.gallery.interfaces.ILink"
     provides="collective.gallery.interfaces.IGallery"
     name="flickr"
+    remove="True"
     />
   <adapter
     factory="collective.gallery.link.facebook.Link"
     for="collective.gallery.interfaces.ILink"
     provides="collective.gallery.interfaces.IGallery"
     name="facebook"
+    remove="True"
     />
  </adapters>
 </componentregistry>

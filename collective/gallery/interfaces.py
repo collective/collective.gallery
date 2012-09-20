@@ -41,7 +41,8 @@ class IGallery(interface.Interface):
         """Return the list of all IPhoto contained in the gallery"""
 
     def get_photo(index=0):
-        """return the photo at index in the list returned by photos"""
+        """return the photo from at index"""
+
 
 class IGalleryTemplateTerm(interface.Interface):
     """Make a utility registred with this interface.

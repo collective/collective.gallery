@@ -41,6 +41,7 @@ class BaseLinkView(core.BaseBrowserView):
     def update(self):
         """Return the first component find that is valid for this context.
         If none are found use a dummy ressource"""
+
         if self.resource is None:
             url = self.url
             if check_facebook(url):
@@ -115,5 +116,3 @@ class BaseLinkView(core.BaseBrowserView):
             if key:
                 query_elems[key] = value
         return host, path, query_elems, fragment
-
-

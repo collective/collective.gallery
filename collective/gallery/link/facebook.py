@@ -83,7 +83,7 @@ class Photo(object):
         self.description = u''
         
         #extra from facebook
-        self.position = struct['position']
+        #self.position = struct['position']
         self.width=struct['width']
         self.height=struct['height']
         

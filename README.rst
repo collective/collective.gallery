@@ -9,6 +9,21 @@ The goals are:
 * Support many photos providers (picasa, flickr, ...)
 * Stay as simple as possible
 
+How to install
+==============
+
+This addon can be installed as any other addon. Please follow the official
+documentation.
+
+Upgrade from 1.X
+----------------
+
+If you migrate from 1.X, you should add an other addon like collective.galleria.
+Note that Galleriffic is deprecated.
+
+To cleanup you plonesite, you can call @@collective.gallery.zclean has
+administrator or use the profile 'zclean'.
+
 Components (Backend)
 ====================
 
@@ -31,10 +46,10 @@ First we have photo resources. Plone already manage this for you:
 * Topic can be criterized to list only Image content type
 * Link can be sources of photos throw picasaweb.google.com and flickr.com services.
 
-Next you have the business component: IGallery. 
+Next you have the main component: IGallery.
 This interface is implemented at two levels:
 
-* As named adapter over IATLink to get photos from picasaweb or flickr.
+* As named adapter over IATLink to get photos from picasaweb or flickr or facebook.
 * As browserview to control the resource (@@gallery)
 
 Folder & Image
@@ -127,6 +142,14 @@ You have some examples of addons based on this one:
 
 * collective.galleria
 * collective.galleriffic
+* collective.fancyboxgallery
+* collective.highslide
+* collective.portlet.fancyboxgallery
+
+Extra addons to use with collective.gallery:
+
+* collective.quickupload
+* Products.ImageEditor
 
 You want more ?
 ===============
@@ -138,14 +161,6 @@ Views are already available to use those services:
 * @@gallery-flickr-slideshow
 
 But they are not integrated in the Plone UI.
-
-References
-==========
-
-This add-on is use in production here and there:
-
-* http://www.nantes-developpement.com/search?portal_type=Diaporama
-* http://www.recuperateurdepluie.fr/photos-aqualogic
 
 Credits
 =======

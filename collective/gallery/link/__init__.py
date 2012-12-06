@@ -36,7 +36,8 @@ class BaseLinkView(core.BaseBrowserView):
 
     def __call__(self):
         self.update()
-        return self.index()
+        return self
+#        return self.index()
 
     def update(self):
         """Return the first component find that is valid for this context.
@@ -44,6 +45,7 @@ class BaseLinkView(core.BaseBrowserView):
 
         if self.resource is None:
             url = self.url
+            #to optimize performance those are hardcoded
             if check_facebook(url):
                 self.resource = FacebookLink(self.context)
             elif check_picasaweb(url):

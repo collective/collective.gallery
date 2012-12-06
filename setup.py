@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2dev'
+version = '2.0dev'
 
 setup(name='collective.gallery',
       version=version,
@@ -13,9 +13,10 @@ setup(name='collective.gallery',
         "Framework :: Plone",
         "Framework :: Plone :: 4.0",
         "Framework :: Plone :: 4.1",
+        "Framework :: Plone :: 4.2",
         "Programming Language :: Python",
         ],
-      keywords='',
+      keywords='plone gallery',
       author='JeanMichel FRANCOIS aka toutpt',
       author_email='toutpt@gmail.com',
       url='https://github.com/collective/collective.gallery',
@@ -28,7 +29,6 @@ setup(name='collective.gallery',
           'setuptools',
           'gdata',
           'flickrapi',
-          'collective.js.galleriffic',
           # -*- Extra requirements: -*-
       ],
       extras_require = dict(

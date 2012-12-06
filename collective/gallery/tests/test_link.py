@@ -11,11 +11,11 @@ class Test(base.UnitTestCase):
 
     def testPhotos(self):
         imgs = self.view.photos()
-        self.failUnless(not imgs)
-        self.failUnless(len(imgs) == 0)
+        self.assertTrue(not imgs)
+        self.assertTrue(len(imgs) == 0)
 
     def testCreator(self):
-        self.failUnless(self.view.creator == self.view.context.Creators()[0])
+        self.assertTrue(self.view.creator == self.view.context.Creators()[0])
 
 class TestIntegration(base.TestCase):
 
@@ -25,12 +25,11 @@ class TestIntegration(base.TestCase):
         self.link = self.folder.mylink
         self.link.setRemoteUrl('http://notsupported.com/agallery')
 
-    def testProperties(self):
+    def testRegistry(self):
         view = self.link.unrestrictedTraverse('@@gallery')
-        self.failUnless(view.width == 400)
-        self.portal.portal_properties.gallery_properties._updateProperty('photo_max_size', 500)
+        self.assertTrue(view.width == 400)
+        key = 'collective.gallery.interfaces.IGallerySettings.photo_max_size'
+        self.portal.portal_registry[key] = 500
 
-        self.failUnless(view.width == 500)
+        self.assertTrue(view.width == 500)
 
-def test_suite():
-    return base.build_test_suite((Test, TestIntegration))

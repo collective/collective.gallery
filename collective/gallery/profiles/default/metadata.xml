@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>14</version>
+  <version>2001</version>
   <dependencies>
-    <dependency>profile-collective.js.galleriffic:default</dependency>
   </dependencies>
 </metadata>

@@ -20,20 +20,18 @@ class Test(base.UnitTestCase):
         self.assertEqual(self.view.date, "a date")
 
     def testPhotos(self):
-        self.failUnless(not self.view.photos())
+        self.assertTrue(not self.view.photos())
         self.assertEqual(type(self.view.photos()), list)
 
 class TestIntegration(base.TestCase):
     
-    def testProperties(self):
+    def testRegistry(self):
         from collective.gallery import core
+        from plone.registry.interfaces import IRegistry
         view = core.BaseBrowserView(self.portal, None)
-        self.failUnless(view.width == 400)
-        self.portal.portal_properties.gallery_properties._updateProperty('photo_max_size', 500)
-        self.failUnless(view.width == 500)
+        registry = self.portal.portal_registry
+        self.assertTrue(view.width == 400)
+        key = 'collective.gallery.interfaces.IGallerySettings.photo_max_size'
+        registry[key] = 500
+        self.assertTrue(view.width == 500)
 
-def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    return base.build_test_suite((Test, TestIntegration))

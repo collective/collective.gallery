@@ -1,6 +1,7 @@
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
+
 class Test(base.UnitTestCase):
 
     def setUp(self):
@@ -13,12 +14,7 @@ class Test(base.UnitTestCase):
     def testPhotos(self):
         self.assertEqual(len(self.view.photos()), 2)
 
+
 class TestIntegration(base.TestCase):
     pass
 
-
-def test_suite():
-    """This sets up a test suite that actually runs the tests in the class
-    above
-    """
-    return base.build_test_suite((Test, TestIntegration))

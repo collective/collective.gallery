@@ -2,7 +2,7 @@ import flickrapi
 
 from collective.gallery import interfaces
 from collective.gallery import cache
-from collective.gallery.link import BaseResource
+from collective.gallery.link.base import BaseResource
 from plone.memoize import ram
 from zope import interface
 
@@ -53,6 +53,7 @@ def extract_data(url):
             result[mapping.get(m, m)] = val
     return result
 
+
 class Link(BaseResource):
     """Flickr implementation of IGallery over Link content type"""
 
@@ -61,7 +62,6 @@ class Link(BaseResource):
         self._flickr = None
         self._metadata = {'creator':'', 'albumName':''}
         self._user_info = {}
-        self.validator = check
 
     @property
     @ram.cache(cache.url_cache_key)
@@ -90,7 +90,6 @@ class Link(BaseResource):
                     raise e
         return result
 
-
     def photos(self):
         """it depends on metdatas extracted from the url
         but we have different case:
@@ -102,16 +101,15 @@ class Link(BaseResource):
 
         """
 
-        if not self.validate(): return super(Link, self).photos()
-
         flickr = self._flickr_service()
         metadatas = extract_data(self.url)
 
-        resuts = []
+        results = []
         if metadatas['type'] == 'photos':
+
             if metadatas['sets']:
                 set = flickr.walk_set(metadatas['sets'])
-                results = [Photo(photo) for photo in set]
+                results = self._build_structure(set)
             else:
                 kw = {}
                 if self.user_info['user_id']:
@@ -124,8 +122,12 @@ class Link(BaseResource):
                         'invalid search, '
                         'at least user or tags is needed')
                 photos = flickr.photos_search(**kw)
-                results = [Photo(photo) for photo in photos[0]]
+                results = self._build_structure(photos[0])
+
         return results
+
+    def _build_structure(self, photos):
+        return map(Photo, photos)
 
     def _flickr_service(self):
         """Return the flickr service"""
@@ -135,8 +137,6 @@ class Link(BaseResource):
 
     @property
     def creator(self):
-
-        if not self.validate(): return super(Link, self).creator
 
         return self.user_info['username']
 

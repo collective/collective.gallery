@@ -18,15 +18,13 @@ class Test(base.UnitTestCase):
 
     def testDefaultWithHeight(self):
         #test default values
-        self.failUnless(self.adapter.width == 400)
-        self.failUnless(self.adapter.height == 400)
+        self.assertTrue(self.adapter.width == 400)
+        self.assertTrue(self.adapter.height == 400)
 
     def testValidate(self):
-        self.failUnless(self.adapter.validate())
-        adapter = self.getAdapter(URL1)
-        self.failUnless(adapter.validate())
-        adapter = self.getAdapter("http://no.facebook.com")
-        self.failUnless(not adapter.validate())
+        from collective.gallery.link import facebook
+        self.assertTrue(facebook.check(URL1))
+        self.assertFalse(facebook.check("http://no.facebook.com"))
 
     def testCreator(self):
         pass #not arelady supported
@@ -35,20 +33,18 @@ class Test(base.UnitTestCase):
         imgs = self.adapter.photos()
         for img in imgs:
             test, msg = utils.verifyImage(img)
-            self.failUnless(test, msg)
-        self.failUnless(len(imgs)==50, len(imgs))
+            self.assertTrue(test, msg)
+        self.assertTrue(len(imgs)==50, len(imgs))
 
     def testNotValideURL(self):
         url = 'http://www.facebook.com/album.php?aid=WRONG&id=WRONG'
         adapter = self.getAdapter(url)
         msg = "API not respected"
-        self.failUnless(adapter.creator == adapter.context.Creators()[0], msg)
-        self.failUnless(adapter.title == adapter.context.Title(), msg)
-        self.failUnless(len(adapter.photos())==0, msg)
-        self.failUnless(type(adapter.photos()) == list, msg)
+        self.assertTrue(adapter.creator == adapter.context.Creators()[0], msg)
+        self.assertTrue(adapter.title == adapter.context.Title(), msg)
+        self.assertTrue(len(adapter.photos())==0, msg)
+        self.assertTrue(type(adapter.photos()) == list, msg)
 
 class TestIntegration(base.TestCase):
     pass
 
-def test_suite():
-    return base.build_test_suite((Test, TestIntegration))

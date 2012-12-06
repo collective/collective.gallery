@@ -40,6 +40,10 @@ class IGallery(interface.Interface):
     def photos(scale="default"):
         """Return the list of all IPhoto contained in the gallery"""
 
+    def get_photo(index=0):
+        """return the photo from at index"""
+
+
 class IGalleryTemplateTerm(interface.Interface):
     """Make a utility registred with this interface.
     It will be used to build the vocabularies and to make the
@@ -59,6 +63,14 @@ class IGalleryTemplateTerm(interface.Interface):
         Best example is picasa_slideshow with Link content type must check if
         the url is a picasa one.
         """
+
+
+class IGallerySettings(interface.Interface):
+    """Global settings"""
+
+    photo_max_size = schema.Int(title=u"Width",
+                                default=400)
+
 
 #dependencies
 try:

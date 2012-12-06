@@ -1,9 +1,13 @@
 Changelog
 =========
 
-
-1.2 (unreleased)
+2.0 (unreleased)
 ----------------
+
+- Remove portlet
+- Remove galleriffic
+- Remove gallery_view
+- Add get_photo(index=0) to Gallery API.
 - Add tags search urls for the flickr backend [kiorky]
 
 1.1 (2012-01-03)
@@ -158,3 +162,4 @@ Changelog
 ----------------
 
 - Initial release
+

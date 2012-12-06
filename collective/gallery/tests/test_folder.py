@@ -34,10 +34,8 @@ class Test(base.UnitTestCase):
 
         for img in imgs:
             test, msg = utils.verifyImage(img)
-            self.failUnless(test, msg)
+            self.assertTrue(test, msg)
 
 class TestIntegration(base.TestCase):
     pass
 
-def test_suite():
-    return base.build_test_suite((Test, TestIntegration))

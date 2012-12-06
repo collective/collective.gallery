@@ -20,25 +20,23 @@ class Test(base.UnitTestCase):
 
     def testDefaultWithHeight(self):
         #test default values
-        self.failUnless(self.adapter.width == 400)
-        self.failUnless(self.adapter.height == 400)
+        self.assertTrue(self.adapter.width == 400)
+        self.assertTrue(self.adapter.height == 400)
 
-    def testValidate(self):
-        self.failUnless(self.adapter.validate())
-        adapter = self.getAdapter(AUTH_URL)
-        self.failUnless(adapter.validate())
-        adapter = self.getAdapter("http://nopicasa.google.com")
-        self.failUnless(not adapter.validate())
-        adapter = self.getAdapter(HTTPS_URL)
-        self.failUnless(adapter.validate())
+    def testCheckURL(self):
+        from collective.gallery.link import picasaweb
+        self.assertTrue(picasaweb.check(NONAUTH_URL))
+        self.assertTrue(picasaweb.check(AUTH_URL))
+        self.assertTrue(picasaweb.check(HTTPS_URL))
+        self.assertFalse(picasaweb.check("http://nopicasa.google.com"))
 
     def testCreator(self):
-        self.failUnless(self.adapter.creator == "ceronjeanpierre")
+        self.assertTrue(self.adapter.creator == "ceronjeanpierre")
 
     def testAuthKey(self):
-        self.failUnless(not self.adapter.authkey)
+        self.assertTrue(not self.adapter.authkey)
         adapter = self.getAdapter(AUTH_URL)
-        self.failUnless(adapter.authkey)
+        self.assertTrue(adapter.authkey)
 
     def test_imgmax(self):
         imgmax = self.adapter.imgmax(400, 300)
@@ -49,25 +47,21 @@ class Test(base.UnitTestCase):
         imgs = self.adapter.photos()
         for img in imgs:
             test, msg = utils.verifyImage(img)
-            self.failUnless(test, msg)
+            self.assertTrue(test, msg)
 
     def testPhotosAuth(self):
         adapter = self.getAdapter(AUTH_URL)
         imgs = adapter.photos()
         for img in imgs:
             test, msg = utils.verifyImage(img)
-            self.failUnless(test, msg)
+            self.assertTrue(test, msg)
 
     def testImgsWrongURL(self):
-        adapter = self.getAdapter("http://notpicasaweb.com")
+        adapter = self.getAdapter("http://notpicasaweb.com/")
         msg = "API not respected"
-        self.failUnless(adapter.creator == adapter.context.Creators()[0], msg)
-        self.failUnless(adapter.title == adapter.context.Title(), msg)
-        self.failUnless(len(adapter.photos())==0, msg)
-        self.failUnless(type(adapter.photos()) == list, msg)
+        self.assertTrue(len(adapter.photos())==0, msg)
+        self.assertTrue(type(adapter.photos()) == list, msg)
 
 class TestIntegration(base.TestCase):
     pass
 
-def test_suite():
-   return base.build_test_suite((Test, TestIntegration))

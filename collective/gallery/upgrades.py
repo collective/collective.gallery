@@ -1,38 +1,23 @@
 from Products.CMFCore.utils import getToolByName
+from Products.Five.browser import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
 
-def upgrade_1_to_10(context):
-    context.runAllImportStepsFromProfile('profile-collective.gallery:default')
-    catalog = getToolByName(context, 'portal_catalog')
+PROFILE = 'profile-collective.gallery:default'
 
-    def update_layout(brain):
-        ob = brain.getObject()
-        if ob.getProperty('layout') in ('galleriffic', 'gallery', '@@gallery',
-                                        's3slider', 'dewslider'):
-            ob._updateProperty('layout', 'gallery.html')
 
-    def update_layouts(portal_type):
-        brains = catalog(portal_type=portal_type)
-        map(update_layout, brains)
+def common(context):
+    context.runAllImportStepsFromProfile(PROFILE)
 
-    for portal_type in ('Link', 'Folder', 'Topic'):
-        update_layouts(portal_type)
 
-def upgrade_10_to_11(context):
-    """Some properties has been removed. a browserlayer has been added
-    """
-    context.runAllImportStepsFromProfile('profile-collective.gallery:default')
+class ZClean(BrowserView):
+    """Call this view will cleanup the Plone install by applying the profile
+    zclean"""
+    def __call__(self):
+        setup = getToolByName(self.context, 'portal_setup')
+        setup.runAllImportStepsFromProfile(PROFILE)
+        status = IStatusMessage(self.request)
+        status.add("profile collective.gallery:zclean applied")
+        self.request.response.redirect(self.context.absolute_url())
 
-def upgrade_11_to_12(context):
-    """Portlet has been added.
-    """
-    context.runImportStepFromProfile('profile-collective.gallery:default', 'portlets')
-
-def upgrade_12_to_13(context):
-    """Add a dependency on collective.portlet.itemview
-    """
-    context.runImportStepFromProfile('profile-collective.gallery:default', 'jsregistry')
-
-def upgrade_13_to_14(context):
-    """Update gallery portlet with image_size field.
-    """
-    pass
+def zclean(context):
+    context.runAllImportStepsFromProfile('profile-collective.gallery:zclean')

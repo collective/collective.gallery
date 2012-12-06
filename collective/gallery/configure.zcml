@@ -7,14 +7,10 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.gallery">
 
+  <include package="Products.CMFCore" file="permissions.zcml" />
+  <include package="plone.app.registry" />
   <five:registerPackage package="." initialize=".initialize" />
-
   <i18n:registerTranslations directory="locales" />
-
-  <cmf:registerDirectory name="collective_gallery_theme"/>
-
-  <include package="plone.app.portlets"/>
-  <include package=".portlets" />
 
   <utility
       component=".vocabularies.ImageScaleVocabulary"
@@ -25,16 +21,32 @@
       name="default"
       title="collective.gallery default"
       directory="profiles/default"
-      description='Install collective.gallery in Plone'
+      description="Install collective.gallery in Plone"
       provides="Products.GenericSetup.interfaces.EXTENSION"
   />
   <genericsetup:registerProfile
-      name="uninstall"
-      title="collective.gallery uninstall"
-      directory="profiles/uninstall"
-      description='Uninstall collective.gallery from Plone'
+      name="zclean"
+      title="collective.gallery cleanup from 1.X"
+      directory="profiles/zclean"
+      description="Cleanup collective.gallery install"
       provides="Products.GenericSetup.interfaces.EXTENSION"
   />
+
+  <genericsetup:upgradeStep
+    title="Upgrade collective.gallery to 2.0"
+    description="uninstall 1.0 releated stuff"
+    source="*"
+    destination="2000"
+    handler=".upgrades.zclean"
+    profile="collective.gallery:default"/>
+
+  <genericsetup:upgradeStep
+    title="Upgrade collective.gallery"
+    description="common upgrade step: apply the profile"
+    source="2000"
+    destination="2001"
+    handler=".upgrades.common"
+    profile="collective.gallery:default"/>
 
   <browser:page
     name="gallery"
@@ -76,7 +88,35 @@
     permission="zope2.View"
     layer=".interfaces.IGalleryLayer"
   />
-
-  <include file="upgrades.zcml"/>
+  <browser:page
+    name="collective.gallery.zclean"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".upgrades.ZClean"
+    layer=".interfaces.IGalleryLayer"
+    permission="cmf.ManagePortal"
+  />
+  <adapter
+    factory=".brain.Photo"
+    for="Products.ZCatalog.interfaces.ICatalogBrain"
+    provides=".interfaces.IPhoto"
+    />
+  <adapter
+    factory=".link.picasaweb.Link"
+    for=".interfaces.ILink"
+    provides=".interfaces.IGallery"
+    name="picasaweb"
+    />
+  <adapter
+    factory=".link.flickr.Link"
+    for=".interfaces.ILink"
+    provides=".interfaces.IGallery"
+    name="flickr"
+    />
+  <adapter
+    factory=".link.facebook.Link"
+    for=".interfaces.ILink"
+    provides=".interfaces.IGallery"
+    name="facebook"
+    />
 
 </configure>

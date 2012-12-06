@@ -16,7 +16,7 @@ from urllib2 import urlopen
 from zope import interface
 
 from collective.gallery import interfaces
-from collective.gallery.link import BaseResource
+from collective.gallery.link.base import BaseResource
 
 def check(url):
     """Check if the url is valid"""
@@ -38,13 +38,9 @@ class Link(BaseResource):
 
     def __init__(self, context):
         super(Link, self).__init__(context)
-        self.validator = check
         self._album_id = None
-
-    def validate(self):
         if self.url.startswith('http://www.facebook.com/album.php?'):
             self.update_link()
-        return self.validator(self.url)
 
     def update_link(self):
         if not self.url.startswith('http://www.facebook.com/album.php?'):
@@ -53,23 +49,25 @@ class Link(BaseResource):
 
     def photos(self):
 
-        if not self.validate(): return super(Link, self).photos()
         album = self.album_id()
         url = "https://graph.facebook.com/%s/photos?limit=1000"%(album)
         try:
             data_str = urlopen(url).read()
             data = json.loads(data_str)
             photos = data.get('data',[])
-            return map(Photo, photos)
+            return self._build_structure(photos)
         except Exception, e:
             logger.error('FACEBOOK backend error: %s'%e)
-            return super(Link, self).photos()
-    
+        
+        return []
+
     def album_id(self):
         if self._album_id is None:
             self._album_id = self.url.split('.')[3]
         return self._album_id
 
+    def _build_structure(self, photos):
+        return map(Photo, photos)
 
 class Photo(object):
     """Photo implementation
@@ -85,7 +83,7 @@ class Photo(object):
         self.description = u''
         
         #extra from facebook
-        self.position = struct['position']
+        #self.position = struct['position']
         self.width=struct['width']
         self.height=struct['height']
         

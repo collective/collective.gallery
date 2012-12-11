@@ -12,8 +12,15 @@ The goals are:
 How to install
 ==============
 
+.. image:: https://secure.travis-ci.org/toutpt/collective.gallery.png
+    :target: http://travis-ci.org/toutpt/collective.gallery
+
 This addon can be installed as any other addon. Please follow the official
 documentation.
+
+Have an idea? Found a bug? Let us know by `opening a support ticket`_.
+
+.. _`opening a support ticket`: https://github.com/toutpt/collective.gallery/issues
 
 Upgrade from 1.X
 ----------------

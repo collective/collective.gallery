@@ -22,6 +22,12 @@ Have an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`opening a support ticket`: https://github.com/toutpt/collective.gallery/issues
 
+State of the current master on github by travis-ci:
+
+.. image:: https://secure.travis-ci.org/collective/collective.gallery.png
+    :target: http://travis-ci.org/collective/collective.gallery
+
+
 Upgrade from 1.X
 ----------------
 

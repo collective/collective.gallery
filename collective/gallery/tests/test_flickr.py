@@ -1,7 +1,9 @@
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
-URL_SETS_PUBLIC = 'http://www.flickr.com/photos/princeofnorway/sets/72157622650234713/'
+URL_SETS_PUBLIC = 'http://www.flickr.com/photos/princeofnorway/sets/'
+URL_SETS_PUBLIC += '72157622650234713/'
+
 
 class Test(base.UnitTestCase):
 
@@ -19,8 +21,8 @@ class Test(base.UnitTestCase):
         return adapter
 
     def testDefaultWithHeight(self):
-        self.assertTrue(self.adapter.width == 400)
-        self.assertTrue(self.adapter.height == 400)
+        self.assertEqual(self.adapter.width, 400)
+        self.assertEqual(self.adapter.height, 400)
 
     def testValidate(self):
         from collective.gallery.link import flickr
@@ -31,37 +33,48 @@ class Test(base.UnitTestCase):
         from collective.gallery.link.flickr import extract_data
         tests = [
             ('http://foo',
-             [('searchtags', None), ('sets', None), ('type', None), ('yahoo_account', None),]),
+             [('searchtags', None), ('sets', None), ('type', None),
+              ('yahoo_account', None)]),
             ('http://www.flickr.com/photos/princeofnorway',
-             [('searchtags', None), ('sets', None), ('type', 'photos'), ('yahoo_account', 'princeofnorway')] ),
-            ('http://www.flickr.com/photos/princeofnorway/sets/foo/searchtags/foo,bar',
-             [('searchtags', 'foo,bar'), ('sets', 'foo'), ('type', 'photos'), ('yahoo_account', 'princeofnorway')]),
+             [('searchtags', None), ('sets', None), ('type', 'photos'),
+              ('yahoo_account', 'princeofnorway')]),
+            ('http://www.flickr.com/photos/princeofnorway/sets/foo/\
+                  searchtags/foo,bar'.replace(' ', ''),
+             [('searchtags', 'foo,bar'), ('sets', 'foo'), ('type', 'photos'),
+              ('yahoo_account', 'princeofnorway')]),
             ('http://www.flickr.com/photos/searchtags/foo,bar',
-             [('searchtags', 'foo,bar'), ('sets', None), ('type', 'photos'), ('yahoo_account', None)]),
+             [('searchtags', 'foo,bar'), ('sets', None), ('type', 'photos'),
+              ('yahoo_account', None)]),
             ('http://www.flickr.com/photos/yahoo_account/foo/sets',
-             [('searchtags', None), ('sets', None), ('type', 'photos'), ('yahoo_account', 'yahoo_account')]),
-            ('http://www.flickr.com/photos/yahoo_account/foo/sets/searchtags/foo',
-             [('searchtags', 'foo'), ('sets', None), ('type', 'photos'), ('yahoo_account', 'yahoo_account')]),
+             [('searchtags', None), ('sets', None), ('type', 'photos'),
+              ('yahoo_account', 'yahoo_account')]),
+            ('http://www.flickr.com/photos/yahoo_account/foo/sets/\
+              searchtags/foo'.replace(' ', ''),
+             [('searchtags', 'foo'), ('sets', None), ('type', 'photos'),
+              ('yahoo_account', 'yahoo_account')]),
         ]
+
         def dotest(test, wanted):
             res = extract_data(test)
             res = res.items()
             res.sort()
-            self.assertEqual(res, wanted)
+            self.assertEqual(res, wanted, msg="fails on %s" % test)
+
         for test, wanted in tests:
             dotest(test, wanted)
 
     def testCreator(self):
-        self.assertTrue(self.adapter.creator == "CJsarp")
+        self.assertEqual(self.adapter.creator, "CJsarp")
 
     def testUserInfo(self):
         user_info = self.adapter.user_info
-        self.assertTrue(user_info['user_id']=="41300176@N02")
-        self.assertTrue(user_info['username']=="CJsarp")
-        self.assertTrue(user_info['user_yahooaccount']=="princeofnorway")
+        self.assertEqual(user_info['user_id'], "41300176@N02")
+        self.assertEqual(user_info['username'], "CJsarp")
+        self.assertEqual(user_info['user_yahooaccount'], "princeofnorway")
 
     def testNotExistingUserExtracted(self):
-        self.context.remoteUrl = 'http://www.flickr.com/photos/notexistinguser/sets'
+        self.context.remoteUrl = 'http://www.flickr.com/photos/\
+            notexistinguser/sets'
         adapter = self.getAdapter(self.context)
         with self.assertRaises(Exception):
             adapter.user_info
@@ -76,32 +89,34 @@ class Test(base.UnitTestCase):
         self.context.remoteUrl = 'http://www.flickr.com/photos/kiorky/'
         adapter = self.getAdapter(self.context)
         imgs = adapter.photos()
-        self.assertTrue(len(imgs)>1)
+        self.assertTrue(len(imgs) > 1)
 
     def testPhotosSet(self):
-        self.context.remoteUrl = 'http://www.flickr.com/photos/kiorky/sets/72157631537964233/'
+        self.context.remoteUrl = 'http://www.flickr.com/photos/kiorky/sets/\
+            72157631537964233/'.replace(' ', '')
         adapter = self.getAdapter(self.context)
         imgs = adapter.photos()
-        self.assertTrue(len(imgs)==1)
-
+        self.assertEqual(len(imgs), 1)
 
     def testPhotosSearchTags(self):
-        self.context.remoteUrl = 'http://www.flickr.com/photos/kiorky/searchtags/azerty'
+        self.context.remoteUrl = 'http://www.flickr.com/photos/kiorky/\
+            searchtags/azerty'.replace(' ', '')
         adapter = self.getAdapter(self.context)
         imgs = adapter.photos()
-        self.assertTrue(len(imgs)==1)
+        self.assertEqual(len(imgs), 1)
 
     def testPhotosSearchMultTags(self):
-        self.context.remoteUrl = 'http://www.flickr.com/photos/kiorky/searchtags/azerty,123'
+        self.context.remoteUrl = 'http://www.flickr.com/photos/kiorky/\
+            searchtags/azerty,123'.replace(' ', '')
         adapter = self.getAdapter(self.context)
         imgs = adapter.photos()
-        self.assertTrue(len(imgs)==2)
+        self.assertEqual(len(imgs), 2)
 
     def testPhotosSearchTagsWOUser(self):
         self.context.remoteUrl = 'http://www.flickr.com/photos/searchtags/2009'
         adapter = self.getAdapter(self.context)
         imgs = adapter.photos()
-        self.assertTrue(len(imgs)>10)
+        self.assertTrue(len(imgs) > 10)
 
     def testNotValideURL(self):
         url = 'http://nota.flickr.com/url'
@@ -109,9 +124,9 @@ class Test(base.UnitTestCase):
         self.context._modified = "updated 2"
         adapter = self.getAdapter()
         msg = "API not respected"
-        self.assertTrue(adapter.title == adapter.context.Title(), msg)
-        self.assertTrue(len(adapter.photos())==0, msg)
-        self.assertTrue(type(adapter.photos()) == list, msg)
+        self.assertEqual(adapter.title, adapter.context.Title(), msg)
+        self.assertEqual(len(adapter.photos()), 0, msg)
+        self.assertEqual(type(adapter.photos()), list, msg)
 
     def testWUser(self):
         self.context.remoteUrl = 'http://www.flickr.com/photos/kiorky'
@@ -125,12 +140,13 @@ class Test(base.UnitTestCase):
         user_info = adapter.user_info
         self.assertEqual(user_info['user_id'], None)
 
-
     def testWOUserTags(self):
-        self.context.remoteUrl = 'http://www.flickr.com/photos/searchtags/1,2,3'
+        self.context.remoteUrl = 'http://www.flickr.com/photos/\
+            searchtags/1,2,3'.replace(' ', '')
         adapter = self.getAdapter(self.context)
         user_info = adapter.user_info
         self.assertEqual(user_info['user_id'], None)
+
 
 class TestIntegration(base.TestCase):
     pass

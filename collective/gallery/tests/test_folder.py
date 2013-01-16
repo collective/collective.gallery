@@ -1,6 +1,7 @@
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
+
 class Test(base.UnitTestCase):
 
     def setUp(self):
@@ -20,14 +21,14 @@ class Test(base.UnitTestCase):
         # used by this method, thus I think it'd be easier to implement this
         # testcase as integrational, inherited from PloneTestCase
         try:
-            from Zope2.App import zcml
+            from Zope2.App.zcml import load_config
         except ImportError, e:
-            from Products.Five import zcml
+            from Products.Five.zcml import load_config
         import zope.component
         import zope.annotation
-        zcml.load_config('meta.zcml', zope.component)
-        zcml.load_config('configure.zcml', zope.annotation)
 
+        load_config('meta.zcml', zope.component)
+        load_config('configure.zcml', zope.annotation)
 
         imgs = self.view.photos()
         self.assertEqual(len(imgs), 2)
@@ -36,6 +37,6 @@ class Test(base.UnitTestCase):
             test, msg = utils.verifyImage(img)
             self.assertTrue(test, msg)
 
+
 class TestIntegration(base.TestCase):
     pass
-

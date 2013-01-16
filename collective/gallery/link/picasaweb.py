@@ -20,7 +20,9 @@ SIZES = (32, 48, 64, 72, 104, 144, 150, 160, 94, 110, 128, 200, 220, 288, 320,
 def check(url):
     """Ex:
 
-    >>> check('http://picasaweb.google.fr/ceronjeanpierre/PhotosTriEsDuMariage#')
+    >>> url = 'http://picasaweb.google.fr/ceronjeanpierre/'
+    >>> url += 'PhotosTriEsDuMariage#'
+    >>> check(url)
     True
     >>> check('http://picasaweb.google.com')
     False
@@ -28,11 +30,13 @@ def check(url):
     starts = url.startswith("http://picasaweb.google")
     starts_https = url.startswith("https://picasaweb.google")
     url_splited = url.split('/')
-    return (starts or starts_https) and len(url_splited)>4
+    return (starts or starts_https) and len(url_splited) > 4
+
 
 class Link(BaseResource):
     """Picasa implements of IGallery over Link content type
-    please check http://code.google.com/intl/fr/apis/picasaweb/docs/1.0/reference.html
+    please check
+    http://code.google.com/intl/fr/apis/picasaweb/docs/1.0/reference.html
     for a complete reference of kwargs
     """
 
@@ -42,7 +46,7 @@ class Link(BaseResource):
         query = {}
         for q_string in self.url_parsed.query.split('&'):
             q_splited = q_string.split('=')
-            if len(q_splited)>1:
+            if len(q_splited) > 1:
                 key = q_splited[0]
                 value = q_splited[1]
                 query[key] = value
@@ -52,13 +56,13 @@ class Link(BaseResource):
     def creator(self):
 
         path = self.url_parsed.path.split('/')
-        if len(path)>1:
+        if len(path) > 1:
             return path[1]
 
     @property
     def albumName(self):
         path = self.url_parsed.path.split('/')
-        if len(path)>2:
+        if len(path) > 2:
             return path[2]
 
     @property
@@ -77,7 +81,8 @@ class Link(BaseResource):
         if authkey:
             kwargs['authkey'] = authkey
 
-        url = '/data/feed/api/user/%s/album/%s?'%(self.creator, self.albumName)
+        url = '/data/feed/api/user/%s/album/%s?' % (self.creator,
+                                                    self.albumName)
         url += urlencode(kwargs)
 
         photos = self._gdata_photos(url)
@@ -94,7 +99,7 @@ class Link(BaseResource):
         else:
             imgmax = min(width, height)
         while imgmax not in SIZES and imgmax > 0:
-            imgmax = imgmax -1
+            imgmax = imgmax - 1
         return imgmax
 
     def _build_structure(self, photos):
@@ -105,9 +110,10 @@ class Link(BaseResource):
         """Return the title of the album. If you want to use link title you can
         do it in the tempalte"""
 
-        url = '/data/feed/api/user/%s/album/%s'%(self.creator, self.albumName)
+        url = '/data/feed/api/user/%s/album/%s' % (self.creator,
+                                                   self.albumName)
         if self.authkey:
-            url += '?' + urlencode({'authkey':self.authkey})
+            url += '?' + urlencode({'authkey': self.authkey})
         title = self._album_title(url)
         return title
 
@@ -117,7 +123,8 @@ class Link(BaseResource):
             album = gd_client.Get(url)
             return album.title.text.decode('utf-8')
         except:
-            logger.info('PICASAWEB URL DOESN T WORK: %s %s'%(self.context, url))
+            logger.info('PICASAWEB URL DOESN T WORK: %s %s' % (self.context,
+                                                               url))
             return u""
 
     def _gdata_photos(self, url):
@@ -129,8 +136,9 @@ class Link(BaseResource):
             return photos.entry
         except Exception, e:
             msg = 'PICASAWEB URL Exception: %s %s. Exception: %s'
-            logger.info(msg%(self.context, url, e))
+            logger.info(msg % (self.context, url, e))
             return []
+
 
 class Photo(object):
     """Photo implementation specific to picasaweb service"""

@@ -3,12 +3,12 @@ from zope import interface
 
 from collective.gallery import interfaces
 
-from Products.CMFCore.utils import getToolByName
 from plone.registry.interfaces import IRegistry
+
 
 class BaseResource(object):
     """An IGallery base for all link services
-    
+
     """
     interface.implements(interfaces.IGallery)
     component.adapts(interfaces.ILink)

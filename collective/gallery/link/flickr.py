@@ -8,8 +8,10 @@ from zope import interface
 
 API_KEY = '37f7bd2f16b0071fb536ae907473780a'
 
+
 def check(url):
     return url.startswith('http://www.flickr.com')
+
 
 def extract_data(url):
     """Return metadata from this flickr url
@@ -20,7 +22,7 @@ def extract_data(url):
 
         - User + sets :
 
-            - http://www.flickr.com/photos/princeofnorway/sets/72157623726009622/
+        - http://www.flickr.com/photos/princeofnorway/sets/72157623726009622/
 
         - Tags Filters With or without Users:
 
@@ -32,8 +34,9 @@ def extract_data(url):
               'searchtags': None,
               'type': None,
               }
-    mapping = {'photos':'yahoo_account'}
-    if not check(url): return result
+    mapping = {'photos': 'yahoo_account'}
+    if not check(url):
+        return result
     url_splited = url.split('/')
     result['type'] = url_splited[3]
     if len(url_splited) > 4:
@@ -44,7 +47,7 @@ def extract_data(url):
         if m in url_splited:
             try:
                 val = url_splited[url_splited.index(m) + 1]
-            except IndexError, e:
+            except IndexError:
                 val = None
             # special case: search on tags without user
             if (val in ['searchtags', 'photos', 'sets']
@@ -60,7 +63,7 @@ class Link(BaseResource):
     def __init__(self, context):
         super(Link, self).__init__(context)
         self._flickr = None
-        self._metadata = {'creator':'', 'albumName':''}
+        self._metadata = {'creator': '', 'albumName': ''}
         self._user_info = {}
 
     @property
@@ -108,14 +111,14 @@ class Link(BaseResource):
         if metadatas['type'] == 'photos':
 
             if metadatas['sets']:
-                set = flickr.walk_set(metadatas['sets'])
-                results = self._build_structure(set)
+                pset = flickr.walk_set(metadatas['sets'])
+                results = self._build_structure(pset)
             else:
                 kw = {}
                 if self.user_info['user_id']:
                     kw['user_id'] = self.user_info['user_id']
                 if metadatas['searchtags']:
-                    kw['tags' ] = metadatas['searchtags']
+                    kw['tags'] = metadatas['searchtags']
                 if (not 'user_id' in kw
                     and not 'tags' in kw):
                     raise Exception(
@@ -131,7 +134,8 @@ class Link(BaseResource):
 
     def _flickr_service(self):
         """Return the flickr service"""
-        if self._flickr: return self._flickr
+        if self._flickr:
+            return self._flickr
         self._flickr = flickrapi.FlickrAPI(API_KEY)
         return self._flickr
 

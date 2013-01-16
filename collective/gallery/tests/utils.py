@@ -1,23 +1,26 @@
 
+
 def brainToPhoto(ob):
     from collective.gallery import brain
     return brain.Photo(ob)
+
 
 def verifyImage(image):
     """Return True if image respect the interface, return false otherwise"""
     attrs = ('id', 'title', 'description', 'url', 'thumb_url')
     for attr in attrs:
         if not hasattr(image, attr):
-            return False, "has no %s attribute"%attr
+            return False, "has no %s attribute" % attr
     for attr in attrs:
         if type(getattr(image, attr)) not in (str, unicode):
-            return False, "%s is not a string or unicode"%attr
+            return False, "%s is not a string or unicode" % attr
     return True, ""
 
 
 class FakeAcquisition(object):
     def __init__(self):
         self.aq_explicit = None
+
 
 class FakeContext(object):
 
@@ -26,11 +29,11 @@ class FakeContext(object):
         self.title = "a title"
         self.description = "a description"
         self.creators = ["myself"]
-        self.date="a date"
+        self.date = "a date"
         self.aq_inner = FakeAcquisition()
         self.aq_inner.aq_explicit = self
         self._modified = "modified date"
-        self.remoteUrl = '' #fake Link
+        self.remoteUrl = ''  # fake Link
 
     def getId(self):
         return self.id
@@ -51,24 +54,22 @@ class FakeContext(object):
         return self._modified
 
     def getPhysicalPath(self):
-        return ('/','a','not','existing','path')
+        return ('/', 'a', 'not', 'existing', 'path')
 
     def getFolderContents(self, filter=None):
         catalog = FakeCatalog()
         return catalog.searchResults()
 
     def absolute_url(self):
-        return "http://nohost.com/"+self.id
+        return "http://nohost.com/" + self.id
 
-    def queryCatalog(self, **kwargs): #fake Topic
+    def queryCatalog(self, **kwargs):  # fake Topic
         catalog = FakeCatalog()
         return catalog.searchResults()
 
-    def getRemoteUrl(self): #fake Link
+    def getRemoteUrl(self):  # fake Link
         return self.remoteUrl
 
-    def modified(self): #for ram cache key
-        return "a modification date"
 
 class FakeBrain(object):
     def __init__(self):
@@ -86,6 +87,7 @@ class FakeBrain(object):
 
         return ob
 
+
 class FakeCatalog(object):
     def searchResults(self, **kwargs):
         brain1 = FakeBrain()
@@ -98,6 +100,7 @@ class FakeCatalog(object):
     def modified(self):
         return '654654654654'
 
+
 class FakeProperty(object):
     def __init__(self):
         self.photo_max_size = 400
@@ -105,6 +108,7 @@ class FakeProperty(object):
 
     def getProperty(self, name, default=None):
         return getattr(self, name, default)
+
 
 def fake_get_property(self):
     return FakeProperty()

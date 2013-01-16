@@ -3,6 +3,7 @@ from zope import interface
 from collective.gallery import core
 from collective.gallery import interfaces
 
+
 class BaseTopicView(core.BaseBrowserView):
     """A base topic gallery view"""
     interface.implements(interfaces.IGallery)

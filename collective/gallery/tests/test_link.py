@@ -1,6 +1,7 @@
 from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
+
 class Test(base.UnitTestCase):
 
     def setUp(self):
@@ -17,6 +18,7 @@ class Test(base.UnitTestCase):
     def testCreator(self):
         self.assertTrue(self.view.creator == self.view.context.Creators()[0])
 
+
 class TestIntegration(base.TestCase):
 
     def setUp(self):
@@ -32,4 +34,3 @@ class TestIntegration(base.TestCase):
         self.portal.portal_registry[key] = 500
 
         self.assertTrue(view.width == 500)
-

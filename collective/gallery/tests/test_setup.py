@@ -24,6 +24,5 @@ class TestSetup(base.TestCase):
         from collective.gallery.interfaces import IGallerySettings
         pp = self.portal.portal_registry.forInterface(IGallerySettings)
         self.assertTrue(hasattr(pp, 'photo_max_size'))
-        self.assertTrue(pp.photo_max_size == 400)
-        self.assertTrue(type(pp.photo_max_size) == int)
-
+        self.assertEqual(pp.photo_max_size, 400)
+        self.assertEqual(type(pp.photo_max_size), int)

@@ -2,8 +2,10 @@ from collective.gallery.tests import base
 from collective.gallery.tests import utils
 
 NONAUTH_URL = 'http://picasaweb.google.fr/ceronjeanpierre/PhotosTriEsDuMariage'
-AUTH_URL = 'http://picasaweb.google.com/toutpt/20091116ConcertDeRammstein?authkey=Gv1sRgCN2i5uS0y5_lLQ#'
+AUTH_URL = 'http://picasaweb.google.com/toutpt/20091116ConcertDeRammstein?\
+    authkey=Gv1sRgCN2i5uS0y5_lLQ#'.replace(' ', '')
 HTTPS_URL = 'https://picasaweb.google.com/fotonowiacy/NaszeOkolice'
+
 
 class Test(base.UnitTestCase):
 
@@ -20,8 +22,8 @@ class Test(base.UnitTestCase):
 
     def testDefaultWithHeight(self):
         #test default values
-        self.assertTrue(self.adapter.width == 400)
-        self.assertTrue(self.adapter.height == 400)
+        self.assertEqual(self.adapter.width, 400)
+        self.assertEqual(self.adapter.height, 400)
 
     def testCheckURL(self):
         from collective.gallery.link import picasaweb
@@ -31,7 +33,7 @@ class Test(base.UnitTestCase):
         self.assertFalse(picasaweb.check("http://nopicasa.google.com"))
 
     def testCreator(self):
-        self.assertTrue(self.adapter.creator == "ceronjeanpierre")
+        self.assertEqual(self.adapter.creator, "ceronjeanpierre")
 
     def testAuthKey(self):
         self.assertTrue(not self.adapter.authkey)
@@ -41,7 +43,6 @@ class Test(base.UnitTestCase):
     def test_imgmax(self):
         imgmax = self.adapter.imgmax(400, 300)
         self.assertEqual(imgmax, 288)
-
 
     def testPhotosNonAuth(self):
         imgs = self.adapter.photos()
@@ -59,9 +60,9 @@ class Test(base.UnitTestCase):
     def testImgsWrongURL(self):
         adapter = self.getAdapter("http://notpicasaweb.com/")
         msg = "API not respected"
-        self.assertTrue(len(adapter.photos())==0, msg)
-        self.assertTrue(type(adapter.photos()) == list, msg)
+        self.assertEqual(len(adapter.photos()), 0, msg)
+        self.assertEqual(type(adapter.photos()), list, msg)
+
 
 class TestIntegration(base.TestCase):
     pass
-

@@ -5,10 +5,9 @@ version = '2.1.dev0'
 
 setup(name='collective.gallery',
       version=version,
-      description="Base gallery product for plone with picasa and flickr support by Makina Corpus",
+      description="Base gallery for plone with external services support",
       long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
-      # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
         "Framework :: Plone :: 4.0",
@@ -31,9 +30,8 @@ setup(name='collective.gallery',
           'flickrapi',
           # -*- Extra requirements: -*-
       ],
-      extras_require = dict(
+      extras_require=dict(
           test=['plone.app.testing'],
-          facebook=[], #was beautifulsoup
       ),
       entry_points="""
       # -*- Entry points: -*-

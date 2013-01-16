@@ -3,6 +3,7 @@ from zope import interface
 
 from collective.gallery import interfaces
 
+
 class Photo(object):
     """Photo implementation from brain"""
     interface.implements(interfaces.IPhoto)

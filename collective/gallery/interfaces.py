@@ -3,8 +3,10 @@ from zope import schema
 
 from collective.gallery import messageFactory as _
 
+
 class IGalleryLayer(interface.Interface):
     """Browser layer"""
+
 
 class IPhoto(interface.Interface):
     """Metadatas schema of a photo"""
@@ -20,6 +22,7 @@ class IPhoto(interface.Interface):
 
     thumb_url = schema.TextLine(title=_(u"label_photo_thumb",
                                         default=u"Thumb source URL"))
+
 
 class IGallery(interface.Interface):
     """A gallery is the business component of collective.gallery. A gallery
@@ -82,11 +85,12 @@ try:
     from Products.ZCatalog.interfaces import ICatalogBrain
 except ImportError, e:
     from collective.gallery import logger
-    logger.info('BBB: switch to plone3 %s'%e)
+    logger.info('BBB: switch to plone3 %s' % e)
     #plone3
     from Products.ATContentTypes.interface import IATFolder as IFolder
     from Products.ATContentTypes.interface import IATLink   as ILink
     from Products.ATContentTypes.interface import IATTopic  as ITopic
     from Products.ATContentTypes.interface import IATImage  as IImage
+
     class ICatalogBrain(interface.Interface):
         pass

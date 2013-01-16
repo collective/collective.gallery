@@ -17,4 +17,3 @@ class Test(base.UnitTestCase):
 
 class TestIntegration(base.TestCase):
     pass
-

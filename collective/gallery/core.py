@@ -2,7 +2,6 @@ from zope import component
 from zope import interface
 from Products.Five import BrowserView
 
-from Products.CMFCore.utils import getToolByName
 from plone.registry.interfaces import IRegistry
 
 from collective.gallery import interfaces
@@ -41,7 +40,7 @@ class BaseBrowserView(BrowserView):
     @property
     def creator(self):
         return self.context.Creators()[0]
-    
+
     @property
     def description(self):
         return self.context.Description()
@@ -49,7 +48,7 @@ class BaseBrowserView(BrowserView):
     @property
     def date(self):
         return self.context.Date()
-    
+
     def settings(self):
         if self._settings is None:
             registry = component.getUtility(IRegistry)
@@ -63,10 +62,13 @@ class BaseBrowserView(BrowserView):
         photos = self.photos()
 
         if len(photos) == 0:
-            return {'url':'','title':u'', 'description':u'', 'thumb_url':''}
+            return {'url': '',
+                    'title': u'',
+                    'description': u'',
+                    'thumb_url': ''}
 
         if index > len(self.photos()):
-            if index!=0:
-                index=0
+            if index != 0:
+                index = 0
 
         return photos[index]

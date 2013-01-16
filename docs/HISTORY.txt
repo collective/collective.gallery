@@ -4,7 +4,7 @@ Changelog
 2.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- pep8 + tests + travis-ci integration
 
 
 2.0 (2012-12-06)

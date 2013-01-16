@@ -23,6 +23,7 @@ from collective.gallery.link.facebook  import Link as FacebookLink
 from collective.gallery.link.flickr    import Link as FlickrLink
 from collective.gallery.link.picasaweb import Link as PicasawebLink
 
+
 class BaseLinkView(core.BaseBrowserView):
     """A base browser view for link content type"""
     interface.implements(interfaces.IGallery)
@@ -56,7 +57,7 @@ class BaseLinkView(core.BaseBrowserView):
         if self.resource is None:
             resources = component.getAdapters((self.context,),
                                               interfaces.IGallery)
-            for name,r in resources:
+            for name, r in resources:
                 #every adapters should have a validate method
                 if r.validate():
                     self.resource = r
@@ -111,7 +112,7 @@ class BaseLinkView(core.BaseBrowserView):
             pos = pair.find('=')
             if pos > -1:
                 key = pair[:pos]
-                value = pair[pos+1:]
+                value = pair[pos + 1:]
             else:
                 key = pair
                 value = ''

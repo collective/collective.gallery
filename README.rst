@@ -12,9 +12,6 @@ The goals are:
 How to install
 ==============
 
-.. image:: https://secure.travis-ci.org/toutpt/collective.gallery.png
-    :target: http://travis-ci.org/toutpt/collective.gallery
-
 This addon can be installed as any other addon. Please follow the official
 documentation.
 

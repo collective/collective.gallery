@@ -28,11 +28,16 @@ State of the current master on github by travis-ci:
 Upgrade from 1.X
 ----------------
 
-If you migrate from 1.X, you should add an other addon like collective.galleria.
-Note that Galleriffic is deprecated.
+Note: for those who came from 1.X this addon dont provide UX anymore.
+This addon is now intended to integrator.
+Please consider use collective.galleria as a great gallery viewer for Plone.
 
-To cleanup you plonesite, you can call @@collective.gallery.zclean has
-administrator or use the profile 'zclean'.
+Note that Galleriffic is not maintained. This is one of the reason why I have
+removed UX from this package. jQuery gallery appear and disapear every day.
+
+To cleanup you plonesite from 1.X, you can call @@collective.gallery.zclean as
+administrator or use the profile 'zclean' which remove galleriffic from your
+javascript registry.
 
 Components (Backend)
 ====================

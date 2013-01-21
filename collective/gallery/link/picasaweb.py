@@ -39,7 +39,6 @@ class Link(BaseResource):
     http://code.google.com/intl/fr/apis/picasaweb/docs/1.0/reference.html
     for a complete reference of kwargs
     """
-
     def __init__(self, context):
         super(Link, self).__init__(context)
         self.url_parsed = urlparse.urlparse(self.url)
@@ -138,6 +137,9 @@ class Link(BaseResource):
             msg = 'PICASAWEB URL Exception: %s %s. Exception: %s'
             logger.info(msg % (self.context, url, e))
             return []
+
+    def validate(self):
+        return check(self.url)
 
 
 class Photo(object):

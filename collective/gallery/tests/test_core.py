@@ -8,30 +8,45 @@ class Test(base.UnitTestCase):
         from collective.gallery import core
         self.view = core.BaseBrowserView(self.context, self.request)
 
-    def testTitle(self):
+    def test_title(self):
         self.assertEqual(self.view.title, "a title")
 
-    def testCreator(self):
+    def test_creator(self):
         self.assertEqual(self.view.creator, "myself")
 
-    def testDescription(self):
+    def test_description(self):
         self.assertEqual(self.view.description, "a description")
 
-    def testDate(self):
+    def test_date(self):
         self.assertEqual(self.view.date, "a date")
 
-    def testPhotos(self):
+    def test_photos(self):
         self.assertTrue(not self.view.photos())
         self.assertEqual(type(self.view.photos()), list)
 
+    def test_get_photo(self):
+        photo = self.view.get_photo()
+        self.assertIsInstance(photo, dict)
+        self.assertIn('url', photo)
+        self.assertIn('title', photo)
+        self.assertIn('description', photo)
+        self.assertIn('thumb_url', photo)
+
 
 class TestIntegration(base.TestCase):
-
-    def testRegistry(self):
+    def setUp(self):
         from collective.gallery import core
-        view = core.BaseBrowserView(self.portal, None)
-        registry = self.portal.portal_registry
-        self.assertEqual(view.width, 400)
+        self.view = core.BaseBrowserView(self.portal, None)
+        self.registry = self.portal.portal_registry
+
+    def test_registry(self):
+        self.assertEqual(self.view.width, 400)
         key = 'collective.gallery.interfaces.IGallerySettings.photo_max_size'
-        registry[key] = 500
-        self.assertEqual(view.width, 500)
+        self.registry[key] = 500
+        self.assertEqual(self.view.width, 500)
+
+    def test_width(self):
+        self.assertEqual(self.view.width, 400)
+
+    def test_heigth(self):
+        self.assertEqual(self.view.width, 400)

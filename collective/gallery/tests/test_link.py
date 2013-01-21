@@ -26,11 +26,20 @@ class TestIntegration(base.TestCase):
         self.folder.invokeFactory(id='mylink', type_name='Link')
         self.link = self.folder.mylink
         self.link.setRemoteUrl('http://notsupported.com/agallery')
+        self.view = self.link.unrestrictedTraverse('@@gallery')
 
     def testRegistry(self):
-        view = self.link.unrestrictedTraverse('@@gallery')
-        self.assertTrue(view.width == 400)
+        self.assertTrue(self.view.width == 400)
         key = 'collective.gallery.interfaces.IGallerySettings.photo_max_size'
         self.portal.portal_registry[key] = 500
 
-        self.assertTrue(view.width == 500)
+        self.assertTrue(self.view.width == 500)
+
+    def test_update(self):
+        from collective.gallery.link.picasaweb import Link
+        url = 'https://picasaweb.google.com/nantesmetropoledeveloppement/'
+        url += 'DiaporamaCoeurDeNantes'
+        self.view.url = url
+        self.view.update()
+        self.assertIsNotNone(self.view.resource)
+        self.assertIsInstance(self.view.resource, Link)

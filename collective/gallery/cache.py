@@ -13,7 +13,7 @@ def cache_key(fun, self):
     objectIds = ""
     if hasattr(self.context.aq_inner.aq_explicit, 'objectIds'):
         objectIds = str(len(self.context.aq_inner.aq_explicit.objectIds()))
-    return  mod_date + one_hour + objectIds
+    return mod_date + one_hour + objectIds
 
 
 def url_cache_key(fun, self):

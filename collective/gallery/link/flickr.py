@@ -50,8 +50,10 @@ def extract_data(url):
             except IndexError:
                 val = None
             # special case: search on tags without user
-            if (val in ['searchtags', 'photos', 'sets']
-                and m in ['searchtags', 'photos', 'sets']):
+            if (
+                val in ['searchtags', 'photos', 'sets']
+                and m in ['searchtags', 'photos', 'sets']
+            ):
                 continue
             result[mapping.get(m, m)] = val
     return result
@@ -119,8 +121,7 @@ class Link(BaseResource):
                     kw['user_id'] = self.user_info['user_id']
                 if metadatas['searchtags']:
                     kw['tags'] = metadatas['searchtags']
-                if (not 'user_id' in kw
-                    and not 'tags' in kw):
+                if (not 'user_id' in kw and not 'tags' in kw):
                     raise Exception(
                         'invalid search, '
                         'at least user or tags is needed')

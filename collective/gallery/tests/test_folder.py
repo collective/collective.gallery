@@ -22,7 +22,7 @@ class UnitTestFolder(base.UnitTestCase):
         # testcase as integrational, inherited from PloneTestCase
         try:
             from Zope2.App.zcml import load_config
-        except ImportError, e:
+        except ImportError:
             from Products.Five.zcml import load_config
         import zope.component
         import zope.annotation

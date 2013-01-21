@@ -14,7 +14,7 @@ from collective.gallery.link.base import BaseResource
 logger = logging.getLogger('collective.gallery')
 
 SIZES = (32, 48, 64, 72, 104, 144, 150, 160, 94, 110, 128, 200, 220, 288, 320,
-          400, 512, 576, 640, 720, 800, 912, 1024, 1152, 1280, 1440, 1600)
+         400, 512, 576, 640, 720, 800, 912, 1024, 1152, 1280, 1440, 1600)
 
 
 def check(url):

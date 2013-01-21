@@ -6,8 +6,6 @@ from zope import interface
 
 from plone.memoize import ram
 
-from Products.CMFCore.utils import getToolByName
-
 from collective.gallery import interfaces
 from collective.gallery import i18n
 from collective.gallery import cache
@@ -15,12 +13,12 @@ from collective.gallery import core
 from collective.gallery.link.base import BaseResource
 from Products.statusmessages.interfaces import IStatusMessage
 
-from collective.gallery.link.facebook  import check as check_facebook
-from collective.gallery.link.flickr    import check as check_flickr
+from collective.gallery.link.facebook import check as check_facebook
+from collective.gallery.link.flickr import check as check_flickr
 from collective.gallery.link.picasaweb import check as check_picasaweb
 
-from collective.gallery.link.facebook  import Link as FacebookLink
-from collective.gallery.link.flickr    import Link as FlickrLink
+from collective.gallery.link.facebook import Link as FacebookLink
+from collective.gallery.link.flickr import Link as FlickrLink
 from collective.gallery.link.picasaweb import Link as PicasawebLink
 
 
@@ -76,7 +74,7 @@ class BaseLinkView(core.BaseBrowserView):
         except TypeError:
             pass
 
-#    @ram.cache(cache.cache_key)
+    @ram.cache(cache.cache_key)
     def photos(self):
         resource = self.resource
         if resource is None:

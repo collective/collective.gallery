@@ -7,10 +7,10 @@ AUTH_URL = 'http://picasaweb.google.com/toutpt/20091116ConcertDeRammstein?\
 HTTPS_URL = 'https://picasaweb.google.com/fotonowiacy/NaszeOkolice'
 
 
-class Test(base.UnitTestCase):
+class UnitTestPicasa(base.UnitTestCase):
 
     def setUp(self):
-        super(Test, self).setUp()
+        super(UnitTestPicasa, self).setUp()
         self.adapter = self.getAdapter(NONAUTH_URL)
 
     def getAdapter(self, url):

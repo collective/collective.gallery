@@ -5,10 +5,10 @@ URL_SETS_PUBLIC = 'http://www.flickr.com/photos/princeofnorway/sets/'
 URL_SETS_PUBLIC += '72157622650234713/'
 
 
-class Test(base.UnitTestCase):
+class UnitTestFlickr(base.UnitTestCase):
 
     def setUp(self):
-        super(Test, self).setUp()
+        super(UnitTestFlickr, self).setUp()
         self.context.remoteUrl = URL_SETS_PUBLIC
         self.adapter = self.getAdapter()
 

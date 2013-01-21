@@ -1,10 +1,10 @@
 from collective.gallery.tests import base
 
 
-class Test(base.UnitTestCase):
+class UnitTestCore(base.UnitTestCase):
 
     def setUp(self):
-        super(Test, self).setUp()
+        super(UnitTestCore, self).setUp()
         from collective.gallery import core
         self.view = core.BaseBrowserView(self.context, self.request)
 
@@ -33,8 +33,9 @@ class Test(base.UnitTestCase):
         self.assertIn('thumb_url', photo)
 
 
-class TestIntegration(base.TestCase):
+class TestIntegrationCore(base.TestCase):
     def setUp(self):
+        super(TestIntegrationCore, self).setUp()
         from collective.gallery import core
         self.view = core.BaseBrowserView(self.portal, None)
         self.registry = self.portal.portal_registry

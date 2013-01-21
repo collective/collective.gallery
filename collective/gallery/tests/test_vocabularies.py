@@ -3,7 +3,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from collective.gallery.tests import base
 
 
-class TestIntegrationVocabularies(base.TestCase):
+class IntegrationTestVocabularies(base.TestCase):
 
     def test_image_scale(self):
         name = "collective.gallery.ImageScaleVocabulary"

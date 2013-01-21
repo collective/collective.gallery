@@ -8,13 +8,13 @@ example.
 from collective.gallery.tests import base
 
 
-class TestSetup(base.TestCase):
+class IntegrationTestSetup(base.TestCase):
     """The name of the class should be meaningful. This may be a class that
     tests the installation of a particular product.
     """
 
     def setUp(self):
-        super(TestSetup, self).setUp()
+        super(IntegrationTestSetup, self).setUp()
         self.portal_types = self.portal.portal_types
 
     def beforeTearDown(self):

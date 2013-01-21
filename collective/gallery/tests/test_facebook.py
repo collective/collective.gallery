@@ -6,10 +6,10 @@ URL1 += "?set=a.416328449800.177781.275081154800"
 URL2 = "http://www.facebook.com/album.php?aid=177781&id=275081154800"
 
 
-class Test(base.UnitTestCase):
+class UnitTestFacebook(base.UnitTestCase):
 
     def setUp(self):
-        super(Test, self).setUp()
+        super(UnitTestFacebook, self).setUp()
         self.adapter = self.getAdapter(URL1)
 
     def getAdapter(self, url):

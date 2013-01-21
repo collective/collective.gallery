@@ -3,8 +3,9 @@ python: 2.7
 env:
   - TARGET=test
   - TARGET=coverage.sh
-//  - TARGET=csslint.sh
-//  - TARGET=jshint.sh
+  - TARGET=python-validation-sh
+//  - TARGET=css-validation.sh
+//  - TARGET=js-validation.sh
 
 // csslint and jshint dependencies, uncomment if needed
 // before_install:

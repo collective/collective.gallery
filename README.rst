@@ -123,19 +123,10 @@ type and display your link content with the view gallery available in the drop d
 
 Flickr service is not album centric but photo centric. Supported case:
 
-  http://www.flickr.com/photos/autowitch/sets/107460
-  It is an album, no problem
-
-  http://www.flickr.com/photos/rbpdesigner
-  We have the username, return all photos
-
-  http://www.flickr.com/photos/searchtags/123,456
-  We return the photos of a search on the comma separated list of tags
-
-  http://www.flickr.com/photos/rbpdesigner/searchtags/123,456
-  We return the photos of a search on the comma separated list of tags; for that specific user
-
-IPhoto.description metadata is not supported
+* http://www.flickr.com/photos/autowitch/sets/107460 It is an album, no problem
+* http://www.flickr.com/photos/rbpdesigner We have the username, return all photos
+* http://www.flickr.com/photos/searchtags/123,456 We return the photos of a search on the comma separated list of tags
+* http://www.flickr.com/photos/rbpdesigner/searchtags/123,456 We return the photos of a search on the comma separated list of tags; for that specific user
 
 facebook_
 ~~~~~~~~~

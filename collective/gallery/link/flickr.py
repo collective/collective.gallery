@@ -113,10 +113,10 @@ class Link(BaseResource):
         if metadatas['type'] == 'photos':
 
             if metadatas['sets']:
-                pset = flickr.walk_set(metadatas['sets'])
+                pset = flickr.walk_set(metadatas['sets'], extras="description")
                 results = self._build_structure(pset)
             else:
-                kw = {}
+                kw = {"extras": "description"}
                 if self.user_info['user_id']:
                     kw['user_id'] = self.user_info['user_id']
                 if metadatas['searchtags']:
@@ -174,4 +174,7 @@ class Photo(object):
         self.id = photo.get('id')
         self.thumb_url = thumb_url
         self.title = photo.get('title')
-        self.description = ''
+        if photo.getchildren():
+            self.description = photo.getchildren()[0].text
+        else:
+            self.description = ''

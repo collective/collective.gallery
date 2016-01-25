@@ -24,6 +24,13 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
   />
   <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.gallery uninstall"
+      directory="profiles/uninstall"
+      description="Uninstall collective.gallery in Plone"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+  <genericsetup:registerProfile
       name="zclean"
       title="collective.gallery cleanup from 1.X"
       directory="profiles/zclean"

@@ -1,0 +1,3 @@
+<registry>
+  <records remove="true" interface="collective.gallery.interfaces.IGallerySettings" />
+</registry>
